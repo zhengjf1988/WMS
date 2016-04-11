@@ -5,7 +5,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%@ include file="/include.inc.jsp"%>
+<%@ include file="../include.inc.jsp"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -23,7 +23,6 @@
 
 <base href="<%=basePath%>">
 
-<title>WMS</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -33,8 +32,6 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="bootstrap/css/style.css" rel="stylesheet">
 <script src="bootstrap/js/jquery.min.js"></script>
 <script type="text/javascript">
 	/* $(function() {
@@ -78,7 +75,7 @@
 						</div>
 					</div>
 					<div class="col-sm-offset-2 col-sm-10">
-						<c:if test="${user.username==null}">
+						<c:if test="${user==''}">
 							<div class="alert alert-danger" role="alert">用户名或密码错误！</div>
 						</c:if>
 					</div>
@@ -101,8 +98,5 @@
 			</div>
 		</div>
 	</div>
-	<script src="bootstrap/js/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="bootstrap/js/scripts.js"></script>
 </body>
 </html>

@@ -6,21 +6,21 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-	<head>
-		<base href="<%=basePath%>">
+<head>
+<base href="<%=basePath%>">
 
-		<title>纺织行业WMS产品样品管理子系统</title>
-		<meta http-equiv="pragma" content="no-cache">
-		<meta http-equiv="cache-control" content="no-cache">
-		<meta http-equiv="expires" content="0">
-		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-		<meta http-equiv="description" content="This is my page">
-		<!--
+<title>WMS</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	</head>
+</head>
 
-	<body>
-		<jsp:include page="jsp/login.jsp"></jsp:include>
-	</body>
+<body>
+	<jsp:include page="jsp/login.jsp"></jsp:include>
+</body>
 </html>

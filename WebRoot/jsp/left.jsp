@@ -27,10 +27,6 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="bootstrap/css/style.css" rel="stylesheet">
-
 </head>
 <body>
 	<div class="col-md-12" style="padding-left: 0;width: 100%">
@@ -69,8 +65,5 @@
 			</div>
 		</div>
 	</div>
-	<script src="bootstrap/js/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="bootstrap/js/scripts.js"></script>
 </body>
 </html>
