@@ -40,12 +40,14 @@ public class NoticeServiceImp implements INoticeService {
 		return 0;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.make.service.INoticeService#loadNoticeInfo(com.make.bean.NoticeBean)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.make.service.INoticeService#loadNoticeInfo(com.make.bean.NoticeBean)
 	 */
 	public List<NoticeBean> loadNoticeInfo(NoticeBean notice) {
-		// TODO Auto-generated method stub
-		return null;
+		return noticeDao.loadNoticeInfo(notice);
 	}
 
 }

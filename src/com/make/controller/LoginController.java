@@ -1,5 +1,5 @@
 /**  
- * @Title: Login.java
+ * @Title: LoginController.java
  * @Package com.make.controller
  * @Description: TODO
  * @author zhengjf
@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.make.bean.UserBean;
 
 /**
- * ClassName: Login
+ * ClassName: LoginController
  * 
  * @Description: 用户登录
  * @author zhengjf
  * @date 2016-4-7
  */
 @Controller
-public class Login {
+public class LoginController {
 
-	Logger log = Logger.getLogger(Login.class);
+	Logger log = Logger.getLogger(LoginController.class);
 
 	/**
 	 * 
@@ -46,7 +46,7 @@ public class Login {
 			if (user.getUsername().equals("admin") && user.getPsw().equals("111111")) {
 				session.setAttribute("user", user);
 				req.setAttribute("user", user);
-				res = "main";
+				res = "redirect:note/list.do";
 			} else {
 				session.setAttribute("user", null);
 				req.setAttribute("user", "");

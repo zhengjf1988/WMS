@@ -1,72 +1,109 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
-<%@ include file="../include.inc.jsp"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<%@ include file="../../include.inc.jsp"%>
+<!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+	function linkPage(id) {
+		$.ajax({
+			type : "post",
+			async : true,
+			url : "depart/linkPage.do",
+			datatype : "json",//请求页面返回的数据类型     
+			data : {
+				"id" : id
+			},
+			async : false,
+			/* error : function(request) {
+				alert("编辑请求返回失败!");
+			}, */
+			success : function(data) {
+				//对象先转字符串
+				var resJSON = eval('(' + data + ')');
+				console.log(resJSON.list);
+				var parentId = 0;
+				//后台返回数组用这个解析
+				//var resJSON = eval(data);
+				if (parseInt(id) > 0) {
+					var tmp = resJSON.item;
+					parentId = tmp.parentId;
+					$("#departmentName").val(tmp.departmentName);
+					$("#comments").val(tmp.comments);
+				} else {
+					$("#departmentName").val("");
+					$("#comments").val("");
+				}
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+				var list = resJSON.list;
+				RemoveOption('parentId');
+				var ddl = $("#parentId");
 
-<meta name="description"
-	content="Source code generated using layoutit.com">
-<meta name="author" content="LayoutIt!">
+				ddl.append("<option value='0'>--所属上级--</option>");//方法1：添加默认节点 
+				$.each(list, function(i, item) {
+					var proid = item.id;
+					var proname = item.departmentName;
+					if (parentId == item.id) {
+						AppendOption('parentId', proid, proname, true);//调用自定义方法
+					} else {
+						AppendOption('parentId', proid, proname, false);//调用自定义方法
+					}
 
-<base href="<%=basePath%>">
+				});
+			}
+		});
 
-<title>WMS</title>
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
+		openModal();
+	}
 
+	function RemoveOption(selId) {//删除节点
+		var obj = document.getElementById(selId);
+		obj.options.length = 0;
+	}
+
+	function AppendOption(selId, value, text, selected) {
+		var sel;
+		if (selected) {
+			sel = ' selected="selected"';
+		}
+		$("#" + selId).append(
+				"<option value='" + value + "'" + sel + ">" + text
+						+ "</option>");
+	}
+</script>
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row"><jsp:include page="top.jsp" /></div>
+		<div class="row"><jsp:include page="../top.jsp" /></div>
 		<div class="row" style="padding-left: 0">
 			<div class="col-md-2" style="padding-left: 10"><jsp:include
-					page="left.jsp" /></div>
+					page="../left.jsp" /></div>
 			<div class="col-md-10">
 
-				<h2>系统公告</h2>
+				<h2>部门管理</h2>
 				<hr>
 
 				<form action="" class="form-horizontal" role="form">
 					<div class="row">
 
 						<div class="col-lg-2">
-							<!-- <input type="button" value="发布公告" class="btn btn-primar	y"> -->
-							<!-- /input-group -->
-
-							<!-- 方法一 -->
-							<!-- <button type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#gridSystemModal">发布公告</button> -->
-
-							<!-- 方法二 -->
 							<button type="button" class="btn btn-primary" data-toggle="modal"
-								onclick="openModal()">发布公告</button>
+								onclick="linkPage(0)">添加部门</button>
 						</div>
 
 
 						<div class="col-lg-2">
-							<div class="input-group">
+							<!-- <div class="input-group">
 								<input type="text" class="form-control" placeholder="标题...">
-							</div>
+							</div> -->
 							<!-- /input-group -->
 						</div>
 						<div class="col-lg-2">
-							<div class="input-group">
+							<!-- <div class="input-group">
 								<span class="input-group-btn"> <input type="text"
 									class="form-control" placeholder="内容...">
-							</div>
+							</div> -->
 							<!-- /input-group -->
 						</div>
 						<div class="col-lg-2">
@@ -110,72 +147,47 @@
 				</form>
 
 
-
-
-
-
-
 				<div class="table-responsive ">
 					<table class="table table-bordered">
 						<thead>
 							<tr class="success">
 								<td class="text-center">序号</td>
-								<td class="text-center">标题</td>
-								<td class="text-center">内容</td>
-								<td class="text-center">时间</td>
-								<td class="text-center">发布人</td>
+								<td class="text-center">部门名称</td>
+								<td class="text-center">所属上级</td>
+								<td class="text-center">创建时间</td>
+								<td class="text-center">创建人</td>
 								<td class="text-center">操作</td>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="">序号</td>
-								<td class="">标题</td>
-								<td class="">内容</td>
-								<td class="">时间</td>
-								<td class="">时间</td>
-								<td class=""><a>详情</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="">序号</td>
-								<td class="">标题</td>
-								<td class="">内容</td>
-								<td class="">时间</td>
-								<td class="">时间</td>
-								<td class="">详情</td>
-							</tr>
-							<tr>
-								<td class="">序号</td>
-								<td class="">标题</td>
-								<td class="">内容</td>
-								<td class="">时间</td>
-								<td class="">时间</td>
-								<td class="">详情</td>
-							</tr>
+							<c:forEach items="${list}" var="item" varStatus="staturs">
+								<tr>
+									<td>${staturs.index+1}</td>
+									<td><c:out value="${item.departmentName}" /></td>
+									<td><c:out value="${item.parentName}" /></td>
+									<td><c:out value="${item.creatDate}" /></td>
+									<td><c:out value="${item.owner}" /></td>
+									<td><a onClick="linkPage('${item.id}')">编辑</a> | <a
+										onClick="">删除</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
 				<ul class="pagination">
-					<li><a href="#">上一页</a>
-					</li>
-					<li><a href="#">1</a>
-					</li>
-					<li><a href="#">2</a>
-					</li>
-					<li><a href="#">3</a>
-					</li>
-					<li><a href="#">4</a>
-					</li>
-					<li><a href="#">5</a>
-					</li>
-					<li><a href="#">下一页</a>
-					</li>
+					<li><a href="#">上一页</a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">下一页</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<form action="note/add.do" class="form-horizontal" role="form"
+	<form action="depart/add.do" class="form-horizontal" role="form"
 		method="post">
 		<div class="modal fade" role="dialog"
 			aria-labelledby="gridSystemModalLabel" id="gridSystemModal"
@@ -187,28 +199,38 @@
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="gridSystemModalLabel">公告信息</h4>
+						<h4 class="modal-title" id="gridSystemModalLabel">部门信息</h4>
 					</div>
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="inputTitle" class="col-sm-2 control-label">
-								标题 </label>
+								部门名称 </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputTitle"
-									name="title">
+								<input type="text" class="form-control" id="departmentName"
+									name="departmentName">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputTitle" class="col-sm-2 control-label">
-								内容 </label>
+								所属上级 </label>
+							<div class="col-sm-10">
+								<!-- 	<input type="text" class="form-control" id="parentName"
+									name="parentName"> -->
+								<select class="form-control" id="parentId" name="parent">
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputTitle" class="col-sm-2 control-label">
+								备注信息 </label>
 							<div class="col-sm-10">
 								<!-- 	<input type="texta" class="form-control" id="inputTitle"
 									name="username"> -->
 
-								<textarea rows="8" class="form-control" name="content"></textarea>
+								<textarea rows="8" class="form-control" id="comments"
+									name="comments"></textarea>
 							</div>
 						</div>
-
 
 					</div>
 					<div class="modal-footer">
@@ -245,5 +267,4 @@
 		}
 	</script>
 </body>
-
 </html>

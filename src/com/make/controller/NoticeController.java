@@ -7,17 +7,19 @@
  */
 package com.make.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.make.bean.NoticeBean;
 import com.make.service.INoticeService;
-import com.make.util.DateUtils;
 
 /**
  * ClassName: NoticeController
@@ -30,25 +32,34 @@ import com.make.util.DateUtils;
 @RequestMapping("note")
 public class NoticeController {
 
+	Logger log = Logger.getLogger(NoticeController.class);
+
 	@Autowired
 	INoticeService noticeService;
 
-	@RequestMapping("list")
-	public String loadNotice() {
-
-		return "";
+	@RequestMapping("list.do")
+	public String loadNotice(NoticeBean item, HttpServletRequest req) {
+		String res = "error";
+		try {
+			HttpSession session = req.getSession();
+			item.setDbName("wms_10000");
+			List<NoticeBean> list = noticeService.loadNoticeInfo(item);
+			session.setAttribute("list", list);
+			return "system/notice";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return res;
 	}
 
 	@RequestMapping("add.do")
 	public String insertNoticeInfo(NoticeBean item) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
 		item.setDbName("wms_10000");
 		item.setCreatTime(new Date());
 		item.setOwner("李四");
 		item.setStatus(0);
 
 		noticeService.insertNoticeInfo(item);
-		return "";
+		return "redirect:list.do";
 	}
 }

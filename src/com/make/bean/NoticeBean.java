@@ -9,6 +9,8 @@ package com.make.bean;
 
 import java.util.Date;
 
+import com.make.util.DateUtils;
+
 /**
  * ClassName: NoticeBean
  * 
@@ -29,6 +31,9 @@ public class NoticeBean extends DBInfoBean {
 	private String owner;
 	/** 状态 */
 	private int status;
+
+	/** 创建时间 */
+	private String dateTime;
 
 	public int getId() {
 		return id;
@@ -76,6 +81,15 @@ public class NoticeBean extends DBInfoBean {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public String getDateTime() {
+		dateTime = DateUtils.date2String(getCreatTime());
+		return dateTime;
+	}
+
+	public void setDateTime(String dateTime) {
+		this.dateTime = dateTime;
 	}
 
 }

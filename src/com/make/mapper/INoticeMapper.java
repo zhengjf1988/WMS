@@ -10,7 +10,6 @@ package com.make.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import com.make.bean.NoticeBean;
@@ -18,14 +17,21 @@ import com.make.bean.NoticeBean;
 /**
  * ClassName: INoticeMapper
  * 
- * @Description: TODO
+ * @Description: 公告信息DAO
  * @author zhengjf
  * @date 2016-4-11
  */
 @Repository
 public interface INoticeMapper {
 
-	@Select("select * from ${dbName}.t_notice")
+	/**
+	 * @Description: 查询公告信息
+	 * @param @param notice
+	 * @param @return
+	 * @return List<NoticeBean>
+	 * @author zhengjf
+	 * @date 2016-4-11
+	 */
 	List<NoticeBean> loadNoticeInfo(NoticeBean notice);
 
 	// 添加公告信息

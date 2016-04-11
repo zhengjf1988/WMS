@@ -1,4 +1,8 @@
-<%@ page pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -6,7 +10,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
-
+<html>
+<head>
+<base href=" <%=basePath%>">
 <meta charset="UTF-8">
 <title>WMS仓库管理系统</title>
 <meta name="description" content="">
@@ -31,17 +37,17 @@
 <!-- Favicons
 	================================================== -->
 
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
+<link href="<%=basePath%>bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	media="all">
-<link href="bootstrap/css/bootstrap-datetimepicker.min.css"
+<link href="<%=basePath%>bootstrap/css/bootstrap-datetimepicker.min.css"
 	rel="stylesheet" media="all">
 
-<script type="text/javascript" src="./jquery/jquery-1.8.3.min.js"
+<script type="text/javascript" src="<%=basePath%>jquery/jquery-1.8.3.min.js"
 	charset="UTF-8"></script>
-<script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript"
-	src="bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+	src="<%=basePath%>bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript"
-	src="bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
-
-	
+	src="<%=basePath%>bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+</head>
+</html>
