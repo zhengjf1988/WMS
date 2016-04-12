@@ -14,7 +14,7 @@ package com.make.bean;
  * @author zhengjf
  * @date 2016-4-12
  */
-public class RelePermissionBean {
+public class RolePermissionBean {
 	/** 主键ID */
 	private int id;
 	/** 角色名称 */
@@ -27,6 +27,9 @@ public class RelePermissionBean {
 	private String creatDate;
 	/** 创建人 */
 	private String owner;
+
+	/** 状态 */
+	private int status;
 
 	public int getId() {
 		return id;
@@ -74,6 +77,14 @@ public class RelePermissionBean {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

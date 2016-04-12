@@ -39,7 +39,7 @@ import com.make.util.DateUtils;
 @RequestMapping("depart")
 public class DepartmentController {
 
-	Logger log = Logger.getLogger(NoticeController.class);
+	Logger log = Logger.getLogger(DepartmentController.class);
 
 	@Autowired
 	IDepartmentService departService;

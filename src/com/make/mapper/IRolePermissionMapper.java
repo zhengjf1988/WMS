@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.make.bean.MenuBtBean;
+import com.make.bean.RolePermissionBean;
 
 /**
  * ClassName: IRolePermissionMapper
@@ -31,4 +32,14 @@ public interface IRolePermissionMapper {
 	 * @date 2016-4-12
 	 */
 	List<MenuBtBean> loadMenuBt();
+
+	/**
+	 * @Description: 查询角色信息
+	 * @param @return
+	 * @return List<RolePermissionBean>
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-12
+	 */
+	public List<RolePermissionBean> loadRolePermission();
 }

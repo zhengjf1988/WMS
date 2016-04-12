@@ -8,4 +8,9 @@
 		select * from t_menubt where status=0
 	</select>
 
+	<!-- 查询角色权限信息 -->
+	<select id="loadRolePermission" parameterType="com.make.bean.RolePermissionBean"
+		resultType="com.make.bean.RolePermissionBean">
+		select * from t_roles where status=0
+	</select>
 </mapper>

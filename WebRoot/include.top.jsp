@@ -40,10 +40,10 @@
 	rel="stylesheet" media="all">
 <link href="<%=basePath%>bootstrap/css/bootstrap-datetimepicker.min.css"
 	rel="stylesheet" media="all">
-<link href="<%=basePath%>bootstrap/css/zTreeStyle/metro.css"
-	rel="stylesheet" media="all">
+<link href="<%=basePath%>css/zTreeStyle/zTreeStyle.css" rel="stylesheet"
+	media="all">
 <script type="text/javascript"
-	src="<%=basePath%>jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+	src="<%=basePath%>js/jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
 <script type="text/javascript"
 	src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript"
@@ -53,7 +53,8 @@
 	src="<%=basePath%>bootstrap/js/bootstrap-datetimepicker.zh-CN.js"
 	charset="UTF-8"></script>
 <script type="text/javascript"
-	src="<%=basePath%>bootstrap/js/jquery.ztree.all-3.5.min.js"
-	charset="UTF-8"></script>
+	src="<%=basePath%>js/jquery/jquery.ztree.core.js" charset="UTF-8"></script>
+<script type="text/javascript"
+	src="<%=basePath%>js/jquery/jquery.ztree.excheck.js" charset="UTF-8"></script>
 </head>
 <body>

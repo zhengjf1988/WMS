@@ -28,8 +28,6 @@ public class MenuBtBean {
 	private int parentId;
 	/** 状态 */
 	private int status;
-	/** 子节点集合 */
-	private List<MenuBtBean> childList;
 
 	public int getId() {
 		return id;
@@ -70,15 +68,4 @@ public class MenuBtBean {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-
-	public List<MenuBtBean> getChildList() {
-		if (childList == null)
-			childList = new ArrayList<MenuBtBean>();
-		return childList;
-	}
-
-	public void setChildList(List<MenuBtBean> childList) {
-		this.childList = childList;
-	}
-
 }

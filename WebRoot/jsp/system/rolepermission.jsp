@@ -1,11 +1,34 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/include.top.jsp"%>
 <script type="text/javascript">
+	/* var setting = {
+		isSimpleData : true, //数据是否采用简单 Array 格式，默认false
+		treeNodeKey : "id", //在isSimpleData格式下，当前节点id属性
+		treeNodeParentKey : "parentId", //在isSimpleData格式下，当前节点的父节点id属性
+		showLine : true, //是否显示节点间的连线
+		// 每个节点上是否显示 CheckBox 
+		checkable : true
+	}; */
+	var setting = {
+		check : {
+			enable : true
+		},
+		data : {
+			simpleData : {
+				enable : true,
+				idKey : "id",//设置树节点id，节点参数id必须与之相匹配，即在Actiob中穿过来的值必须与之相对应
+				pIdKey : "parentId"//设置pid，节点参数pid必须与之相匹配
+			}
+		}
+	};
+	var zTree;
+	var treeNodes;
+
 	function linkPage(id) {
 		$.ajax({
 			type : "post",
 			async : true,
-			url : "depart/linkPage.do",
+			url : "role/menubt.do",
 			datatype : "json",//请求页面返回的数据类型     
 			data : {
 				"id" : id
@@ -15,40 +38,38 @@
 				alert("编辑请求返回失败!");
 			}, */
 			success : function(data) {
-				//对象先转字符串
+				/* //对象先转字符串
 				var resJSON = eval('(' + data + ')');
 				console.log(resJSON.list);
-				var parentId = 0;
+				var parentId = 0; */
 				//后台返回数组用这个解析
-				//var resJSON = eval(data);
-				if (parseInt(id) > 0) {
-					var tmp = resJSON.item;
-					parentId = tmp.parentId;
-					$("#departmentName").val(tmp.departmentName);
-					$("#comments").val(tmp.comments);
-				} else {
-					$("#departmentName").val("");
-					$("#comments").val("");
-				}
-
-				var list = resJSON.list;
-				RemoveOption('parentId');
-				var ddl = $("#parentId");
-
-				ddl.append("<option value='0'>--所属上级--</option>");//方法1：添加默认节点 
-				$.each(list, function(i, item) {
-					var proid = item.id;
-					var proname = item.departmentName;
-					if (parentId == item.id) {
-						AppendOption('parentId', proid, proname, true);//调用自定义方法
-					} else {
-						AppendOption('parentId', proid, proname, false);//调用自定义方法
-					}
-
-				});
+				treeNodes = data;//eval(data);
+				console.log(data);
 			}
 		});
-
+		/* treeNodes = [{
+			"id" : 1,
+			"pId" : 0,
+			"name" : "test1",
+			"open" : true
+		}, {
+			"id" : 2,
+			"pId" : 1,
+			"name" : "test2",
+			"open" : true
+		}, {
+			"id" : 3,
+			"pId" : 1,
+			"name" : "test3",
+			"open" : true
+		}, {
+			"id" : 4,
+			"pId" : 2,
+			"name" : "test4",
+			"open" : true
+		}]; */
+		//zTree = $("#tree").zTree(setting, treeNodes);
+		$.fn.zTree.init($("#tree"), setting, treeNodes);
 		openModal();
 	}
 
@@ -68,210 +89,6 @@
 	}
 </script>
 
-<script type="text/javascript">
-	//	弹框多选下拉
-	var zTree;
-	var demoIframe;
-
-	function addHoverDom(treeId, treeNode) {
-		var sObj = $("#" + treeNode.tId + "_span");
-		if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0)
-			return;
-		/* 	var addStr = "<span class='button remove' id='removeBtn_"
-					+ treeNode.tId
-					+ "' title='add node' onfocus='this.blur();'></span>";
-
-			addStr += "<span class='button add' id='addBtn_" + treeNode.tId + "'></span>";
-			addStr += "<span class='button edit' id='editBtn_" + treeNode.tId + "'></span>";
-			sObj.after(addStr); */
-		var btn = $("#addBtn_" + treeNode.tId);
-		if (btn)
-			btn.bind("click", function() {
-				var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-				zTree.addNodes(treeNode, {
-					id : (1000 + newCount),
-					pId : treeNode.id,
-					name : "new node" + (newCount++)
-				});
-				return false;
-			});
-	};
-
-	function removeHoverDom(treeId, treeNode) {
-		$("#addBtn_" + treeNode.tId).unbind().remove();
-		$("#removeBtn_" + treeNode.tId).unbind().remove();
-		$("#editBtn_" + treeNode.tId).unbind().remove();
-	};
-
-	var setting = {
-		check : {
-			enable : true
-		},
-		view : {
-			addHoverDom : addHoverDom,
-			removeHoverDom : removeHoverDom,
-			dblClickExpand : false,
-			showLine : true,
-			selectedMulti : false
-		},
-		data : {
-			simpleData : {
-				enable : true,
-				idKey : "id",
-				pIdKey : "pId",
-				rootPId : ""
-			}
-		},
-		callback : {
-			beforeClick : function(treeId, treeNode) {
-				var zTree = $.fn.zTree.getZTreeObj("tree");
-				if (treeNode.isParent) {
-					zTree.expandNode(treeNode);
-					return false;
-				} else {
-					demoIframe.attr("src", treeNode.file + ".html");
-					return true;
-				}
-			}
-		}
-	};
-
-	var zNodes = [{
-		id : 4,
-		pId : 0,
-		name : "大数据量 演示",
-		open : false
-	}, {
-		id : 401,
-		pId : 4,
-		name : "一次性加载大数据量",
-		file : "bigdata/common"
-	}, {
-		id : 402,
-		pId : 4,
-		name : "分批异步加载大数据量",
-		file : "bigdata/diy_async"
-	}, {
-		id : 403,
-		pId : 4,
-		name : "分批异步加载大数据量",
-		file : "bigdata/page"
-	},
-
-	{
-		id : 5,
-		pId : 0,
-		name : "组合功能 演示",
-		open : false
-	}, {
-		id : 501,
-		pId : 5,
-		name : "冻结根节点",
-		file : "super/oneroot"
-	}, {
-		id : 502,
-		pId : 5,
-		name : "单击展开/折叠节点",
-		file : "super/oneclick"
-	}, {
-		id : 503,
-		pId : 5,
-		name : "保持展开单一路径",
-		file : "super/singlepath"
-	}, {
-		id : 504,
-		pId : 5,
-		name : "添加 自定义控件",
-		file : "super/diydom"
-	}, {
-		id : 505,
-		pId : 5,
-		name : "checkbox / radio 共存",
-		file : "super/checkbox_radio"
-	}, {
-		id : 506,
-		pId : 5,
-		name : "左侧菜单",
-		file : "super/left_menu"
-	}, {
-		id : 513,
-		pId : 5,
-		name : "OutLook 样式的左侧菜单",
-		file : "super/left_menuForOutLook"
-	}, {
-		id : 507,
-		pId : 5,
-		name : "下拉菜单",
-		file : "super/select_menu"
-	}, {
-		id : 509,
-		pId : 5,
-		name : "带 checkbox 的多选下拉菜单",
-		file : "super/select_menu_checkbox"
-	}, {
-		id : 510,
-		pId : 5,
-		name : "带 radio 的单选下拉菜单",
-		file : "super/select_menu_radio"
-	}, {
-		id : 508,
-		pId : 5,
-		name : "右键菜单 的 实现",
-		file : "super/rightClickMenu"
-	}, {
-		id : 511,
-		pId : 5,
-		name : "与其他 DOM 拖拽互动",
-		file : "super/dragWithOther"
-	}, {
-		id : 512,
-		pId : 5,
-		name : "异步加载模式下全部展开",
-		file : "super/asyncForAll"
-	},
-
-	{
-		id : 6,
-		pId : 0,
-		name : "其他扩展功能 演示",
-		open : false
-	}, {
-		id : 601,
-		pId : 6,
-		name : "隐藏普通节点",
-		file : "exhide/common"
-	}, {
-		id : 602,
-		pId : 6,
-		name : "配合 checkbox 的隐藏",
-		file : "exhide/checkbox"
-	}, {
-		id : 603,
-		pId : 6,
-		name : "配合 radio 的隐藏",
-		file : "exhide/radio"
-	}];
-
-	$(document).ready(function() {
-		var t = $("#tree");
-		t = $.fn.zTree.init(t, setting, zNodes);
-		demoIframe = $("#testIframe");
-		demoIframe.bind("load", loadReady);
-		var zTree = $.fn.zTree.getZTreeObj("tree");
-		zTree.selectNode(zTree.getNodeByParam("id", 101));
-
-	});
-
-	function loadReady() {
-		var bodyH = demoIframe.contents().find("body").get(0).scrollHeight, htmlH = demoIframe
-				.contents().find("html").get(0).scrollHeight, maxH = Math.max(
-				bodyH, htmlH), minH = Math.min(bodyH, htmlH), h = demoIframe
-				.height() >= maxH ? minH : maxH;
-		if (h < 530)
-			h = 530;
-		demoIframe.height(h);
-	}
-</script>
 <div class="container-fluid">
 	<div class="row"><jsp:include page="../top.jsp" /></div>
 	<div class="row" style="padding-left: 0">
@@ -287,7 +104,7 @@
 
 					<div class="col-lg-2">
 						<button type="button" class="btn btn-primary" data-toggle="modal"
-							onclick="openModal()">添加角色</button>
+							onclick="linkPage(0)">添加角色</button>
 					</div>
 
 
@@ -358,36 +175,32 @@
 						</tr>
 					</thead>
 					<tbody>
-						<!-- 							<c:forEach items="${list}" var="item" varStatus="staturs"> -->
-						<!-- 								<tr> -->
-						<!-- 									<td>${staturs.index+1}</td> -->
-						<!-- 									<td><c:out value="${item.departmentName}" /></td> -->
-						<!-- 									<td><c:out value="${item.parentName}" /></td> -->
-						<!-- 									<td><c:out value="${item.creatDate}" /></td> -->
-						<!-- 									<td><c:out value="${item.owner}" /></td> -->
-						<!-- 									<td><a onClick="linkPage('${item.id}')">编辑</a> | <a -->
-						<!-- 										onClick="">删除</a> -->
-						<!-- 									</td> -->
-						<!-- 								</tr> -->
-						<!-- 							</c:forEach> -->
+						<c:forEach items="${list}" var="item" varStatus="staturs">
+							<tr>
+								<td>${staturs.index+1}</td>
+								<td><c:out value="${item.roleName}" />
+								</td>
+								<td><c:out value="${item.comments}" />
+								</td>
+								<td><c:out value="${item.creatDate}" />
+								</td>
+								<td><c:out value="${item.owner}" />
+								</td>
+								<td><a onClick="linkPage('${item.id}')">编辑</a> | <a
+									onClick="">删除</a></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 			<ul class="pagination">
-				<li><a href="#">上一页</a>
-				</li>
-				<li><a href="#">1</a>
-				</li>
-				<li><a href="#">2</a>
-				</li>
-				<li><a href="#">3</a>
-				</li>
-				<li><a href="#">4</a>
-				</li>
-				<li><a href="#">5</a>
-				</li>
-				<li><a href="#">下一页</a>
-				</li>
+				<li><a href="#">上一页</a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">下一页</a></li>
 			</ul>
 		</div>
 	</div>
