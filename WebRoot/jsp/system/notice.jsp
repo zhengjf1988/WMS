@@ -102,36 +102,24 @@
 							<c:forEach items="${list}" var="item" varStatus="staturs">
 								<tr>
 									<td>${staturs.index+1}</td>
-									<td><c:out value="${item.title}" />
-									</td>
-									<td><c:out value="${item.content}" />
-									</td>
-									<td><c:out value="${item.dateTime}" />
-									</td>
-									<td><c:out value="${item.owner}" />
-									</td>
-									<td><a onClick="">编辑</a> || <a onClick="">删除</a>
-									</td>
+									<td><c:out value="${item.title}" /></td>
+									<td><c:out value="${item.content}" /></td>
+									<td><c:out value="${item.dateTime}" /></td>
+									<td><c:out value="${item.owner}" /></td>
+									<td><a onClick="">编辑</a> || <a onClick="">删除</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 				</div>
 				<ul class="pagination">
-					<li><a href="#">上一页</a>
-					</li>
-					<li><a href="#">1</a>
-					</li>
-					<li><a href="#">2</a>
-					</li>
-					<li><a href="#">3</a>
-					</li>
-					<li><a href="#">4</a>
-					</li>
-					<li><a href="#">5</a>
-					</li>
-					<li><a href="#">下一页</a>
-					</li>
+					<li><a href="#">上一页</a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">下一页</a></li>
 				</ul>
 			</div>
 		</div>

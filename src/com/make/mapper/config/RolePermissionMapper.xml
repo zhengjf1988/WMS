@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.make.mapper.IRolePermissionMapper">
+
+	<!-- 查询菜单按钮信息 -->
+	<select id="loadMenuBt" parameterType="com.make.bean.MenuBtBean"
+		resultType="com.make.bean.MenuBtBean">
+		select * from t_menubt where status=0
+	</select>
+
+</mapper>
