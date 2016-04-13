@@ -7,9 +7,6 @@
  */
 package com.make.bean;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * ClassName: MenuBtBean
  * 
@@ -28,6 +25,9 @@ public class MenuBtBean {
 	private int parentId;
 	/** 状态 */
 	private int status;
+
+	/** 在角色权限编辑的时候使用，true表示在页面上的tree中的选中状态 */
+	private boolean checked = false;
 
 	public int getId() {
 		return id;
@@ -68,4 +68,13 @@ public class MenuBtBean {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+	public boolean isChecked() {
+		return checked;
+	}
+
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+
 }

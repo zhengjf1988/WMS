@@ -68,10 +68,13 @@
 	}
 </script>
 <div class="container-fluid">
-	<div class="row"><jsp:include page="../top.jsp" /></div>
+	<div class="row">
+		<%@ include file="../top.jsp"%>
+	</div>
 	<div class="row" style="padding-left: 0">
-		<div class="col-md-2" style="padding-left: 10"><jsp:include
-				page="../left.jsp" /></div>
+		<div class="col-md-2" style="padding-left: 10">
+			<%@ include file="../left.jsp"%>
+		</div>
 		<div class="col-md-10">
 
 			<h2>部门管理</h2>
@@ -156,26 +159,36 @@
 						<c:forEach items="${list}" var="item" varStatus="staturs">
 							<tr>
 								<td>${staturs.index+1}</td>
-								<td><c:out value="${item.departmentName}" /></td>
-								<td><c:out value="${item.parentName}" /></td>
-								<td><c:out value="${item.creatDate}" /></td>
-								<td><c:out value="${item.owner}" /></td>
-								<td><a onClick="linkPage('${item.id}')">编辑</a> | <a
-									onClick="">删除</a>
+								<td><c:out value="${item.departmentName}" />
 								</td>
+								<td><c:out value="${item.parentName}" />
+								</td>
+								<td><c:out value="${item.creatDate}" />
+								</td>
+								<td><c:out value="${item.owner}" />
+								</td>
+								<td><a onClick="linkPage('${item.id}')">编辑</a> | <a
+									onClick="">删除</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 			<ul class="pagination">
-				<li><a href="#">上一页</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">下一页</a></li>
+				<li><a href="#">上一页</a>
+				</li>
+				<li><a href="#">1</a>
+				</li>
+				<li><a href="#">2</a>
+				</li>
+				<li><a href="#">3</a>
+				</li>
+				<li><a href="#">4</a>
+				</li>
+				<li><a href="#">5</a>
+				</li>
+				<li><a href="#">下一页</a>
+				</li>
 			</ul>
 		</div>
 	</div>

@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ include file="/include.top.jsp"%>
 <div class="container-fluid">
 	<div class="row" style="background-color: #1F619C;height: 7.7%">
 		<div class="col-md-10"
@@ -22,4 +21,3 @@
 		</div>
 	</div>
 </div>
-<%@ include file="/include.foot.jsp"%>

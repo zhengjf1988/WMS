@@ -1,10 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/include.top.jsp"%>
 <div class="container-fluid">
-	<div class="row"><jsp:include page="../top.jsp" /></div>
+	<div class="row">
+		<%@ include file="../top.jsp"%>
+	</div>
 	<div class="row" style="padding-left: 0">
-		<div class="col-md-2" style="padding-left: 10"><jsp:include
-				page="../left.jsp" /></div>
+		<div class="col-md-2" style="padding-left: 10">
+			<%@ include file="../left.jsp"%>
+		</div>
 		<div class="col-md-10" style="overflow:auto;">
 
 			<h2>系统公告</h2>

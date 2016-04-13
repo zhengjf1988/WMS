@@ -43,34 +43,18 @@
 				console.log(resJSON.list);
 				var parentId = 0; */
 				//后台返回数组用这个解析
-				treeNodes = data;//eval(data);
-				console.log(data);
+				//treeNodes = eval(data);
 			}
 		});
-		/* treeNodes = [{
-			"id" : 1,
-			"pId" : 0,
-			"name" : "test1",
-			"open" : true
-		}, {
-			"id" : 2,
-			"pId" : 1,
-			"name" : "test2",
-			"open" : true
-		}, {
-			"id" : 3,
-			"pId" : 1,
-			"name" : "test3",
-			"open" : true
-		}, {
-			"id" : 4,
-			"pId" : 2,
-			"name" : "test4",
-			"open" : true
-		}]; */
-		//zTree = $("#tree").zTree(setting, treeNodes);
-		$.fn.zTree.init($("#tree"), setting, treeNodes);
 		openModal();
+	}
+
+	function test() {
+		var treeObj = $.fn.zTree.getZTreeObj("tree");
+		var nodes = treeObj.getCheckedNodes(true);
+		$.each(nodes, function(i, v) {
+			console.log(v.id + "-----" + v.name);
+		});
 	}
 
 	function RemoveOption(selId) {//删除节点
@@ -90,10 +74,13 @@
 </script>
 
 <div class="container-fluid">
-	<div class="row"><jsp:include page="../top.jsp" /></div>
+	<div class="row">
+		<%@ include file="../top.jsp"%>
+	</div>
 	<div class="row" style="padding-left: 0">
-		<div class="col-md-2" style="padding-left: 10"><jsp:include
-				page="../left.jsp" /></div>
+		<div class="col-md-2" style="padding-left: 10">
+			<%@ include file="../left.jsp"%>
+		</div>
 		<div class="col-md-10">
 
 			<h2>角色管理</h2>
@@ -205,8 +192,7 @@
 		</div>
 	</div>
 </div>
-<form action="depart/add.do" class="form-horizontal" role="form"
-	method="post">
+<form class="form-horizontal" role="form" method="post">
 	<div class="modal fade lg" role="dialog"
 		aria-labelledby="gridSystemModalLabel" id="gridSystemModal"
 		tabindex="-1" aria-hidden="true">
@@ -248,6 +234,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
+					<button type="button" onclick="test()">测试取值</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="submit" class="btn btn-primary">保存</button>
 				</div>
@@ -278,6 +265,8 @@
 		$('#gridSystemModal').modal({
 			backdrop : 'static'
 		});
+
+		$.fn.zTree.init($("#tree"), setting, treeNodes);
 	}
 </script>
 <%@ include file="/include.foot.jsp"%>

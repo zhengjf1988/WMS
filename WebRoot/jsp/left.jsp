@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ include file="/include.top.jsp"%>
 <div class="col-md-12" style="padding-left: 0;width: 100%">
 	<div class="panel-group" id="panel-73792">
 		<div class="panel panel-default">
@@ -29,17 +28,19 @@
 			</div>
 			<div id="panel-element-120094" class="panel-collapse collapse in">
 				<div class="panel-body">
-					<li><a href="note/list.do">公告管理</a></li>
+					<li><a href="note/list.do">公告管理</a>
+					</li>
 				</div>
 				<div class="panel-body">
-					<li><a href="depart/list.do">部门管理</a></li>
+					<li><a href="depart/list.do">部门管理</a>
+					</li>
 				</div>
 				<div class="panel-body">
-					<li><a href="role/list.do">角色管理</a></li>
+					<li><a href="role/list.do">角色管理</a>
+					</li>
 				</div>
 				<div class="panel-body">员工管理</div>
 			</div>
 		</div>
 	</div>
 </div>
-<%@ include file="/include.foot.jsp"%>
