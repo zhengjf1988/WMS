@@ -8,23 +8,24 @@
 package com.make.controller;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.make.bean.MenuBtBean;
 import com.make.bean.RolePermissionBean;
 import com.make.service.IRolePermissionService;
+import com.make.util.DateUtils;
 
 /**
  * ClassName: RolePermissionController
@@ -55,32 +56,54 @@ public class RolePermissionController {
 		return "error";
 	}
 
-	@RequestMapping("menubt.do")
-	public void loadMenuBt(HttpServletResponse res) {
+	/**
+	 * @Description: 跳转到添加或者修改角色权限页面
+	 * @param @param res
+	 * @param @param id
+	 * @return void
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-13
+	 */
+	@RequestMapping("linkPage.do")
+	public void loadMenuBt(HttpServletResponse res, int id) {
 		try {
 			res.setCharacterEncoding("UTF-8");
 			PrintWriter out = res.getWriter();
-			List<MenuBtBean> list = rolePerService.loadMenuBt();
 
-			JSONArray json = JSONArray.fromObject(list);
+			Map<String, Object> map = rolePerService.linkPage(id);
+
+			JSONObject json = JSONObject.fromObject(map);
 			out.print(json.toString());
-
 			System.out.println(json.toString());
-//			String s1 = "{id:1, pId:0, name:\"test1\" , open:true}";
-//			String s2 = "{id:2, pId:1, name:\"test2\" , open:true}";
-//			String s3 = "{id:3, pId:1, name:\"test3\" , open:true}";
-//			String s4 = "{id:4, pId:2, name:\"test4\" , open:true}";
-//			List<String> lstTree = new ArrayList<String>();
-//			lstTree.add(s1);
-//			lstTree.add(s2);
-//			lstTree.add(s3);
-//			lstTree.add(s4);
-//			// 利用Json插件将Array转换成Json格式
-//			System.out.println(JSONArray.fromObject(lstTree).toString());
 			out.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("程序出错：" + e);
 		}
+	}
 
+	/**
+	 * @Description: 添加或者修改角色权限信息
+	 * @param @param item
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-13
+	 */
+	@RequestMapping("save.do")
+	public String upsertRolePermission(RolePermissionBean item) {
+		try {
+			if (item.getId() == 0) {// 添加
+				item.setOwner("李四");
+				item.setStatus(0);
+				item.setCreatDate(DateUtils.date2String(new Date(), ""));
+				rolePerService.insertRolePermission(item);
+			}
+			return "redirect:list.do";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return "error";
 	}
 }

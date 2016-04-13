@@ -13,4 +13,13 @@
 		resultType="com.make.bean.RolePermissionBean">
 		select * from t_roles where status=0
 	</select>
+
+	<!-- 添加角色权限信息 -->
+	<insert id="insertRolePermission" useGeneratedKeys="true"
+		keyProperty="id" parameterType="com.make.bean.RolePermissionBean">
+		INSERT INTO t_roles
+		(roleName,permission,comments,creatDate,owner,status)
+		VALUES
+		(#{roleName},#{permission},#{comments},#{creatDate},#{owner},#{status})
+	</insert>
 </mapper>

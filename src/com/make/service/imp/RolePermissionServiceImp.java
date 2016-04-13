@@ -7,8 +7,9 @@
  */
 package com.make.service.imp;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,28 +35,32 @@ public class RolePermissionServiceImp implements IRolePermissionService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.make.service.IRolePermissionService#loadMenuBt()
+	 * @see com.make.service.IRolePermissionService#linkPage()
 	 */
-	public List<MenuBtBean> loadMenuBt() {
-		List<MenuBtBean> list = rolePermDao.loadMenuBt();
+	public Map<String, Object> linkPage(int id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		RolePermissionBean item = new RolePermissionBean();
+		List<RolePermissionBean> roleList = rolePermDao.loadRolePermission();
+		if (id > 0) {
+			for (RolePermissionBean role : roleList) {
+				if (id == role.getId()) {
+					item = role;
+					break;
+				}
+			}
+		}
 
-		// List<MenuBtBean> resultList = new ArrayList<MenuBtBean>();
-		//
-		// for (MenuBtBean item : list) {
-		// if (item.getType() == 1 || item.getType() == 2) {
-		// for (MenuBtBean tmp : list) {
-		// if (tmp.getParentId() == item.getId()) {
-		// item.getChildList().add(tmp);
-		// }
-		// }
-		// }
-		// }
-		// for (MenuBtBean item : list) {
-		// if (item.getType() == 1) {
-		// resultList.add(item);
-		// }
-		// }
-		return list;
+		List<MenuBtBean> list = rolePermDao.loadMenuBt();
+		if (item.getId() > 0) {
+			for (MenuBtBean menuBtBean : list) {
+				if (item.getPermission().indexOf(";" + menuBtBean.getId() + ";") > -1) {
+					menuBtBean.setChecked(true);
+				}
+			}
+		}
+		map.put("item", item);
+		map.put("list", list);
+		return map;
 	}
 
 	/*
@@ -65,5 +70,16 @@ public class RolePermissionServiceImp implements IRolePermissionService {
 	 */
 	public List<RolePermissionBean> loadRolePermission() {
 		return rolePermDao.loadRolePermission();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.make.service.IRolePermissionService#insertRolePermission(com.make
+	 * .bean.RolePermissionBean)
+	 */
+	public int insertRolePermission(RolePermissionBean item) {
+		return rolePermDao.insertRolePermission(item);
 	}
 }

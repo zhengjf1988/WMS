@@ -8,8 +8,8 @@
 package com.make.service;
 
 import java.util.List;
+import java.util.Map;
 
-import com.make.bean.MenuBtBean;
 import com.make.bean.RolePermissionBean;
 
 /**
@@ -22,14 +22,14 @@ import com.make.bean.RolePermissionBean;
 public interface IRolePermissionService {
 
 	/**
-	 * @Description: 查询菜单按钮信息
+	 * @Description: 跳转到角色权限页面时，根据ID查询角色和权限信息
 	 * @param @return
 	 * @return List<MenuBtBean>
 	 * @throws
 	 * @author zhengjf
 	 * @date 2016-4-12
 	 */
-	public List<MenuBtBean> loadMenuBt();
+	public Map<String, Object> linkPage(int id);
 
 	/**
 	 * @Description: 查询角色信息
@@ -40,4 +40,15 @@ public interface IRolePermissionService {
 	 * @date 2016-4-12
 	 */
 	public List<RolePermissionBean> loadRolePermission();
+
+	/**
+	 * @Description: 添加角色权限信息
+	 * @param @param item
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-13
+	 */
+	public int insertRolePermission(RolePermissionBean item);
 }
