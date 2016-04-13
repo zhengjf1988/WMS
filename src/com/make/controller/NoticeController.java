@@ -49,7 +49,8 @@ public class NoticeController {
 		} catch (Exception e) {
 			log.error("程序出错：" + e);
 		}
-		return res;
+		return "system/notice";
+	//	return res;
 	}
 
 	@RequestMapping("add.do")

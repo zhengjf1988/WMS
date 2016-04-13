@@ -19,7 +19,6 @@ import com.make.mapper.ILjlxglMapper;
 import com.make.service.ILjlxglService;
 @Controller
 public class LjlxglController {
-	Logger log = Logger.getLogger(Login.class);
 
 	//零件类型管理
 	

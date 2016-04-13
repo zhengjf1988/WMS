@@ -18,7 +18,7 @@ import com.make.service.ICcqxglService;
 
 //存储期限管理
 public class CcqxglController {
-	Logger log = Logger.getLogger(Login.class);
+	
 
 	private ICcqxglService iCcqxglService;
 	/**
