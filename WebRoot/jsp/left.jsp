@@ -30,7 +30,7 @@
 				</div>
 				<div id="panel-element-720094" class="panel-collapse collapse in">
 					<div class="panel-body"> <a href="Ljlxgl.view">零件类型管理</a></div>
-					<div class="panel-body"><a href="">零件等级管理</a></div>
+					<div class="panel-body"><a href="Ljdjgl.view">零件等级管理</a></div>
 					<div class="panel-body">库存类型管理</div>
 					<div class="panel-body">存储类型管理</div>
 					<div class="panel-body"><a href="Ccqxgl.view">存储期限管理</a></div>
