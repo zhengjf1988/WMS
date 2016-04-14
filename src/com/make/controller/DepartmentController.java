@@ -91,12 +91,10 @@ public class DepartmentController {
 	public String insertDepart(HttpServletRequest req, DepartmentBean depart) {
 		String res = "error";
 		try {
-			int parentId = Integer.parseInt(req.getParameter("parent"));
 			// depart.setDepartmentName("开发部");
 			// depart.setComments("备注信息");
 			depart.setOwner("李四");
 			// depart.setParentName("");
-			depart.setParentId(parentId);
 			depart.setStatus(0);
 			depart.setCreatDate(DateUtils.date2String(new Date(), ""));
 			departService.insertDepart(depart);

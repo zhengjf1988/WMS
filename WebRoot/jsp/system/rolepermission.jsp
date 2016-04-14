@@ -148,7 +148,7 @@
 
 
 			<div class="table-responsive ">
-				<table class="table table-bordered">
+				<table class="table table-bordered table-hover">
 					<thead>
 						<tr class="success">
 							<td class="text-center">序号</td>

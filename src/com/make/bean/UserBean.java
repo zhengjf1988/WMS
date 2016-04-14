@@ -22,6 +22,12 @@ public class UserBean {
 	private String username;
 	/** 密码 */
 	private String psw;
+	/** 真实姓名 */
+	private String realName;
+	/** 创建时间 */
+	private String creatDate;
+	/** 创建人 */
+	private String owner;
 	/** 用户状态 */
 	private int status;
 	/** 用户备注 */
@@ -30,6 +36,12 @@ public class UserBean {
 	private int fk_departmentId;
 	/** 用户所属角色外键 */
 	private int fk_roleId;
+	/** 用户所属部门名称 */
+	private String departmentName;
+	/** 用户所属角色名称 */
+	private String roleName;
+	/** 用户所属角色权限 */
+	private String permission;
 
 	public int getId() {
 		return id;
@@ -85,6 +97,54 @@ public class UserBean {
 
 	public void setFk_roleId(int fk_roleId) {
 		this.fk_roleId = fk_roleId;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
+	public String getCreatDate() {
+		return creatDate;
+	}
+
+	public void setCreatDate(String creatDate) {
+		this.creatDate = creatDate;
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+	public String getDepartmentName() {
+		return departmentName;
+	}
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public String getPermission() {
+		return permission;
+	}
+
+	public void setPermission(String permission) {
+		this.permission = permission;
 	}
 
 }

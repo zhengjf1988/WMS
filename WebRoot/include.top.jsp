@@ -29,32 +29,23 @@
 <!-- Mobile Specific Metas
 	================================================== -->
 <!-- !!!注意 minimal-ui 是IOS7.1的新属性，最小化浏览器UI，但是在iOS8.1突然被取消 -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <!-- 指定苹果设备添加到主屏的标题 -->
 <meta name="apple-mobile-web-app-title" content="title2">
 <!-- Favicons
 	================================================== -->
 
-<link href="<%=basePath%>bootstrap/css/bootstrap.min.css"
-	rel="stylesheet" media="all">
-<link href="<%=basePath%>bootstrap/css/bootstrap-datetimepicker.min.css"
-	rel="stylesheet" media="all">
-<link href="<%=basePath%>css/zTreeStyle/zTreeStyle.css" rel="stylesheet"
-	media="all">
-<script type="text/javascript"
-	src="<%=basePath%>js/jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
-<script type="text/javascript"
-	src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="<%=basePath%>bootstrap/js/bootstrap-datetimepicker.js"
-	charset="UTF-8"></script>
-<script type="text/javascript"
-	src="<%=basePath%>bootstrap/js/bootstrap-datetimepicker.zh-CN.js"
-	charset="UTF-8"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/jquery/jquery.ztree.core.js" charset="UTF-8"></script>
-<script type="text/javascript"
-	src="<%=basePath%>js/jquery/jquery.ztree.excheck.js" charset="UTF-8"></script>
+<link href="<%=basePath%>bootstrap/css/bootstrap.min.css" rel="stylesheet" media="all">
+<link href="<%=basePath%>bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all">
+<link href="<%=basePath%>css/zTreeStyle/zTreeStyle.css" rel="stylesheet" media="all">
+
+<script type="text/javascript" src="<%=basePath%>jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=basePath%>jquery/jquery.ztree.core.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=basePath%>jquery/jquery.ztree.excheck.js" charset="UTF-8"></script>
+
+<script type="text/javascript" src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=basePath%>bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=basePath%>bootstrap/js/popover.js"></script>
 </head>
 <body>

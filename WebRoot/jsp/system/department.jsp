@@ -144,7 +144,7 @@
 
 
 			<div class="table-responsive ">
-				<table class="table table-bordered">
+				<table class="table table-bordered table-hover">
 					<thead>
 						<tr class="success">
 							<td class="text-center">序号</td>
@@ -222,7 +222,7 @@
 						<div class="col-sm-10">
 							<!-- 	<input type="text" class="form-control" id="parentName"
 									name="parentName"> -->
-							<select class="form-control" id="parentId" name="parent">
+							<select class="form-control" id="parentId" name="parentId">
 							</select>
 						</div>
 					</div>

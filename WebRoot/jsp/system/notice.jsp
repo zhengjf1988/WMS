@@ -84,7 +84,7 @@
 			</form>
 
 			<div class="table-responsive" style="overflow:scroll;height: 380px;">
-				<table class="table table-bordered">
+				<table class="table table-bordered table-hover">
 					<thead>
 						<tr class="success">
 							<td class="text-center">序号</td>

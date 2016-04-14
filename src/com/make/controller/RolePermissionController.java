@@ -75,7 +75,6 @@ public class RolePermissionController {
 
 			JSONObject json = JSONObject.fromObject(map);
 			out.print(json.toString());
-			System.out.println(json.toString());
 			out.close();
 		} catch (Exception e) {
 			log.error("程序出错：" + e);
