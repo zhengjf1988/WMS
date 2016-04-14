@@ -20,21 +20,24 @@ public interface ILjlxglMapper {
  int addljlxglBean(LjlxglBean ljlxglBean);
 //查询全部零件类型
  @Select(value="select * from t_ljlxgl")
- @Results(value = {@Result(id = true, property = "lxid", column = "lxid"),@Result(property = "lxname", column = "lxname"),@Result(property = "lxmeno", column = "lxmeno"),@Result(property = "creDate", column = "creDate"),@Result(property = "inputman", column = "inputman")})
+ @Results(value = {@Result(id = true, property = "lxid", column = "lxid"),@Result(property = "iddelete", column = "iddelete"),@Result(property = "lxname", column = "lxname"),@Result(property = "lxmeno", column = "lxmeno"),@Result(property = "creDate", column = "creDate"),@Result(property = "inputman", column = "inputman")})
  List<LjlxglBean> selectljlxglBeanall();
  //根据id查询零件类型管理
  @Select(value="select * from t_ljlxgl where lxid=#{lxid}")
- @Results(value = {@Result(id = true, property = "lxid", column = "lxid"),@Result(property = "lxname", column = "lxname"),@Result(property = "lxmeno", column = "lxmeno"),@Result(property = "creDate", column = "creDate"),@Result(property = "inputman", column = "inputman")})
+ @Results(value = {@Result(id = true, property = "lxid", column = "lxid"),@Result(property = "lxname", column = "lxname"),@Result(property = "iddelete", column = "iddelete"),@Result(property = "lxmeno", column = "lxmeno"),@Result(property = "creDate", column = "creDate"),@Result(property = "inputman", column = "inputman")})
  LjlxglBean selectljlxglBeanbyid(String lxid);
  //根据sql查询零件类型管理
  @Select(value = "${sql}")
- @Results(value = {@Result(id = true, property = "lxid", column = "lxid"),@Result(property = "lxname", column = "lxname"),@Result(property = "lxmeno", column = "lxmeno"),@Result(property = "creDate", column = "creDate"),@Result(property = "inputman", column = "inputman")})
+ @Results(value = {@Result(id = true, property = "lxid", column = "lxid"),@Result(property = "lxname", column = "lxname"),@Result(property = "iddelete", column = "iddelete"),@Result(property = "lxmeno", column = "lxmeno"),@Result(property = "creDate", column = "creDate"),@Result(property = "inputman", column = "inputman")})
  List<LjlxglBean> selectljlxglBeanbysql(@Param(value = "sql") String sql);
  //删除零件类型管理
  @Delete("DELETE FROM t_ljlxgl where lxid = #{lxid};")
  int deleteone(String lxid);
- //删除零件类型管理
+ //修改零件类型管理
  @Update("update t_ljlxgl set lxname=#{lxname},lxname=#{lxname},lxmeno=#{lxmeno},creDate=#{creDate},inputman=#{inputman} where lxid=#{lxid}")
  int updateljlxglBean(LjlxglBean ljlxglBean);
+ 
+//逻辑删除零件类型管理
+@Update("update t_ljlxgl set iddelete=1 where lxid=#{lxid}")
+int deleteonebylo(String lxid);
 }
-

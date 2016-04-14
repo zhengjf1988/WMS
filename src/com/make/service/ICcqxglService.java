@@ -12,9 +12,9 @@ public interface ICcqxglService {
 	//新增存储期限管理
 	public int addCcqxglBean(CcqxglBean ccqxglBean);
 	//删除存储期限管理
-	public int deleCcqxglBeanbyid(String ccid);
+	public int deleCcqxglBeanbyid(int ccid);
 	//根据id 查询存储期限管理
-	public CcqxglBean selectbyid(String id);
+	public CcqxglBean selectbyid(int id);
    //修改存储期限根据id
 	int updateCcqxglBean(CcqxglBean ccqxglBean);
 }

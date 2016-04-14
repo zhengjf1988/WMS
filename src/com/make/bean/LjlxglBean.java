@@ -10,6 +10,7 @@ public class LjlxglBean {//零件类型管理
 	private String lxmeno;//类型说明
 	private Date creDate;//创建日期
 	private String inputman;//创建人id
+	private int iddelete;//0未删除 1删除
 	public String getLxid() {
 		return lxid;
 	}
@@ -39,6 +40,12 @@ public class LjlxglBean {//零件类型管理
 	}
 	public void setInputman(String inputman) {
 		this.inputman = inputman;
+	}
+	public int getIddelete() {
+		return iddelete;
+	}
+	public void setIddelete(int iddelete) {
+		this.iddelete = iddelete;
 	}
 	
 	

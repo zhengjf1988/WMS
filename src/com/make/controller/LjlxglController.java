@@ -22,7 +22,7 @@ public class LjlxglController {
 
 	//零件类型管理
 	
-	
+	@Autowired
 	private ILjlxglService iLjlxglService;
 	/**
 	 * 
@@ -37,15 +37,14 @@ public class LjlxglController {
 		
 		List<LjlxglBean> ljlxglBeans=new ArrayList<LjlxglBean>();
 		try {
-			ljlxglBeans=this.iLjlxglService.selectLjlxglBeansbyse(startDate, endDate, keys);
+			ljlxglBeans=iLjlxglService.selectLjlxglBeansbyse(startDate, endDate, keys);
 		} catch (Exception e) {
 		}
-        
 		req.setAttribute("ljlxglBeans", ljlxglBeans);
 		req.setAttribute("startDate", startDate);
 		req.setAttribute("endDate",endDate);
 		req.setAttribute("keys", keys);
-		return "jcgljsp/ljlxgl";
+		return "jcgl/ljlxgl";
 	}
 
 	//新增和修改零件类型管理
@@ -54,7 +53,6 @@ public class LjlxglController {
 		LjlxglBean ljlxglBean=new LjlxglBean();
 		if (lxid==null||"".equals(lxid)) {
 			
-			ljlxglBean.setLxid(UUID.randomUUID().toString().replace("-", ""));
 			try {
 				ljlxglBean.setInputman(((UserBean)session.getAttribute("user")).getId()+"");
 			} catch (Exception e) {
@@ -64,12 +62,12 @@ public class LjlxglController {
 			ljlxglBean.setCreDate(new Date());
 			ljlxglBean.setLxmeno(lxmeno);
 			ljlxglBean.setLxname(lxname);
-			this.iLjlxglService.addLjlxglBean(ljlxglBean);
+			iLjlxglService.addLjlxglBean(ljlxglBean);
 		}else {
 			ljlxglBean=this.iLjlxglService.selectbyid(lxid);
 			ljlxglBean.setLxmeno(lxmeno);
 			ljlxglBean.setLxname(lxname);
-			this.iLjlxglService.updatejlxglBean(ljlxglBean);
+			iLjlxglService.updatejlxglBean(ljlxglBean);
 		}
 
 		return "redirect:Ljlxgl.view";
@@ -79,7 +77,7 @@ public class LjlxglController {
 	public String dele(String lxid, HttpServletRequest req,HttpSession session) {
 
 			try {
-				this.iLjlxglService.deleLjlxglBeanbyid(lxid);
+				iLjlxglService.deleLjlxglBeanbyid(lxid);
 			} catch (Exception e) {
 				
 			}

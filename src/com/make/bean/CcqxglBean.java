@@ -10,6 +10,7 @@ public class CcqxglBean {//存储期限管理
 	private Date creDate;//创建日期
 	private String inputman;//创建人id
 	private Date sxqx;//存储期限
+	private int useTag;//是否可用
 	public int getCcid() {
 		return ccid;
 	}
@@ -51,6 +52,12 @@ public class CcqxglBean {//存储期限管理
 	}
 	public void setSxqx(Date sxqx) {
 		this.sxqx = sxqx;
+	}
+	public int getUseTag() {
+		return useTag;
+	}
+	public void setUseTag(int useTag) {
+		this.useTag = useTag;
 	}
 	
 }
