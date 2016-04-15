@@ -23,7 +23,7 @@ private ILjlxglMapper iLjlxglMapper;
 			sql=sql+" and creDate<='"+endDate+" 23:59:59'";
 		}
 		if (keys!=null&&!"".equals(keys)) {
-			sql=sql+" and lxname like '%"+keys+"%' or lxmeno like '%"+keys+"%'";
+			sql=sql+" and (lxname like '%"+keys+"%' or lxmeno like '%"+keys+"%')";
 		}
 		List<LjlxglBean> ljlxglBeans=iLjlxglMapper.selectljlxglBeanbysql(sql);
 		

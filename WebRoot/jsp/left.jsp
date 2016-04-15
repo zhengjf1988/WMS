@@ -22,7 +22,18 @@
 				<div class="panel-body">入库22222222222222222222</div>
 			</div>
 		</div>
-		
+		<div class="panel panel-default">
+				<div class="panel-heading">
+					<a class="panel-title" data-toggle="collapse"
+						data-parent="#panel-73792" href="#panel-element-420094">信息管理</a>
+				</div>
+				<div id="panel-element-420094" class="panel-collapse collapse in">
+					<div class="panel-body"> <a href="Kwxxgl.view">库位信息管理</a></div>
+					<div class="panel-body"><a href="">客户信息管理</a></div>
+					<div class="panel-body"><a href="">零件信息管理</a></div>
+					<div class="panel-body"><a href="">员工信息管理</a></div>
+				</div>
+			</div>
 		<div class="panel panel-default">
 				<div class="panel-heading">
 					<a class="panel-title" data-toggle="collapse"
@@ -30,8 +41,8 @@
 				</div>
 				<div id="panel-element-720094" class="panel-collapse collapse in">
 					<div class="panel-body"> <a href="Ljlxgl.view">零件类型管理</a></div>
-					<div class="panel-body"><a href="Ljdjgl.view">零件等级管理</a></div>
-					<div class="panel-body">库存类型管理</div>
+					<div class="panel-body"><a href="Ljdj/Ljdjgl.view">零件等级管理</a></div>
+					<div class="panel-body"><a href="Kwlx/Kwlxgl.view">库位类型管理</a></div>
 					<div class="panel-body">存储类型管理</div>
 					<div class="panel-body"><a href="Ccqxgl.view">存储期限管理</a></div>
 					<div class="panel-body">包装信息管理</div>

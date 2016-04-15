@@ -7,16 +7,16 @@
 				page="../left.jsp" /></div>
 		<div class="col-md-10" style="overflow:auto;">
 
-			<h2>存储期限管理</h2>
+			<h2>库位信息管理</h2>
 			<hr>
 
-			<form action="Ccqxgl.view" class="form-horizontal" method="post">
+			<form action="Kwxxgl.view" class="form-horizontal" method="post">
 				<div class="row">
 
 					<div class="col-lg-2">
 						
 						<button type="button" class="btn btn-primary" data-toggle="modal"
-							onclick="openModal()">添加存储期限.</button>
+							onclick="openModal()">添加库位信息.</button>
 					</div>
 
 
@@ -74,28 +74,27 @@
 					<thead>
 						<tr class="success">
 							<td class="text-center">序号</td>
-								<td class="text-center">零件存储类型</td>
-								<td class="text-center">库位存储类型</td>
-								<td class="text-center">是否受限</td>
-								<td class="text-center">存储期限</td>
-								<td class="text-center">创建日期</td>
-								<td class="text-center">创建人员</td>
+								<td class="text-center">库位名称</td>
+								<td class="text-center">库位类型</td>
+								<td class="text-center">存储类型</td>
+								<td class="text-center">库位容量(m³)</td>
+								<td class="text-center">库位编码</td>
 								<td class="text-center">操作</td>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${ccqxglBeans}" var="ccqx" varStatus="staturs">
+						<c:forEach items="${kwxxglBeans}" var="kwxx" varStatus="staturs">
 							<tr>
 								<td>${staturs.index+1}</td>
-								<td><c:out value="${ccqx.ccname}" /></td>
-								<td><c:out value="${ccqx.kwmeno}" /></td>
-								<td><c:if test="${ccqx.issx==0 }">否</c:if><c:if test="${ccqx.issx==1}">是</c:if></td>
-								<td><c:if test="${ccqx.sxqx==null }">无限制</c:if><c:if test="${ccqx.issx==1}"><fmt:formatDate value="${ccqx.sxqx}" pattern="yyyy-MM-dd" /></c:if></td>
-								<td><fmt:formatDate value="${ccqx.creDate}" pattern="yyyy-MM-dd" /></td>
-								
-								<td><c:out value="${ccqx.inputman}" /></td>
-								<td><a onClick="openModal('1')">编辑</a> || <a href="Ccqxgl.dele?ccid=${ccqx.ccid}">删除</a>||<a onClick="openModal('2')">详情</a> </td>
-								<td hidden="true">${ccqx.ccid}</td>
+								<td><c:out value="${kwxx.kwname}" /></td>
+								<td><c:out value="${kwlxgkMap.get(kwxx.kwtype).kwname}" /></td>
+								<td><c:out value="${kwxx.cctype}" /></td>
+								<td><c:out value="${kwxx.kwrl}" /></td>
+								<td><c:out value="${kwxx.kwbm}" /></td>
+								<td><a onClick="openModal('1')">编辑</a> || <a href="Kwxxgl.dele?kwid=${kwxx.kwid}">删除</a>||<a onClick="openModal('2')">详情</a> </td>
+								<td hidden="true">${kwxx.kwaddress}</td>
+								<td hidden="true">${kwxx.kwid}</td>
+								<td hidden="true">${kwxx.kwtype}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -113,7 +112,7 @@
 		</div>
 	</div>
 </div>
-<form action="Ccqxgl.add" class="form-horizontal" role="form"
+<form action="Kwxxgl.add" class="form-horizontal" role="form"
 	method="post">
 	<div class="modal fade" role="dialog"
 		aria-labelledby="gridSystemModalLabel" id="gridSystemModal"
@@ -125,53 +124,58 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<input type="hidden" name="ccid" id="ccid">
-					<h4 class="modal-title" id="gridSystemModalLabel">存储期限</h4>
+					<input type="hidden" name="kwid" id="kwid">
+					<h4 class="modal-title" id="gridSystemModalLabel">库位信息</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="inputCcname" class="col-sm-4 control-label"> 零件存储类型
+						<label for="inputKwname" class="col-sm-4 control-label"> 库位名称
 						</label>
 						<div class="col-sm-8">
-								<select class="form-control" id="inputCcname" name="ccname">
-						           <option value=""></option>
-						           <option value="1">hah</option>
-						           <option value="2">ww</option>
-						           <option value="3">3333</option>
-						        </select>
+							<input type="text" class="form-control" id="kwname"
+								name="kwname">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputKwmeno" class="col-sm-4 control-label"> 库位存储类型
+						<label for="inputKwtype" class="col-sm-4 control-label"> 库位类型
 						</label>
 						<div class="col-sm-8">
-								<select class="form-control" id="inputKwmeno" name="kwmeno">
-						           <option value=""></option>
-						           <option value="1">hah</option>
-						           <option value="2">ww</option>
-						           <option value="3">3333</option>
-						        </select>
+						<select class="form-control" id="kwtype" name="kwtype">
+						 <option value=""></option>
+						<c:forEach items="${kwlxglBeanstotrue}" var="kwlx">
+						<option value="${kwlx.kwid}">${kwlx.kwname}</option>
+						</c:forEach>
+						</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputCctype" class="col-sm-4 control-label"> 存储类型
+						</label>
+						<div class="col-sm-8">
+						<select class="form-control" id="cctype" name="cctype">
+						<option value=""></option>
+						<option value="1">hah</option>
+						<option value="2">ww</option>
+						<option value="3">3333</option>
+						</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputKwaddress" class="col-sm-4 control-label"> 库位地址
+						</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="kwaddress"
+								name="kwaddress">
 						</div>
 					</div>
                     <div class="form-group">
-						<label for="inputTitle" class="col-sm-4 control-label"> 是否存储受限
-						</label>
-						<div class="col-sm-2">
-							<input id="isyes" type="radio" value="1" name="issx" onclick="shower()">是
-							
-						</div>
-						<div class="col-sm-2">
-							<input id="isno" type="radio" value="0" name="issx" onclick="hiddens()">否
-						</div>
-					</div>
-                   <div class="form-group" id="ljccqx" style="display:none">
-						<label for="inputTitle" class="col-sm-4 control-label"> 零件存储期限
+						<label for="inputKwrl" class="col-sm-4 control-label"> 库位容量
 						</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="inputSxqx"
-								name="sxqx">
+							<input type="text" class="form-control" id="kwrl"
+								name="kwrl">
 						</div>
-				 </div>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -209,27 +213,23 @@
 						currentRow.removeClass("warning");
 					}
 					$(this).addClass("warning");
-					$("#inputCcname").val($(this).find("td:eq(1)").text());
-					$("#inputKwmeno").val($(this).find("td:eq(2)").text());
-					var issx=$(this).find("td:eq(3)").text();
-					if(issx=='是'){
-						$("#isyes").attr("checked",'checked');
-						shower();
-						$("#inputSxqx").val($(this).find("td:eq(4)").text());
-					}else{
-						 hiddens();
-						$("#isno").attr("checked",true);
-					}
-					$("#ccid").val($(this).find("td:eq(8)").text());
+					$("#kwname").val($(this).find("td:eq(1)").text());
+					$("#kwtype").val($(this).find("td:eq(9)").text());
+					$("#cctype").val($(this).find("td:eq(3)").text());
+					$("#kwaddress").val($(this).find("td:eq(7)").text());
+					$("#kwrl").val($(this).find("td:eq(4)").text());
+					
+					$("#kwid").val($(this).find("td:eq(8)").text());
 					
 			  });
 		}else{
-			$("#inputCcname").val('');
-			$("#inputKwmeno").val('');
-			$("#isyes").attr("checked",false);
-			$("#isno").attr("checked",false);
-			$("#inputSxqx").val('');
-			$("#ccid").val('');
+			$("#kwname").val('');
+			$("#kwtype").val('');
+			$("#cctype").val('');
+			$("#kwaddress").val('');
+			$("#kwrl").val('');
+			$("#kwid").val('');
+			
 		}
 		if(flag=='2'){
 			$("#btns").hide();
@@ -241,13 +241,6 @@
 			backdrop : 'static'
 		});
 	}
-	function shower(){
-		$('#ljccqx').show();
-		}
-    function hiddens(){
-    	$('#inputSxqx').val('');
-		$('#ljccqx').hide();
-		}
    
 </script>
 <%@ include file="/include.foot.jsp"%>

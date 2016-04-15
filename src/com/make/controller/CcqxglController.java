@@ -1,9 +1,12 @@
 package com.make.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.SimpleFormatter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -50,9 +53,21 @@ public class CcqxglController {
 	}
    //新增和修改存储期限管理
 	@RequestMapping("Ccqxgl.add")
-	public String add(int ccid,String ccname,String kwmeno, int issx,Date sxqx,HttpServletRequest req,HttpSession session) {
+	public String add(String ccid,String ccname,String kwmeno,String sxqx, int issx,HttpServletRequest req,HttpSession session) {
+		Date sxqxd=new Date();
+		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+		if (sxqx!=null||!"".equals(sxqx)) {
+			try {
+			sxqxd=simpleDateFormat.parse(sxqx);
+			} catch (ParseException e) {
+				System.out.println(e);
+			}
+		}
+		
+		
+		
 		CcqxglBean ccqxglBean=new CcqxglBean();
-		if (String.valueOf(ccid)==null||"".equals(ccid)) {
+		if (ccid==null||"".equals(ccid)) {
 			
 			try {
 				ccqxglBean.setInputman(((UserBean)session.getAttribute("user")).getId()+"");
@@ -65,16 +80,17 @@ public class CcqxglController {
 			ccqxglBean.setKwmeno(kwmeno);
 			ccqxglBean.setIssx(issx);
 			if(null!=sxqx)
-			ccqxglBean.setSxqx(sxqx);
+			ccqxglBean.setSxqx(sxqxd);
 			ccqxglBean.setUseTag(1);
 			this.iCcqxglService.addCcqxglBean(ccqxglBean);
 		}else {
-			ccqxglBean=this.iCcqxglService.selectbyid(ccid);
+			ccqxglBean=this.iCcqxglService.selectbyid(Integer.parseInt(ccid));
 			ccqxglBean.setCcname(ccname);
 			ccqxglBean.setKwmeno(kwmeno);
 			ccqxglBean.setIssx(issx);
 			if(null!=sxqx)
-			ccqxglBean.setSxqx(sxqx);
+			ccqxglBean.setSxqx(sxqxd);
+				
 			this.iCcqxglService.updateCcqxglBean(ccqxglBean);
 		}
 

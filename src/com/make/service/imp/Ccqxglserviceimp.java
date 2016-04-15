@@ -23,7 +23,7 @@ public class Ccqxglserviceimp implements ICcqxglService {
 			sql=sql+" and creDate<='"+endDate+" 23:59:59'";
 		}
 		if (keys!=null&&!"".equals(keys)) {
-			sql=sql+" and ccname like '%"+keys+"%' or kwmeno like '%"+keys+"%'";
+			sql=sql+" and (ccname like '%"+keys+"%' or kwmeno like '%"+keys+"%')";
 		}
 		List<CcqxglBean> ccqxglBeans=this.iCcqxglMapper.selectccqxglBeanbysql(sql);
 		return ccqxglBeans;
