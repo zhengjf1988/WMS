@@ -34,7 +34,9 @@
 				<a class="panel-title" data-toggle="collapse" data-parent="#panel-73792" href="#panel-element-620022">信息管理</a>
 			</div>
 			<div id="panel-element-620022" class="panel-collapse collapse">
-				<div class="panel-body">库位信息管理</div>
+				<div class="panel-body">
+					<li><a href="Kwxxgl.view">库位信息管理</a></li>
+				</div>
 				<div class="panel-body">
 					<li><a href="consumer/list.do">客户信息管理</a></li>
 				</div>
@@ -48,14 +50,20 @@
 			</div>
 			<div id="panel-element-620011" class="panel-collapse collapse">
 				<div class="panel-body">
-					<li><a href="part/list.do">零件类型管理</a></li>
+					<li><a href="Ljlxgl.view">零件类型管理</a></li>
 				</div>
-				<div class="panel-body">零件等级管理</div>
-				<div class="panel-body">库位类型管理</div>
+				<div class="panel-body">
+					<li><a href="Ljdj/Ljdjgl.view">零件等级管理</a></li>
+				</div>
+				<div class="panel-body">
+					<li><a href="Kwlx/Kwlxgl.view">库位类型管理</a></li>
+				</div>
 				<div class="panel-body">
 					<li><a href="save/list.do">存储类型管理</a></li>
 				</div>
-				<div class="panel-body">存储期限管理</div>
+				<div class="panel-body">
+					<li><a href="Ccqxgl.view">存储期限管理</a></li>
+				</div>
 				<div class="panel-body">
 					<li><a href="pack/list.do">包装信息管理</a></li>
 				</div>
