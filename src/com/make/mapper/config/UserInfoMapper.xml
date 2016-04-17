@@ -10,6 +10,8 @@
 		INNER JOIN t_roles AS r ON r.id = u.fk_roleId
 		where u.`status`=0
 		<if test="id>0">and u.id =#{id} </if>
+		<if test="username!=null and username!=''">and u.username =#{username} </if>
+		<if test="psw!=null and psw!=''">and u.psw =#{psw} </if>
 	</select>
 	<!-- 添加用户信息 -->
 	<insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.make.bean.UserBean">

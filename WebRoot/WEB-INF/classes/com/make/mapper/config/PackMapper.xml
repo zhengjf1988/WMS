@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.make.mapper.IPackMapper">
+	<!-- 查询包装信息 -->
+	<select id="loadPackInfo" parameterType="com.make.bean.PackBean" resultType="com.make.bean.PackBean">
+		SELECT * FROM
+		t_pack
+		where `status`=0
+		<if test="id>0">and id =#{id} </if>
+	</select>
+	<!-- 添加包装信息 -->
+	<insert id="insertPack" useGeneratedKeys="true" keyProperty="id" parameterType="com.make.bean.PackBean">
+		INSERT INTO `t_pack` ( `packName`, `count`, `bulk`, `comments`, `creatDate`, `owner`, `status`)
+		VALUES (#{packName},#{count},#{bulk},#{comments},#{creatDate},#{owner},#{status});
+	</insert>
+</mapper>

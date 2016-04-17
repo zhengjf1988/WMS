@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.make.mapper.IConsumerInfoMapper">
+	<!-- 查询客户信息 -->
+	<select id="loadInfo" parameterType="com.make.bean.ConsumerInfoBean" resultType="com.make.bean.ConsumerInfoBean">
+		SELECT * from
+		t_consumer
+		where `status`=0
+		<if test="id>0">and id =#{id} </if>
+	</select>
+	<!-- 添加客户信息 -->
+	<insert id="insertInfo" useGeneratedKeys="true" keyProperty="id" parameterType="com.make.bean.ConsumerInfoBean">
+		INSERT INTO `t_consumer`
+		(`consumerName`, `linkman`, `telephone`, `address`, `creatDate`, `owner`, `comments`, `status`)
+		VALUES
+		(#{consumerName},#{linkman},#{telephone},#{address},#{creatDate},#{owner},#{comments},#{status});
+	</insert>
+</mapper>

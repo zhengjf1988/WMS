@@ -101,7 +101,7 @@
 								<td>${staturs.index+1}</td>
 								<td><c:out value="${item.title}" /></td>
 								<td><c:out value="${item.content}" /></td>
-								<td><c:out value="${item.dateTime}" /></td>
+								<td><c:out value="${item.creatTime}" /></td>
 								<td><c:out value="${item.owner}" /></td>
 								<td><a onClick="">编辑</a> || <a onClick="">删除</a></td>
 							</tr>

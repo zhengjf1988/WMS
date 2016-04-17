@@ -19,7 +19,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.make.bean.NoticeBean;
+import com.make.bean.UserBean;
 import com.make.service.INoticeService;
+import com.make.util.DateUtils;
 
 /**
  * ClassName: NoticeController
@@ -53,13 +55,19 @@ public class NoticeController {
 	}
 
 	@RequestMapping("add.do")
-	public String insertNoticeInfo(NoticeBean item) {
-		item.setDbName("wms_10000");
-		item.setCreatTime(new Date());
-		item.setOwner("李四");
-		item.setStatus(0);
+	public String insertNoticeInfo(HttpServletRequest req, NoticeBean item) {
+		try {
+			HttpSession session = req.getSession();
+			UserBean user = (UserBean) session.getAttribute("user");
+			item.setOwner(user.getRealName());
+			item.setStatus(0);
+			item.setCreatTime(DateUtils.date2String(new Date(), ""));
 
-		noticeService.insertNoticeInfo(item);
-		return "redirect:list.do";
+			noticeService.insertNoticeInfo(item);
+			return "redirect:list.do";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "error";
 	}
 }

@@ -69,10 +69,9 @@ public class UserInfoController {
 	@RequestMapping("save.do")
 	public String upsertUser(UserBean item, HttpServletRequest req) {
 		try {
-			// depart.setDepartmentName("开发部");
-			// depart.setComments("备注信息");
-			item.setOwner("李四");
-			// depart.setParentName("");
+			HttpSession session = req.getSession();
+			UserBean user = (UserBean) session.getAttribute("user");
+			item.setOwner(user.getRealName());
 			item.setStatus(0);
 			item.setCreatDate(DateUtils.date2String(new Date(), ""));
 			userInfoService.insertUser(item);

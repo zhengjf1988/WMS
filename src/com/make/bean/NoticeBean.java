@@ -7,10 +7,6 @@
  */
 package com.make.bean;
 
-import java.util.Date;
-
-import com.make.util.DateUtils;
-
 /**
  * ClassName: NoticeBean
  * 
@@ -26,14 +22,11 @@ public class NoticeBean extends DBInfoBean {
 	/** 内容 */
 	private String content;
 	/** 创建时间 */
-	private Date creatTime;
+	private String creatTime;
 	/** 发布人 */
 	private String owner;
 	/** 状态 */
 	private int status;
-
-	/** 创建时间 */
-	private String dateTime;
 
 	public int getId() {
 		return id;
@@ -59,11 +52,11 @@ public class NoticeBean extends DBInfoBean {
 		this.content = content;
 	}
 
-	public Date getCreatTime() {
+	public String getCreatTime() {
 		return creatTime;
 	}
 
-	public void setCreatTime(Date creatTime) {
+	public void setCreatTime(String creatTime) {
 		this.creatTime = creatTime;
 	}
 
@@ -81,15 +74,6 @@ public class NoticeBean extends DBInfoBean {
 
 	public void setStatus(int status) {
 		this.status = status;
-	}
-
-	public String getDateTime() {
-		dateTime = DateUtils.date2String(getCreatTime());
-		return dateTime;
-	}
-
-	public void setDateTime(String dateTime) {
-		this.dateTime = dateTime;
 	}
 
 }

@@ -25,6 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.make.bean.DepartmentBean;
+import com.make.bean.UserBean;
 import com.make.service.IDepartmentService;
 import com.make.util.DateUtils;
 
@@ -88,16 +89,15 @@ public class DepartmentController {
 	}
 
 	@RequestMapping("add.do")
-	public String insertDepart(HttpServletRequest req, DepartmentBean depart) {
+	public String insertDepart(HttpServletRequest req, DepartmentBean item) {
 		String res = "error";
 		try {
-			// depart.setDepartmentName("开发部");
-			// depart.setComments("备注信息");
-			depart.setOwner("李四");
-			// depart.setParentName("");
-			depart.setStatus(0);
-			depart.setCreatDate(DateUtils.date2String(new Date(), ""));
-			departService.insertDepart(depart);
+			HttpSession session = req.getSession();
+			UserBean user = (UserBean) session.getAttribute("user");
+			item.setOwner(user.getRealName());
+			item.setStatus(0);
+			item.setCreatDate(DateUtils.date2String(new Date(), ""));
+			departService.insertDepart(item);
 			res = "redirect:list.do";
 		} catch (Exception e) {
 			log.error("程序出错：" + e);

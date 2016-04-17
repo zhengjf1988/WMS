@@ -7,14 +7,18 @@
  */
 package com.make.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.make.bean.UserBean;
+import com.make.service.IUserInfoService;
 
 /**
  * ClassName: LoginController
@@ -27,6 +31,9 @@ import com.make.bean.UserBean;
 public class LoginController {
 
 	Logger log = Logger.getLogger(LoginController.class);
+
+	@Autowired
+	IUserInfoService userServicec;
 
 	/**
 	 * 
@@ -43,7 +50,11 @@ public class LoginController {
 		String res = "error";
 		try {
 			HttpSession session = req.getSession();
-			if (user.getUsername().equals("admin") && user.getPsw().equals("111111")) {
+
+			List<UserBean> list = userServicec.loadUserInfo(user);
+
+			if (list.size() > 0) {
+				user = list.get(0);
 				session.setAttribute("user", user);
 				req.setAttribute("user", user);
 				res = "redirect:note/list.do";
