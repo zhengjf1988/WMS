@@ -58,6 +58,7 @@ public class LoginController {
 				session.setAttribute("user", user);
 				req.setAttribute("user", user);
 				res = "redirect:note/list.do";
+				// res = "main";
 			} else {
 				session.setAttribute("user", null);
 				req.setAttribute("user", "");
@@ -67,6 +68,27 @@ public class LoginController {
 			log.error("程序出错：" + e);
 		}
 		return res;
+	}
+
+	/**
+	 * @Description: 退出登录
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-18
+	 */
+	@RequestMapping("logout.do")
+	public String userLogout(HttpServletRequest req) {
+		try {
+			HttpSession session = req.getSession();
+			session.invalidate();
+			return "login";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return "error";
 	}
 
 }

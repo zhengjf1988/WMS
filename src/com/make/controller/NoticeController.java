@@ -40,9 +40,10 @@ public class NoticeController {
 	INoticeService noticeService;
 
 	@RequestMapping("list.do")
-	public String loadNotice(NoticeBean item, HttpServletRequest req) {
+	public String loadNotice(HttpServletRequest req) {
 		String res = "error";
 		try {
+			NoticeBean item=new NoticeBean();
 			HttpSession session = req.getSession();
 			item.setDbName("wms_10000");
 			List<NoticeBean> list = noticeService.loadNoticeInfo(item);
