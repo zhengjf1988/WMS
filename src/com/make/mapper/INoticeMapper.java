@@ -35,6 +35,17 @@ public interface INoticeMapper {
 	List<NoticeBean> loadNoticeInfo(NoticeBean notice);
 
 	// 添加公告信息
-	@Insert("INSERT INTO ${dbName}.t_notice (title,content,creatTime,owner,status) VALUES (#{title},#{content},#{creatTime},#{owner},#{status});")
+	@Insert("INSERT INTO t_notice (title,content,creatTime,owner,status) VALUES (#{title},#{content},#{creatTime},#{owner},#{status});")
 	int insertNoticeInfo(NoticeBean notice);
+
+	/**
+	 * @Description: 修改公告信息
+	 * @param @param notice
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-18
+	 */
+	int updateInfo(NoticeBean notice);
 }

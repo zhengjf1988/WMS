@@ -48,6 +48,8 @@ public class UserInfoController {
 		try {
 			HttpSession session = req.getSession();
 			List<UserBean> list = userInfoService.loadUserInfo(item);
+
+			session.setAttribute("item", null);
 			session.setAttribute("list", list);
 			return "system/userInfo";
 		} catch (Exception e) {
@@ -69,15 +71,47 @@ public class UserInfoController {
 	@RequestMapping("save.do")
 	public String upsertUser(UserBean item, HttpServletRequest req) {
 		try {
+			int id = Integer.parseInt(req.getParameter("userId"));
+			item.setId(id);
+
 			HttpSession session = req.getSession();
 			UserBean user = (UserBean) session.getAttribute("user");
-			item.setOwner(user.getRealName());
-			item.setStatus(0);
-			item.setCreatDate(DateUtils.date2String(new Date(), ""));
-			userInfoService.insertUser(item);
+
+			if (id == 0) {// /添加
+				item.setOwner(user.getRealName());
+				item.setCreatDate(DateUtils.date2String(new Date(), ""));
+				userInfoService.insertUser(item);
+			} else {// 修改
+				userInfoService.updateInfo(item);
+			}
+
 			return "redirect:list.do";
 		} catch (Exception e) {
 			log.error("程序出错：" + e);
+		}
+		return "error";
+	}
+
+	/**
+	 * @Description: 删除信息-------逻辑删除
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("delete.do")
+	public String deleteUserInfo(HttpServletRequest req) {
+		try {
+			UserBean item = new UserBean();
+			int id = Integer.parseInt(req.getParameter("deleteId"));
+			item.setId(id);
+			item.setStatus(1);
+			userInfoService.updateInfo(item);
+			return "redirect:list.do";
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return "error";
 	}
@@ -131,5 +165,41 @@ public class UserInfoController {
 		} catch (Exception e) {
 			log.error("程序出错：" + e);
 		}
+	}
+
+	/**
+	 * @Description: 根据条件进行查询
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("seach.do")
+	public String seachNotice(HttpServletRequest req) {
+		String res = "error";
+		try {
+			String username = req.getParameter("seachUserName");
+			String realName = req.getParameter("seachRealName");
+			int dpId = Integer.parseInt(req.getParameter("seachDeptart"));
+			int roleId = Integer.parseInt(req.getParameter("seachRoleName"));
+
+			UserBean item = new UserBean();
+			item.setUsername(username);
+			item.setRealName(realName);
+			item.setFk_departmentId(dpId);
+			item.setFk_roleId(roleId);
+
+			HttpSession session = req.getSession();
+			List<UserBean> list = userInfoService.loadUserInfo(item);
+
+			session.setAttribute("item", item);
+			session.setAttribute("list", list);
+			return "system/userInfo";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return res;
 	}
 }

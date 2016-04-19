@@ -6,7 +6,15 @@
 		SELECT * from
 		t_consumer
 		where `status`=0
-		<if test="id>0">and id =#{id} </if>
+		<if test="id>0">
+			and id =#{id}
+		</if>
+		<if test="consumerName!=null and consumerName!=''">
+			and consumerName like '%${consumerName}%'
+		</if>
+		<if test="linkman!=null and linkman!=''">
+			and linkman like '%${linkman}%'
+		</if>
 	</select>
 	<!-- 添加客户信息 -->
 	<insert id="insertInfo" useGeneratedKeys="true" keyProperty="id" parameterType="com.make.bean.ConsumerInfoBean">
@@ -15,4 +23,28 @@
 		VALUES
 		(#{consumerName},#{linkman},#{telephone},#{address},#{creatDate},#{owner},#{comments},#{status});
 	</insert>
+
+	<!-- 修改客户信息 -->
+	<update id="updateInfo" parameterType="com.make.bean.ConsumerInfoBean">
+		UPDATE `t_consumer`
+		SET
+		<if test="consumerName!=null and consumerName!=''">
+			`consumerName`=#{consumerName},
+		</if>
+		<if test="linkman!=null and linkman!=''">
+			`linkman`=#{linkman},
+		</if>
+		<if test="telephone!=null and telephone!=''">
+			`telephone`=#{telephone},
+		</if>
+		<if test="address!=null and address!=''">
+			`address`=#{address},
+		</if>
+		<if test="comments!=null and comments!=''">
+			`comments`=#{comments},
+		</if>
+		`status`=#{status}
+		WHERE (`id`=#{id});
+	</update>
+
 </mapper>

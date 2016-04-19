@@ -14,7 +14,7 @@ package com.make.bean;
  * @author zhengjf
  * @date 2016-4-11
  */
-public class NoticeBean extends DBInfoBean {
+public class NoticeBean {
 	/** 主键ID */
 	private int id;
 	/** 标题 */

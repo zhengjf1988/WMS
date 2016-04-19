@@ -48,6 +48,7 @@
 			}
 		});
 		openModal();
+		$.fn.zTree.init($("#tree"), setting, treeNodes);
 	}
 
 	function saveInfo() {
@@ -90,9 +91,8 @@
 			<h2>角色管理</h2>
 			<hr>
 
-			<form action="" class="form-horizontal" role="form">
+			<form action="role/seach.do" class="form-horizontal" method="post">
 				<div class="row">
-
 					<div class="col-lg-2">
 						<button type="button" class="btn btn-primary" data-toggle="modal" onclick="linkPage(0)">添加角色</button>
 					</div>
@@ -111,33 +111,27 @@
 						<!-- /input-group -->
 					</div>
 					<div class="col-lg-2">
-						<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+						<!-- <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 							<input class="form-control" size="16" type="text" value="" readonly id="dateFrom" placeholder="开始时间...">
 							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-remove"></span>
 							</span>
-							<!-- <span class="input-group-addon">
+							<span class="input-group-addon">
 										<span class="glyphicon glyphicon-calendar"></span>
-									</span> -->
-						</div>
+									</span>
+						</div> -->
 						<!-- /input-group -->
 					</div>
 					<div class="col-lg-2">
-						<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-							<input class="form-control" size="16" type="text" value="" readonly id="dateTo" placeholder="结束时间..." />
-							<span class="input-group-addon">
-								<span class="glyphicon glyphicon-remove"></span>
-							</span>
-							<!-- <span class="input-group-addon">
-										<span class="glyphicon glyphicon-calendar"></span>
-									</span> -->
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="角色名称..." name="seachRoleName" value="${item.roleName }">
 						</div>
 						<!-- /input-group -->
 					</div>
 
 					<div class="col-lg-2">
 						<div class="input-group">
-							<input type="button" value="查询" class="btn">
+							<input type="submit" value="查询" class="btn">
 						</div>
 						<!-- /input-group -->
 					</div>
@@ -147,7 +141,7 @@
 			</form>
 
 
-			<div class="table-responsive ">
+			<div class="table-responsive " style="overflow:scroll;height: 380px;">
 				<table class="table table-bordered table-hover">
 					<thead>
 						<tr class="success">
@@ -171,7 +165,7 @@
 								</td>
 								<td><c:out value="${item.owner}" />
 								</td>
-								<td><a onClick="linkPage('${item.id}')">编辑</a> | <a onClick="">删除</a></td>
+								<td><a onClick="linkPage('${item.id}')">编辑</a> || <a onClick="openMassageModal('${item.id}')">删除</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -237,26 +231,34 @@
 	<!-- /.modal -->
 </form>
 
+<!-- message -->
+<form action="role/delete.do" method="post">
+	<div class="modal fade" role="dialog" aria-labelledby="messageModalLabel" id="messageModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h3 class="modal-title" id="messageModalLabel">消息</h3>
+				</div>
+				<div class="modal-body" style="padding-bottom: 0px">
+					<div class="alert alert-warning" role="alert" style="padding-top: 0px">
+						<h3>
+							<input type="hidden" id="deleteId" name="deleteId">
+							<span class="glyphicon glyphicon-question-sign" aria-hidden="true" />
+							是否确定删除选择的数据？
+						</h3>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-primary">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<!-- message -->
 
-<script type="text/javascript">
-	$('.form_date').datetimepicker({
-		language : 'zh-CN',
-		format : "yyyy-mm-dd",
-		weekStart : 1,
-		todayBtn : 1,
-		autoclose : 1,
-		todayHighlight : 1,
-		startView : 2,
-		minView : 2,
-		forceParse : 0
-	});
-
-	function openModal() {
-		$('#gridSystemModal').modal({
-			backdrop : 'static'
-		});
-
-		$.fn.zTree.init($("#tree"), setting, treeNodes);
-	}
-</script>
 <%@ include file="/include.foot.jsp"%>

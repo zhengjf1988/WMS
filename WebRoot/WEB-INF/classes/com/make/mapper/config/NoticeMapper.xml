@@ -1,24 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.make.mapper.INoticeMapper">
-	<!-- 查询学生list，like姓名 -->
-	<!-- <select id=" getStudentListLikeName " parameterType="StudentEntity" -->
-	<!-- resultMap="studentResultMap"> -->
-	<!-- SELECT * from STUDENT_TBL ST -->
-	<!-- <if test="studentName!=null and studentName!='' "> -->
-	<!-- WHERE ST.STUDENT_NAME LIKE CONCAT(CONCAT('%', -->
-	<!-- #{studentName}),'%') -->
-	<!-- </if> -->
-	<!-- </select> -->
-
 	<!-- 查询公告信息 -->
 	<select id="loadNoticeInfo" parameterType="com.make.bean.NoticeBean" resultType="com.make.bean.NoticeBean">
-		select * from
-		${dbName}.t_notice
-		<where>
-			<if test="title!=null and title!='' ">
-				title like #{title}
-			</if>
-		</where>
+		select * from t_notice
+		where status=0
+		<if test="id>0">
+			and id=#{id}
+		</if>
+		<if test="title!=null and title!='' ">
+			and title like '%${title}%'
+		</if>
+		<if test="content!=null and content!='' ">
+			and content like '%${content}%'
+		</if>
+		<if test="creatTime!=null and creatTime!='' ">
+			<!-- 大于号&gt;转义 -->
+			and creatTime &gt; #{creatTime}
+		</if>
+		<if test="owner!=null and owner!='' ">
+			<!-- 小于号&lt;转义 -->
+			and creatTime &lt; #{owner}
+
+			<!-- 第二种方法 <![CDATA[ and creatTime < #{owner}]]> -->
+		</if>
 	</select>
+	<!-- 修改公告信息 -->
+	<update id="updateInfo" parameterType="com.make.bean.NoticeBean">
+		UPDATE `t_notice` SET
+		<if test="title!=null and title!='' ">
+			`title`=#{title},
+		</if>
+		<if test="content!=null and content!='' ">
+			`content`=#{content},
+		</if>
+		`status`=#{status}
+		WHERE (`id`=#{id});
+	</update>
 </mapper>

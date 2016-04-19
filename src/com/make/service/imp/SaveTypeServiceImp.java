@@ -66,4 +66,14 @@ public class SaveTypeServiceImp implements ISaveTypeService {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.make.service.ISaveTypeService#updateInfo(com.make.bean.SaveTypeBean)
+	 */
+	public int updateInfo(SaveTypeBean item) {
+		return saveTypeDao.updateInfo(item);
+	}
+
 }

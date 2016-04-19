@@ -44,11 +44,22 @@ public class RolePermissionController {
 	@Autowired
 	IRolePermissionService rolePerService;
 
+	/**
+	 * @Description: 查询角色权限
+	 * @param @param req
+	 * @param @param item
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
 	@RequestMapping("list.do")
-	public String loadRolePermission(HttpServletRequest req) {
+	public String loadRolePermission(HttpServletRequest req, RolePermissionBean item) {
 		try {
 			HttpSession session = req.getSession();
-			List<RolePermissionBean> list = rolePerService.loadRolePermission();
+			List<RolePermissionBean> list = rolePerService.loadRolePermission(item);
+			session.setAttribute("item", null);
 			session.setAttribute("list", list);
 			return "system/rolepermission";
 		} catch (Exception e) {
@@ -94,15 +105,72 @@ public class RolePermissionController {
 	@RequestMapping("save.do")
 	public String upsertRolePermission(HttpServletRequest req, RolePermissionBean item) {
 		try {
+			int id = Integer.parseInt(req.getParameter("id"));
+			item.setId(id);
+
 			HttpSession session = req.getSession();
 			UserBean user = (UserBean) session.getAttribute("user");
 			if (item.getId() == 0) {// 添加
 				item.setOwner(user.getRealName());
-				item.setStatus(0);
 				item.setCreatDate(DateUtils.date2String(new Date(), ""));
 				rolePerService.insertRolePermission(item);
+			} else {
+				rolePerService.updateInfo(item);
 			}
 			return "redirect:list.do";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return "error";
+	}
+
+	/**
+	 * @Description: 删除信息-------逻辑删除
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("delete.do")
+	public String deleteInfo(HttpServletRequest req) {
+		try {
+			RolePermissionBean item = new RolePermissionBean();
+			int id = Integer.parseInt(req.getParameter("deleteId"));
+			item.setId(id);
+			item.setStatus(1);
+			rolePerService.updateInfo(item);
+			return "redirect:list.do";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return "error";
+	}
+
+	/**
+	 * @Description: 根据条件进行查询
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("seach.do")
+	public String seachInfo(HttpServletRequest req) {
+		try {
+			String roleName = req.getParameter("seachRoleName");
+
+			RolePermissionBean item = new RolePermissionBean();
+			item.setRoleName(roleName);
+
+			HttpSession session = req.getSession();
+			List<RolePermissionBean> list = rolePerService.loadRolePermission(item);
+
+			session.setAttribute("item", item);
+			session.setAttribute("list", list);
+			return "system/rolepermission";
 		} catch (Exception e) {
 			log.error("程序出错：" + e);
 		}

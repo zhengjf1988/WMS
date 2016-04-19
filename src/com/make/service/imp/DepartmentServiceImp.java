@@ -48,8 +48,14 @@ public class DepartmentServiceImp implements IDepartmentService {
 	 * )
 	 */
 	public int insertDepart(DepartmentBean depart) {
-		// TODO Auto-generated method stub
 		return departDao.insertDepart(depart);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.make.service.IDepartmentService#updateInfo(com.make.bean.DepartmentBean)
+	 */
+	public int updateInfo(DepartmentBean item) {
+		return departDao.updateInfo(item);
 	}
 
 }

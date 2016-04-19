@@ -36,8 +36,7 @@ public class NoticeServiceImp implements INoticeService {
 	 * com.make.bean.NoticeBean)
 	 */
 	public int insertNoticeInfo(NoticeBean notice) {
-		noticeDao.insertNoticeInfo(notice);
-		return 0;
+		return noticeDao.insertNoticeInfo(notice);
 	}
 
 	/*
@@ -48,6 +47,35 @@ public class NoticeServiceImp implements INoticeService {
 	 */
 	public List<NoticeBean> loadNoticeInfo(NoticeBean notice) {
 		return noticeDao.loadNoticeInfo(notice);
+	}
+
+	/**
+	 * @Description: 跳转页面时，需要的数据
+	 * @param @param id
+	 * @param @return
+	 * @return NoticeBean
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-18
+	 */
+	public NoticeBean linkPage(int id) {
+		NoticeBean item = new NoticeBean();
+		item.setId(id);
+		List<NoticeBean> list = noticeDao.loadNoticeInfo(item);
+		if (id > 0) {
+			return list.get(0);
+		} else {
+			return item;
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.make.service.INoticeService#updateInfo(com.make.bean.NoticeBean)
+	 */
+	public int updateInfo(NoticeBean notice) {
+		return noticeDao.updateInfo(notice);
 	}
 
 }

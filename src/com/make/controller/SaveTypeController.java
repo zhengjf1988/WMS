@@ -59,6 +59,7 @@ public class SaveTypeController {
 			HttpSession session = req.getSession();
 			List<SaveTypeBean> list = saveService.loadInfo(item);
 			session.setAttribute("list", list);
+			session.setAttribute("item", null);
 			return "base/saveTypeInfo";
 		} catch (Exception e) {
 			log.error("程序出错：" + e);
@@ -103,13 +104,17 @@ public class SaveTypeController {
 	@RequestMapping("save.do")
 	public String saveInfo(HttpServletRequest req, SaveTypeBean item) {
 		try {
-			HttpSession session = req.getSession();
-			UserBean user = (UserBean) session.getAttribute("user");
-			item.setOwner(user.getRealName());
-			item.setStatus(0);
-			item.setCreatDate(DateUtils.date2String(new Date(), ""));
-
-			saveService.insertInfo(item);
+			int id = Integer.parseInt(req.getParameter("stId"));
+			item.setId(id);
+			if (id == 0) {
+				HttpSession session = req.getSession();
+				UserBean user = (UserBean) session.getAttribute("user");
+				item.setOwner(user.getRealName());
+				item.setCreatDate(DateUtils.date2String(new Date(), ""));
+				saveService.insertInfo(item);
+			} else {
+				saveService.updateInfo(item);
+			}
 			return "redirect:list.do";
 		} catch (Exception e) {
 			log.error("程序出错：" + e);
@@ -117,4 +122,57 @@ public class SaveTypeController {
 		return "error";
 	}
 
+	/**
+	 * @Description: 删除信息-------逻辑删除
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("delete.do")
+	public String deleteInfo(HttpServletRequest req) {
+		try {
+			SaveTypeBean item = new SaveTypeBean();
+			int id = Integer.parseInt(req.getParameter("deleteId"));
+			item.setId(id);
+			item.setStatus(1);
+			saveService.updateInfo(item);
+			return "redirect:list.do";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "error";
+	}
+
+	/**
+	 * @Description: 根据条件进行查询
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("seach.do")
+	public String seachNotice(HttpServletRequest req) {
+		String res = "error";
+		try {
+			String saveType = req.getParameter("seachSaveType");
+
+			SaveTypeBean item = new SaveTypeBean();
+			item.setSaveType(saveType);
+
+			HttpSession session = req.getSession();
+			List<SaveTypeBean> list = saveService.loadInfo(item);
+
+			session.setAttribute("item", item);
+			session.setAttribute("list", list);
+			return "base/saveTypeInfo";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return res;
+	}
 }

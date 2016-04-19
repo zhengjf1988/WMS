@@ -44,4 +44,15 @@ public interface IPackMapper {
 	 * @date 2016-4-16
 	 */
 	int insertPack(PackBean item);
+
+	/**
+	 * @Description: 修改包装信息
+	 * @param @param item
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	int updateInfo(PackBean item);
 }

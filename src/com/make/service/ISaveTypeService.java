@@ -52,4 +52,15 @@ public interface ISaveTypeService {
 	 * @date 2016-4-17
 	 */
 	public SaveTypeBean linkPage(int id);
+
+	/**
+	 * @Description: 修改存储类型
+	 * @param @param item
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	int updateInfo(SaveTypeBean item);
 }

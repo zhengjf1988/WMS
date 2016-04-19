@@ -20,7 +20,7 @@ public class PackBean {
 	/** 包装名称 */
 	private String packName;
 	/** 数量 */
-	private int count;
+	private String count;
 	/** 体积 */
 	private String bulk;
 	/** 备注信息 */
@@ -48,11 +48,11 @@ public class PackBean {
 		this.packName = packName;
 	}
 
-	public int getCount() {
+	public String getCount() {
 		return count;
 	}
 
-	public void setCount(int count) {
+	public void setCount(String count) {
 		this.count = count;
 	}
 

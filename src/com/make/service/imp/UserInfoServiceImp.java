@@ -73,7 +73,7 @@ public class UserInfoServiceImp implements IUserInfoService {
 			item = userInfoDao.loadUserInfo(item).get(0);
 		}
 		List<DepartmentBean> depList = departDao.loadDepartment(null);
-		List<RolePermissionBean> roleList = roleDao.loadRolePermission();
+		List<RolePermissionBean> roleList = roleDao.loadRolePermission(null);
 		map.put("item", item);
 		map.put("depList", depList);
 		map.put("roleList", roleList);
@@ -92,6 +92,15 @@ public class UserInfoServiceImp implements IUserInfoService {
 		} else {
 			return false;
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.make.service.IUserInfoService#updateInfo(com.make.bean.UserBean)
+	 */
+	public int updateInfo(UserBean item) {
+		return userInfoDao.updateInfo(item);
 	}
 
 }

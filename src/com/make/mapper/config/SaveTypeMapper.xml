@@ -6,11 +6,30 @@
 		SELECT * from
 		t_savetype
 		where `status`=0
-		<if test="id>0">and id =#{id} </if>
+		<if test="id>0">
+			and id =#{id}
+		</if>
+		<if test="saveType!=null and saveType!=''">
+			and saveType like '%${saveType}%'
+		</if>
 	</select>
 	<!-- 添加存储类型信息 -->
 	<insert id="insertInfo" useGeneratedKeys="true" keyProperty="id" parameterType="com.make.bean.SaveTypeBean">
 		INSERT INTO `t_savetype` (`saveType`, `comments`, `creatDate`, `owner`, `status`)
 		VALUES (#{saveType},#{comments},#{creatDate},#{owner},#{status});
 	</insert>
+
+	<!-- 修改存储类型 -->
+	<update id="updateInfo" parameterType="com.make.bean.SaveTypeBean">
+		UPDATE `t_savetype`
+		SET
+		<if test="saveType!=null and saveType!=''">
+			saveType=#{saveType},
+		</if>
+		<if test="saveType!=null and saveType!=''">
+			`comments`=#{comments},
+		</if>
+		`status`=#{status}
+		WHERE (`id`=#{id});
+	</update>
 </mapper>

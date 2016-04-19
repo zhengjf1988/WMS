@@ -40,25 +40,21 @@ public class RolePermissionServiceImp implements IRolePermissionService {
 	public Map<String, Object> linkPage(int id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		RolePermissionBean item = new RolePermissionBean();
-		List<RolePermissionBean> roleList = rolePermDao.loadRolePermission();
-		if (id > 0) {
-			for (RolePermissionBean role : roleList) {
-				if (id == role.getId()) {
-					item = role;
-					break;
-				}
-			}
-		}
+		item.setId(id);
 
 		List<MenuBtBean> list = rolePermDao.loadMenuBt();
-		if (item.getId() > 0) {
+
+		if (item.getId() > 0) {// 编辑的时候走这里
+			List<RolePermissionBean> roleList = rolePermDao.loadRolePermission(item);
+			item = roleList.get(0);
+
 			for (MenuBtBean menuBtBean : list) {
 				if (item.getPermission().indexOf(";" + menuBtBean.getId() + ";") > -1) {
 					menuBtBean.setChecked(true);
 				}
 			}
 		}
-		map.put("item", item);
+		map.put("item", item);// 添加的时候里面是空值
 		map.put("list", list);
 		return map;
 	}
@@ -68,8 +64,8 @@ public class RolePermissionServiceImp implements IRolePermissionService {
 	 * 
 	 * @see com.make.service.IRolePermissionService#loadRolePermission()
 	 */
-	public List<RolePermissionBean> loadRolePermission() {
-		return rolePermDao.loadRolePermission();
+	public List<RolePermissionBean> loadRolePermission(RolePermissionBean item) {
+		return rolePermDao.loadRolePermission(item);
 	}
 
 	/*
@@ -81,5 +77,15 @@ public class RolePermissionServiceImp implements IRolePermissionService {
 	 */
 	public int insertRolePermission(RolePermissionBean item) {
 		return rolePermDao.insertRolePermission(item);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.make.service.IRolePermissionService#updateInfo(com.make.bean.
+	 * RolePermissionBean)
+	 */
+	public int updateInfo(RolePermissionBean item) {
+		return rolePermDao.updateInfo(item);
 	}
 }

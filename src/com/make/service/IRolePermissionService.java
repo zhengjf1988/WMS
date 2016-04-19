@@ -39,7 +39,7 @@ public interface IRolePermissionService {
 	 * @author zhengjf
 	 * @date 2016-4-12
 	 */
-	public List<RolePermissionBean> loadRolePermission();
+	public List<RolePermissionBean> loadRolePermission(RolePermissionBean item);
 
 	/**
 	 * @Description: 添加角色权限信息
@@ -51,4 +51,15 @@ public interface IRolePermissionService {
 	 * @date 2016-4-13
 	 */
 	public int insertRolePermission(RolePermissionBean item);
+
+	/**
+	 * @Description: 修改信息
+	 * @param @param item
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	int updateInfo(RolePermissionBean item);
 }

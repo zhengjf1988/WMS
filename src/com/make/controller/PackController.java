@@ -59,6 +59,7 @@ public class PackController {
 			HttpSession session = req.getSession();
 			List<PackBean> list = packService.loadPackInfo(item);
 			session.setAttribute("list", list);
+			session.setAttribute("item", null);
 			return "base/packInfo";
 		} catch (Exception e) {
 			log.error("程序出错：" + e);
@@ -103,22 +104,83 @@ public class PackController {
 	@RequestMapping("save.do")
 	public String saveInfo(HttpServletRequest req, PackBean item) {
 		try {
-			HttpSession session = req.getSession();
-			UserBean user = (UserBean) session.getAttribute("user");
-			item.setOwner(user.getRealName());
-			item.setStatus(0);
-			item.setCreatDate(DateUtils.date2String(new Date(), ""));
-
-			if (item.getBulk() == null || "".equals(item.getBulk())) {
-				item.setBulk("无限制");
+			int id = Integer.parseInt(req.getParameter("packId"));
+			item.setId(id);
+			if (id == 0) {
+				HttpSession session = req.getSession();
+				UserBean user = (UserBean) session.getAttribute("user");
+				item.setOwner(user.getRealName());
+				item.setCreatDate(DateUtils.date2String(new Date(), ""));
+				if (item.getBulk() == null || "".equals(item.getBulk())) {
+					item.setBulk("无限制");
+				}
+				packService.insertPack(item);
+			} else {
+				packService.updateInfo(item);
 			}
-
-			packService.insertPack(item);
 			return "redirect:list.do";
 		} catch (Exception e) {
 			log.error("程序出错：" + e);
 		}
 		return "error";
+	}
+
+	/**
+	 * @Description: 删除信息-------逻辑删除
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("delete.do")
+	public String deleteInfo(HttpServletRequest req) {
+		try {
+			PackBean item = new PackBean();
+			int id = Integer.parseInt(req.getParameter("deleteId"));
+			item.setId(id);
+			item.setStatus(1);
+			packService.updateInfo(item);
+			return "redirect:list.do";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "error";
+	}
+
+	/**
+	 * @Description: 根据条件进行查询
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("seach.do")
+	public String seachInfo(HttpServletRequest req) {
+		String res = "error";
+		try {
+			String packName = req.getParameter("seachPackName");
+			String count = req.getParameter("seachCount");
+			String bulk = req.getParameter("seachBulk");
+
+			PackBean item = new PackBean();
+			item.setPackName(packName);
+			item.setCount(count);
+			item.setBulk(bulk);
+
+			HttpSession session = req.getSession();
+			List<PackBean> list = packService.loadPackInfo(item);
+
+			session.setAttribute("item", item);
+			session.setAttribute("list", list);
+			return "base/packInfo";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return res;
 	}
 
 }

@@ -43,4 +43,15 @@ public interface ISaveTypeMapper {
 	 * @date 2016-4-16
 	 */
 	int insertInfo(SaveTypeBean item);
+
+	/**
+	 * @Description: 修改存储类型
+	 * @param @param item
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	int updateInfo(SaveTypeBean item);
 }

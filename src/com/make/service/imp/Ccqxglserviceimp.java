@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.make.bean.CcqxglBean;
-import com.make.bean.LjlxglBean;
 import com.make.mapper.ICcqxglMapper;
 import com.make.service.ICcqxglService;
 @Service

@@ -6,7 +6,9 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html style="overflow-x: hidden; overflow-y: hidden; ">
@@ -47,5 +49,21 @@
 <script type="text/javascript" src="<%=basePath%>bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<%=basePath%>bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<%=basePath%>bootstrap/js/popover.js"></script>
+<script type="text/javascript">
+	//打开添加或者修改框
+	function openModal() {
+		$('#gridSystemModal').modal({
+			backdrop : 'static'
+		});
+	}
+
+	//打开删除消息确认框
+	function openMassageModal(id) {
+		$('#messageModal').modal({
+			backdrop : 'static'
+		});
+		$("#deleteId").val(id);
+	};
+</script>
 </head>
 <body>

@@ -50,7 +50,7 @@ public class LoginController {
 		String res = "error";
 		try {
 			HttpSession session = req.getSession();
-
+			user.setOwner("login");// 这是一个标识，区别是用户登录查询还是条件查询
 			List<UserBean> list = userServicec.loadUserInfo(user);
 
 			if (list.size() > 0) {

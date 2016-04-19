@@ -3,23 +3,43 @@
 <mapper namespace="com.make.mapper.IRolePermissionMapper">
 
 	<!-- 查询菜单按钮信息 -->
-	<select id="loadMenuBt" parameterType="com.make.bean.MenuBtBean"
-		resultType="com.make.bean.MenuBtBean">
+	<select id="loadMenuBt" parameterType="com.make.bean.MenuBtBean" resultType="com.make.bean.MenuBtBean">
 		select * from t_menubt where status=0
 	</select>
 
 	<!-- 查询角色权限信息 -->
-	<select id="loadRolePermission" parameterType="com.make.bean.RolePermissionBean"
-		resultType="com.make.bean.RolePermissionBean">
-		select * from t_roles where status=0
+	<select id="loadRolePermission" parameterType="com.make.bean.RolePermissionBean" resultType="com.make.bean.RolePermissionBean">
+		select * from t_roles
+		where status=0
+		<if test="id>0">
+			and id =#{id}
+		</if>
+		<if test="roleName!=null and roleName!=''">
+			and roleName like '%${roleName}%'
+		</if>
 	</select>
 
 	<!-- 添加角色权限信息 -->
-	<insert id="insertRolePermission" useGeneratedKeys="true"
-		keyProperty="id" parameterType="com.make.bean.RolePermissionBean">
+	<insert id="insertRolePermission" useGeneratedKeys="true" keyProperty="id" parameterType="com.make.bean.RolePermissionBean">
 		INSERT INTO t_roles
 		(roleName,permission,comments,creatDate,owner,status)
 		VALUES
 		(#{roleName},#{permission},#{comments},#{creatDate},#{owner},#{status})
 	</insert>
+
+	<!-- 修改角色权限 -->
+	<update id="updateInfo" parameterType="com.make.bean.RolePermissionBean">
+		UPDATE `t_roles` SET
+		<if test="roleName!=null and roleName!=''">
+			`roleName`=#{roleName},
+		</if>
+		<if test="permission!=null and permission!=''">
+			`permission`=#{permission},
+		</if>
+		<if test="comments!=null and comments!=''">
+			`comments`=#{comments},
+		</if>
+		`status`=#{status}
+		WHERE (`id`=#{id});
+	</update>
 </mapper>

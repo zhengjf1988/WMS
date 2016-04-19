@@ -45,12 +45,24 @@ public class DepartmentController {
 	@Autowired
 	IDepartmentService departService;
 
+	/**
+	 * @Description: 查询用户部门信息
+	 * @param @param req
+	 * @param @param depart
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
 	@RequestMapping("list.do")
 	public String loadDepartInfo(HttpServletRequest req, DepartmentBean depart) {
 		String res = "error";
 		try {
 			HttpSession session = req.getSession();
 			List<DepartmentBean> list = departService.loadDepartment(depart);
+
+			session.setAttribute("item", null);
 			session.setAttribute("list", list);
 			return "system/department";
 		} catch (Exception e) {
@@ -59,17 +71,25 @@ public class DepartmentController {
 		return res;
 	}
 
+	/**
+	 * @Description: 跳转到添加或者修改页面的数据查询
+	 * @param @param req
+	 * @param @param res
+	 * @return void
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
 	@RequestMapping("linkPage.do")
-	public void linkPage_Depart(HttpServletRequest req, HttpServletResponse res) {
+	public void linkPage_Depart(HttpServletResponse res, int id) {
 		try {
 			Map<String, Object> map = new HashMap<String, Object>();
 			PrintWriter out = res.getWriter();
 
-			int id = Integer.parseInt(req.getParameter("id"));
-			if (id == 0) {
+			if (id == 0) {// 添加
 				List<DepartmentBean> list = departService.loadDepartment(null);
 				map.put("list", list);
-			} else {
+			} else {// 修改
 				List<DepartmentBean> list = departService.loadDepartment(null);
 				map.put("list", list);
 				for (DepartmentBean item : list) {
@@ -82,26 +102,95 @@ public class DepartmentController {
 			JSONObject json = JSONObject.fromObject(map);
 			out.print(json.toString());
 			out.close();
-
 		} catch (Exception e) {
 			log.error("程序出错：" + e);
 		}
 	}
 
-	@RequestMapping("add.do")
-	public String insertDepart(HttpServletRequest req, DepartmentBean item) {
-		String res = "error";
+	/**
+	 * @Description: 添加或者修改部门
+	 * @param @param req
+	 * @param @param item
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("save.do")
+	public String upsertDepart(HttpServletRequest req, DepartmentBean item) {
 		try {
+			int id = Integer.parseInt(req.getParameter("departId"));
+			item.setId(id);
+
 			HttpSession session = req.getSession();
 			UserBean user = (UserBean) session.getAttribute("user");
-			item.setOwner(user.getRealName());
-			item.setStatus(0);
-			item.setCreatDate(DateUtils.date2String(new Date(), ""));
-			departService.insertDepart(item);
-			res = "redirect:list.do";
+			if (id == 0) {// 添加
+				item.setOwner(user.getRealName());
+				item.setCreatDate(DateUtils.date2String(new Date(), ""));
+				departService.insertDepart(item);
+			} else {// 修改
+				departService.updateInfo(item);
+			}
+			return "redirect:list.do";
 		} catch (Exception e) {
 			log.error("程序出错：" + e);
 		}
-		return res;
+		return "error";
+	}
+
+	/**
+	 * @Description: 删除信息-------逻辑删除
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("delete.do")
+	public String deleteDptaetInfo(HttpServletRequest req) {
+		try {
+			DepartmentBean item = new DepartmentBean();
+			int id = Integer.parseInt(req.getParameter("deleteId"));
+			item.setId(id);
+			item.setStatus(1);
+			departService.updateInfo(item);
+			return "redirect:list.do";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return "error";
+	}
+
+	/**
+	 * @Description: 根据条件进行查询
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("seach.do")
+	public String seachDepart(HttpServletRequest req) {
+		try {
+			String departName = req.getParameter("seachDepartName");
+			int parentId = Integer.parseInt(req.getParameter("seachParentId"));
+
+			DepartmentBean item = new DepartmentBean();
+			item.setDepartmentName(departName);
+			item.setParentId(parentId);
+
+			HttpSession session = req.getSession();
+			List<DepartmentBean> list = departService.loadDepartment(item);
+
+			session.setAttribute("item", item);
+			session.setAttribute("list", list);
+			return "system/department";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return "error";
 	}
 }

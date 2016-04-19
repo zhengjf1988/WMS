@@ -57,4 +57,15 @@ public interface IUserInfoMapper {
 	 */
 	@Select("select * from t_user where username=#{username} and `status`=0")
 	List<UserBean> checkUserInfo(@Param("username") String username);
+
+	/**
+	 * @Description: 修改用户信息
+	 * @param @param item
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	int updateInfo(UserBean item);
 }

@@ -3,8 +3,7 @@
 <mapper namespace="com.make.mapper.IDepartmentMapper">
 
 	<!-- 查询部门信息 -->
-	<select id="loadDepartment" parameterType="com.make.bean.DepartmentBean"
-		resultType="com.make.bean.DepartmentBean">
+	<select id="loadDepartment" parameterType="com.make.bean.DepartmentBean" resultType="com.make.bean.DepartmentBean">
 		SELECT
 		d2.id,
 		d2.departmentName,
@@ -18,18 +17,42 @@
 		t_department
 		AS d1
 		right JOIN t_department AS d2 ON d1.id = d2.parentId
-		<!-- <where>
-			<if test="id!=null and id!='' "> id =#{id}
-			</if>
-		</where> -->
+		where d2.status=0
+		<if test="id>0">
+			and d2.d =#{id}
+		</if>
+		<if test="departmentName!=null and departmentName!=''">
+			<!-- 部门名称 -->
+			and d2.departmentName like '%${departmentName}%'
+		</if>
+		<if test="parentId>0">
+			<!-- 上级部门ID -->
+			and d2.parentId=#{parentId}
+		</if>
 	</select>
 
 	<!-- 添加部门信息 -->
-	<insert id="insertDepart" useGeneratedKeys="true" keyProperty="id"
-		parameterType="com.make.bean.DepartmentBean">
+	<insert id="insertDepart" useGeneratedKeys="true" keyProperty="id" parameterType="com.make.bean.DepartmentBean">
 		INSERT INTO t_department
 		(departmentName,comments,parentId,status,creatDate,owner)
 		VALUES
 		(#{departmentName},#{comments},#{parentId},#{status},#{creatDate},#{owner})
 	</insert>
+
+	<!-- 修改 -->
+	<update id="updateInfo" parameterType="com.make.bean.DepartmentBean">
+		UPDATE `t_department` SET
+		<if test="departmentName!=null and departmentName!=''">
+			`departmentName`=#{departmentName},
+		</if>
+		<if test="parentId>0">
+			`parentId`=#{parentId},
+		</if>
+		<if test="comments!=null and comments!=''">
+			`comments`=#{comments},
+		</if>
+		`status`=#{status}
+		WHERE (`id`=#{id});
+	</update>
+
 </mapper>

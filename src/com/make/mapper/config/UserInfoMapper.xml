@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.make.mapper.IUserInfoMapper">
-	<!-- 查询用户信息 -->
+	<!-- 条件查询用户信息 -->
 	<select id="loadUserInfo" parameterType="com.make.bean.UserBean" resultType="com.make.bean.UserBean">
-		SELECT u.id,u.username,u.psw,u.realName,u.creatDate,u.`owner`,u.comments,u.fk_departmentId, u.fk_roleId,u.`status`,d.departmentName,r.roleName,r.permission
+		SELECT u.id,u.username,u.psw,u.realName,u.creatDate,u.`owner`,u.comments,u.fk_departmentId, u.fk_roleId,u.`status`,
+		d.departmentName,
+		r.roleName,
+		r.permission
 		FROM
 		t_user AS u
 		INNER JOIN t_department AS d ON d.id = u.fk_departmentId
 		INNER JOIN t_roles AS r ON r.id = u.fk_roleId
 		where u.`status`=0
-		<if test="id>0">and u.id =#{id} </if>
-		<if test="username!=null and username!=''">and u.username =#{username} </if>
-		<if test="psw!=null and psw!=''">and u.psw =#{psw} </if>
+		<if test="id>0">
+			and u.id =#{id}
+		</if>
+		<if test="username!=null and username!='' and owner=='login'">
+			<!-- 用户登录时，用这个全匹配查询 -->
+			and u.username =#{username}
+		</if>
+		<if test="psw!=null and psw!='' and owner=='login'">
+			<!-- 用户登录时，用这个全匹配查询 -->
+			and u.psw =#{psw}
+		</if>
+
+		<if test="username!=null and username!='' and owner!='login'">
+			<!-- 条件查询时，用这个模糊查询 -->
+			and u.username like '%${username}%'
+		</if>
+		<if test=" realName !=null and realName !='' ">
+			and u.realName like '%${realName}%'
+		</if>
+		<if test="fk_departmentId>0">
+			and fk_departmentId =#{fk_departmentId}
+		</if>
+		<if test="fk_roleId>0">
+			and fk_roleId =#{fk_roleId}
+		</if>
 	</select>
+
 	<!-- 添加用户信息 -->
 	<insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.make.bean.UserBean">
 		INSERT INTO t_user
@@ -20,4 +46,26 @@
 		VALUES
 		(#{username},#{psw},#{realName},#{creatDate},#{owner},#{comments},#{fk_departmentId},#{fk_roleId},#{status})
 	</insert>
+
+	<!-- 修改用户信息 -->
+	<update id="updateInfo" parameterType="com.make.bean.UserBean">
+		UPDATE `t_user` SET
+		<if test="psw!=null and psw!=''">
+			`psw`=#{psw},
+		</if>
+		<if test="realName!=null and realName!=''">
+			`realName`=#{realName},
+		</if>
+		<if test="comments!=null and comments!=''">
+			`comments`=#{comments},
+		</if>
+		<if test="fk_departmentId>0">
+			`fk_departmentId`=#{fk_departmentId},
+		</if>
+		<if test="fk_roleId>0">
+			`fk_roleId`=#{fk_roleId},
+		</if>
+		`status`=#{status}
+		WHERE (`id`=#{id});
+	</update>
 </mapper>

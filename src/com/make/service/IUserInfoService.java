@@ -63,4 +63,15 @@ public interface IUserInfoService {
 	 * @date 2016-4-15
 	 */
 	boolean checkUserInfo(String username);
+
+	/**
+	 * @Description: 修改用户信息
+	 * @param @param item
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	int updateInfo(UserBean item);
 }

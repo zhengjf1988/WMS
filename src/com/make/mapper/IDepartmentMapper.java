@@ -44,4 +44,15 @@ public interface IDepartmentMapper {
 	 * @date 2016-4-11
 	 */
 	int insertDepart(DepartmentBean depart);
+
+	/**
+	 * @Description: 修改信息
+	 * @param @param item
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	int updateInfo(DepartmentBean item);
 }

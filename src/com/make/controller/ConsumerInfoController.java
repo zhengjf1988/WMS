@@ -58,6 +58,8 @@ public class ConsumerInfoController {
 		try {
 			HttpSession session = req.getSession();
 			List<ConsumerInfoBean> list = consumerService.loadInfo(item);
+
+			session.setAttribute("item", null);
 			session.setAttribute("list", list);
 			return "info/consumerInfo";
 		} catch (Exception e) {
@@ -102,13 +104,18 @@ public class ConsumerInfoController {
 	@RequestMapping("save.do")
 	public String saveInfo(HttpServletRequest req, ConsumerInfoBean item) {
 		try {
+			int id = Integer.parseInt(req.getParameter("conId"));
+			item.setId(id);
+
 			HttpSession session = req.getSession();
 			UserBean user = (UserBean) session.getAttribute("user");
-			item.setOwner(user.getRealName());
-			item.setStatus(0);
-			item.setCreatDate(DateUtils.date2String(new Date(), ""));
-
-			consumerService.insertInfo(item);
+			if (id == 0) {
+				item.setOwner(user.getRealName());
+				item.setCreatDate(DateUtils.date2String(new Date(), ""));
+				consumerService.insertInfo(item);
+			} else {
+				consumerService.updateInfo(item);
+			}
 			return "redirect:list.do";
 		} catch (Exception e) {
 			log.error("程序出错：" + e);
@@ -116,4 +123,58 @@ public class ConsumerInfoController {
 		return "error";
 	}
 
+	/**
+	 * @Description: 删除信息-------逻辑删除
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("delete.do")
+	public String deleteInfo(HttpServletRequest req) {
+		try {
+			ConsumerInfoBean item = new ConsumerInfoBean();
+			int id = Integer.parseInt(req.getParameter("deleteId"));
+			item.setId(id);
+			item.setStatus(1);
+			consumerService.updateInfo(item);
+			return "redirect:list.do";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return "error";
+	}
+
+	/**
+	 * @Description: 根据条件进行查询
+	 * @param @param req
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	@RequestMapping("seach.do")
+	public String seachInfo(HttpServletRequest req) {
+		try {
+			String seachConName = req.getParameter("seachConName");
+			String seachLinkman = req.getParameter("seachLinkman");
+
+			ConsumerInfoBean item = new ConsumerInfoBean();
+			item.setConsumerName(seachConName);
+			item.setLinkman(seachLinkman);
+
+			HttpSession session = req.getSession();
+			List<ConsumerInfoBean> list = consumerService.loadInfo(item);
+
+			session.setAttribute("item", item);
+			session.setAttribute("list", list);
+			return "info/consumerInfo";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return "error";
+	}
 }
