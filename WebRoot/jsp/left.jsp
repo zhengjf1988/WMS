@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <script>
 	//菜单控制
 	$(function() {
@@ -49,7 +49,7 @@
 					<li><a href="consumer/list.do">客户信息管理</a>
 					</li>
 				</div>
-				<div class="panel-body">零件信息管理</div>
+				<div class="panel-body"><a href="Ljxxgl.view">零件信息管理</a></div>
 				<div class="panel-body">员工信息管理</div>
 			</div>
 		</div>
