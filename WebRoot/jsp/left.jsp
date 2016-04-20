@@ -50,7 +50,7 @@
 					</li>
 				</div>
 				<div class="panel-body"><a href="Ljxxgl.view">零件信息管理</a></div>
-				<div class="panel-body">员工信息管理</div>
+				<div class="panel-body"><a href="Ygxxgl.view">员工信息管理</a></div>
 			</div>
 		</div>
 		<div class="panel panel-default">
