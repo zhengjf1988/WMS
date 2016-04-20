@@ -32,8 +32,9 @@
 				<a class="panel-title" data-toggle="collapse" data-parent="#panel-73792" href="#panel-element-620094">入库管理</a>
 			</div>
 			<div id="panel-element-620094" class="panel-collapse collapse">
-				<div class="panel-body">入库111111111111</div>
-				<div class="panel-body">入库22222222222222222222</div>
+				<div class="panel-body">
+				<li><a href="receive/list.do">收货管理</a></li></div>
+				<div class="panel-body">生产退料</div>
 			</div>
 		</div>
 		<div class="panel panel-default">
@@ -42,12 +43,10 @@
 			</div>
 			<div id="panel-element-620022" class="panel-collapse collapse">
 				<div class="panel-body">
-					<li><a href="Kwxxgl.view">库位信息管理</a>
-					</li>
+					<li><a href="Kwxxgl.view">库位信息管理</a></li>
 				</div>
 				<div class="panel-body">
-					<li><a href="consumer/list.do">客户信息管理</a>
-					</li>
+					<li><a href="consumer/list.do">客户信息管理</a></li>
 				</div>
 				<div class="panel-body"><a href="Ljxxgl.view">零件信息管理</a></div>
 				<div class="panel-body">员工信息管理</div>
@@ -59,28 +58,22 @@
 			</div>
 			<div id="panel-element-620011" class="panel-collapse collapse">
 				<div class="panel-body">
-					<li><a href="Ljlxgl.view">零件类型管理</a>
-					</li>
+					<li><a href="Ljlxgl.view">零件类型管理</a></li>
 				</div>
 				<div class="panel-body">
-					<li><a href="Ljdj/Ljdjgl.view">零件等级管理</a>
-					</li>
+					<li><a href="Ljdj/Ljdjgl.view">零件等级管理</a></li>
 				</div>
 				<div class="panel-body">
-					<li><a href="Kwlx/Kwlxgl.view">库位类型管理</a>
-					</li>
+					<li><a href="Kwlx/Kwlxgl.view">库位类型管理</a></li>
 				</div>
 				<div class="panel-body">
-					<li><a href="save/list.do">存储类型管理</a>
-					</li>
+					<li><a href="save/list.do">存储类型管理</a></li>
 				</div>
 				<div class="panel-body">
-					<li><a href="Ccqxgl.view">存储期限管理</a>
-					</li>
+					<li><a href="Ccqxgl.view">存储期限管理</a></li>
 				</div>
 				<div class="panel-body">
-					<li><a href="pack/list.do">包装信息管理</a>
-					</li>
+					<li><a href="pack/list.do">包装信息管理</a></li>
 				</div>
 			</div>
 		</div>
@@ -90,20 +83,16 @@
 			</div>
 			<div id="panel-element-120094" class="panel-collapse collapse">
 				<div class="panel-body">
-					<li><a href="note/list.do">公告管理</a>
-					</li>
+					<li><a href="note/list.do">公告管理</a></li>
 				</div>
 				<div class="panel-body">
-					<li><a href="depart/list.do">部门管理</a>
-					</li>
+					<li><a href="depart/list.do">部门管理</a></li>
 				</div>
 				<div class="panel-body">
-					<li><a href="role/list.do">角色管理</a>
-					</li>
+					<li><a href="role/list.do">角色管理</a></li>
 				</div>
 				<div class="panel-body">
-					<li><a href="user/list.do">用户管理</a>
-					</li>
+					<li><a href="user/list.do">用户管理</a></li>
 				</div>
 			</div>
 		</div>
