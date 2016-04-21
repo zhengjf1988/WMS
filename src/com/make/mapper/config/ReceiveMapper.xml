@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.make.mapper.IReceiveMapper">
+	<!-- 查询收货信息 -->
+	<select id="loadInfo" parameterType="com.make.bean.ReceiveBean" resultType="com.make.bean.ReceiveBean">
+		SELECT * from
+		t_receive
+		where `status`=#{status}
+		<if test="id>0">
+			and id =#{id}
+		</if>
+	</select>
+
+	<!-- 修改收货信息 -->
+	<update id="updateInfo" parameterType="com.make.bean.ReceiveBean">
+		UPDATE `t_receive`
+		SET
+		<if test="ljName!=null and ljName!=''">
+			`ljName`=#{ljName},
+		</if>
+		<if test="count>=0">
+			`count`=#{count},
+		</if>
+		<if test="bzType!=null and bzType!=''">
+			`bzType`=#{bzType},
+		</if>
+		<if test="thDate!=null and thDate!=''">
+			`thDate`=#{thDate},
+		</if>
+		<if test="thMan!=null and thMan!=''">
+			`thMan`=#{thMan},
+		</if>
+		<if test="thCar!=null and thCar!=''">
+			`thCar`=#{thCar},
+		</if>
+		<if test="realCount>=0">
+			`realCount`=#{realCount},
+		</if>
+		<if test="khName!=null and khName!=''">
+			`khName`=#{khName},
+		</if>
+		`status`=#{status}
+		WHERE (`id`=#{id});
+	</update>
+
+</mapper>

@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/include.top.jsp"%>
-<script type="text/javascript" src="<%=basePath%>js/department.js"></script>
+<script type="text/javascript" src="<%=base%>js/department.js"></script>
 <div class="container-fluid">
 	<div class="row">
 		<%@ include file="../top.jsp"%>

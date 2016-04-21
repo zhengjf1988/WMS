@@ -6,14 +6,13 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	String base = request.getScheme() + "://" + request.getServerName()
+			+ ":" + request.getServerPort() + path + "/";
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html style="overflow-x: hidden; overflow-y: hidden; ">
 <head>
-<base href=" <%=basePath%>">
+<base href="<%=base%>">
 <meta charset="UTF-8">
 <title>WMS仓库管理系统</title>
 <meta name="description" content="">
@@ -37,18 +36,18 @@
 <!-- Favicons
 	================================================== -->
 
-<link href="<%=basePath%>bootstrap/css/bootstrap.min.css" rel="stylesheet" media="all">
-<link href="<%=basePath%>bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all">
-<link href="<%=basePath%>css/zTreeStyle/zTreeStyle.css" rel="stylesheet" media="all">
+<link href="<%=base%>bootstrap/css/bootstrap.min.css" rel="stylesheet" media="all">
+<link href="<%=base%>bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="all">
+<link href="<%=base%>css/zTreeStyle/zTreeStyle.css" rel="stylesheet" media="all">
 
-<script type="text/javascript" src="<%=basePath%>jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<%=basePath%>jquery/jquery.ztree.core.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<%=basePath%>jquery/jquery.ztree.excheck.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=base%>jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=base%>jquery/jquery.ztree.core.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=base%>jquery/jquery.ztree.excheck.js" charset="UTF-8"></script>
 
-<script type="text/javascript" src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<%=basePath%>bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<%=basePath%>bootstrap/js/popover.js"></script>
+<script type="text/javascript" src="<%=base%>bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=base%>bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=base%>bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<%=base%>bootstrap/js/popover.js"></script>
 <script type="text/javascript">
 	//打开添加或者修改框
 	function openModal() {

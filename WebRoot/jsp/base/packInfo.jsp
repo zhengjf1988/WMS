@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/include.top.jsp"%>
-<script type="text/javascript" src="<%=basePath%>js/packInfo.js"></script>
+<script type="text/javascript" src="<%=base%>js/packInfo.js"></script>
 <script type="text/javascript">
 	function linkPage(id) {
 		$("#packId").val(id);

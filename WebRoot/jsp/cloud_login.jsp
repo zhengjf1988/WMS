@@ -14,8 +14,6 @@
 	content="Source code generated using layoutit.com">
 <meta name="author" content="LayoutIt!">
 
-<base href="<%=basePath%>">
-
 <title>纺织行业WMS产品样品管理子系统</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">

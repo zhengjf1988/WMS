@@ -1,10 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/include.top.jsp"%>
-<script>
-	$(function() {
-		$("#li1").css("active");
-	});
-</script>
+<script type="text/javascript" src="js/receive.js"></script>
+<!-- 收货管理页面 -->
 <div class="container-fluid">
 	<div class="row">
 		<%@ include file="../top.jsp"%>
@@ -16,34 +13,36 @@
 		<div class="col-md-10">
 			<h2>收货管理</h2>
 			<hr>
-			<div class="row clearfix">
-				<div class="col-md-12 column">
-					<div class="tabbable" id="tabs-288562">
-						<ul class="nav nav-tabs">
-							<li id="li1"><a href="#panel-854194" data-toggle="tab">待提货</a></li>
-							<li><a href="#panel-854195" data-toggle="tab">待验货</a></li>
-							<li><a href="#panel-854196" data-toggle="tab">待入库</a></li>
-							<li><a href="#panel-854197" data-toggle="tab">历史记录</a></li>
-						</ul>
-						<div class="tab-content">
-							<div class="tab-pane" id="panel-854194">
-								<p>I'm in Section 1.</p>
-							</div>
-							<div class="tab-pane active" id="panel-854195">
-								<p>Howdy, I'm in Section 2.</p>
-							</div>
-							<div class="tab-pane active" id="panel-854196">
-								<p>Howdy, I'm in Section 3.</p>
-							</div>
-							<div class="tab-pane active" id="panel-854197">
-								<p>Howdy, I'm in Section 4.</p>
-							</div>
-						</div>
+			<div class="row">
+				<ul id="myTab" class="nav nav-tabs">
+					<li class="active">
+						<a href="#tihuo" data-toggle="tab">提货</a>
+					</li>
+					<li>
+						<a href="#yanhuo" data-toggle="tab">验货</a>
+					</li>
+					<li>
+						<a href="#fenku" data-toggle="tab">分库</a>
+					</li>
+					<li>
+						<a href="#rkqr" data-toggle="tab">入库确认</a>
+					</li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+					<div class="tab-pane fade in active" id="tihuo">
+						<%@ include file="./tihuo.jsp"%>
+					</div>
+					<div class="tab-pane fade" id="yanhuo">
+						<%@ include file="./yanhuo.jsp"%>
+					</div>
+					<div class="tab-pane fade" id="fenku">
+						<%@ include file="./fenku.jsp"%>
+					</div>
+					<div class="tab-pane fade" id="rkqr">
+						<%@ include file="./rkqr.jsp"%>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
 </div>
