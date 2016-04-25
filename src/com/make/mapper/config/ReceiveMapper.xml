@@ -3,26 +3,55 @@
 <mapper namespace="com.make.mapper.IReceiveMapper">
 	<!-- 查询收货信息 -->
 	<select id="loadInfo" parameterType="com.make.bean.ReceiveBean" resultType="com.make.bean.ReceiveBean">
-		SELECT * from
-		t_receive
-		where `status`=#{status}
+		SELECT
+		r.id,
+		r.fk_ljID,
+		r.count,
+		r.fk_bzID,
+		r.thDate,
+		r.thMan,
+		r.thCar,
+		r.realCount,
+		r.`status`,
+		l.ljname,
+		p.packName,
+		c.consumerName
+		FROM
+		t_receive AS r
+		INNER JOIN t_ljxxgl AS l ON l.ljid = r.fk_ljID
+		INNER JOIN t_pack AS p ON p.id = r.fk_bzID
+		INNER JOIN t_consumer as c ON c.id = l.fk_khId
+		and r.`status`=#{status}
 		<if test="id>0">
-			and id =#{id}
+			and r.id =#{id}
+		</if>
+		<if test="consumerName!=null and consumerName!='' ">
+			<!-- //只要有了客户信息，就说明前台输入了关键字 -->
+			and (c.consumerName like '%${consumerName}%' or l.ljname like '%${ljname}%' or p.packName like '%${packName}%')
+		</if>
+		<if test="thDate!=null and thDate!='' ">
+			<!-- 大于号&gt;转义 -->
+			and r.thDate &gt;= #{thDate}
+		</if>
+		<if test="thMan!=null and thMan!='' ">
+			<!-- 小于号&lt;转义 -->
+			and r.thDate &lt; #{thMan}
+			<!-- thMan暂存结束日期 -->
 		</if>
 	</select>
 
 	<!-- 修改收货信息 -->
 	<update id="updateInfo" parameterType="com.make.bean.ReceiveBean">
-		UPDATE `t_receive`
+		UPDATE `wms_10000`.`t_receive`
 		SET
-		<if test="ljName!=null and ljName!=''">
-			`ljName`=#{ljName},
+		<if test="fk_ljID!=null and fk_ljID!=''">
+			`fk_ljID`=#{fk_ljID},
 		</if>
-		<if test="count>=0">
+		<if test="count>0">
 			`count`=#{count},
 		</if>
-		<if test="bzType!=null and bzType!=''">
-			`bzType`=#{bzType},
+		<if test="fk_bzID!=null and fk_bzID!=''">
+			`fk_bzID`=#{fk_bzID},
 		</if>
 		<if test="thDate!=null and thDate!=''">
 			`thDate`=#{thDate},
@@ -33,13 +62,40 @@
 		<if test="thCar!=null and thCar!=''">
 			`thCar`=#{thCar},
 		</if>
-		<if test="realCount>=0">
+		<if test="realCount>0">
 			`realCount`=#{realCount},
 		</if>
-		<if test="khName!=null and khName!=''">
-			`khName`=#{khName},
-		</if>
 		`status`=#{status}
+		WHERE (`id`=#{id});
+	</update>
+
+	<select id="loadTxmBy_ReceID" resultType="com.make.bean.TxmBean">
+		select * from t_txm
+		where 1=1
+		<if test="fk_receId>0">
+			and fk_receId=#{fk_receId}
+		</if>
+	</select>
+	
+	<insert id="insertTxm" parameterType="java.util.List">
+		INSERT INTO `t_txm` (`txm`, `realCount`, `fk_receId`)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.txm},#{item.realCount},#{item.fk_receId})
+		</foreach>
+	</insert>
+	<update id="updateTxm" parameterType="com.make.bean.TxmBean">
+		UPDATE `t_txm`
+		SET
+		<if test="txm!=null and txm!=''">
+			`txm`=#{txm},
+		</if>
+		<if test="realCount!=null and realCount!=''">
+			`realCount`=#{realCount},
+		</if>
+		<if test="realCount!=null and realCount!=''">
+			`realCount`=#{realCount},
+		</if>
 		WHERE (`id`=#{id});
 	</update>
 

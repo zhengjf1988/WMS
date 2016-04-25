@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.make.bean.LjxxglBean;
 import com.make.bean.PackBean;
 import com.make.bean.ReceiveBean;
+import com.make.bean.TxmBean;
 import com.make.mapper.ILjxxglMapper;
 import com.make.mapper.IPackMapper;
 import com.make.mapper.IReceiveMapper;
@@ -75,10 +76,11 @@ public class ReceiveServiceImp implements IReceiveService {
 	 * 
 	 * @see com.make.service.IReceiveService#linkPage(int)
 	 */
-	public Map<String, Object> linkPage(int id) {
+	public Map<String, Object> linkPage(int id, int status) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		ReceiveBean item = new ReceiveBean();
 		item.setId(id);
+		item.setStatus(status);
 		if (id > 0) {
 			item = receiveDao.loadInfo(item).get(0);
 		}
@@ -88,5 +90,35 @@ public class ReceiveServiceImp implements IReceiveService {
 		map.put("ljxxList", ljxxList);
 		map.put("packList", packList);
 		return map;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.make.service.IReceiveService#insertTxm(com.make.bean.TxmBean)
+	 */
+	public int insertTxm(List<TxmBean> list, int recId) {
+		for (TxmBean txmBean : list) {
+			txmBean.setFk_receId(recId);
+		}
+		return receiveDao.insertTxm(list);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.make.service.IReceiveService#updateTxm(com.make.bean.TxmBean)
+	 */
+	public int updateTxm(TxmBean item) {
+		return receiveDao.updateTxm(item);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.make.service.IReceiveService#loadTxmBy_ReceID(int)
+	 */
+	public List<TxmBean> loadTxmBy_ReceID(int recId) {
+		return receiveDao.loadTxmBy_ReceID(recId);
 	}
 }

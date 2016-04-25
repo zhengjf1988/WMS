@@ -17,12 +17,8 @@ package com.make.bean;
 public class ReceiveBean {
 	/** 主键ID */
 	private int id;
-	/** 外键零件名称 */
-	private String ljName;
 	/** 收货数量 */
 	private int count;
-	/** 包装类型 */
-	private String bzType;
 	/** 时间 */
 	private String thDate;
 	/** 提货人 */
@@ -33,8 +29,18 @@ public class ReceiveBean {
 	private int realCount;
 	/** 状态(0:删除 1：提货 2：验货 3：分库 4：入库跟踪 5：入库完成) */
 	private int status;
+
+	/** 外键零件名称 */
+	private int fk_ljID;
+	/** 外键包装名称 */
+	private int fk_bzID;
+
+	/** 包装类型名称 */
+	private String packName;
+	/** 外键零件名称 */
+	private String ljname;
 	/** 客户名称 */
-	private String khName;
+	private String consumerName;
 
 	public int getId() {
 		return id;
@@ -92,28 +98,44 @@ public class ReceiveBean {
 		this.status = status;
 	}
 
-	public String getLjName() {
-		return ljName;
+	public int getFk_ljID() {
+		return fk_ljID;
 	}
 
-	public void setLjName(String ljName) {
-		this.ljName = ljName;
+	public void setFk_ljID(int fk_ljID) {
+		this.fk_ljID = fk_ljID;
 	}
 
-	public String getBzType() {
-		return bzType;
+	public int getFk_bzID() {
+		return fk_bzID;
 	}
 
-	public void setBzType(String bzType) {
-		this.bzType = bzType;
+	public void setFk_bzID(int fk_bzID) {
+		this.fk_bzID = fk_bzID;
 	}
 
-	public String getKhName() {
-		return khName;
+	public String getPackName() {
+		return packName;
 	}
 
-	public void setKhName(String khName) {
-		this.khName = khName;
+	public void setPackName(String packName) {
+		this.packName = packName;
+	}
+
+	public String getLjname() {
+		return ljname;
+	}
+
+	public void setLjname(String ljname) {
+		this.ljname = ljname;
+	}
+
+	public String getConsumerName() {
+		return consumerName;
+	}
+
+	public void setConsumerName(String consumerName) {
+		this.consumerName = consumerName;
 	}
 
 }

@@ -15,6 +15,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.log4j.Logger;
@@ -22,7 +23,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alibaba.fastjson.JSON;
 import com.make.bean.ReceiveBean;
+import com.make.bean.TxmBean;
 import com.make.service.IReceiveService;
 
 /**
@@ -76,12 +79,13 @@ public class ReceiveController {
 			String status = req.getParameter("status");
 
 			ReceiveBean item = new ReceiveBean();
-			item.setKhName(seachKeyWord);
-			item.setLjName(seachKeyWord);
-			item.setBzType(seachKeyWord);
+			item.setConsumerName(seachKeyWord);
+			item.setLjname(seachKeyWord);
+			item.setPackName(seachKeyWord);
 
 			item.setThDate(seachStartDate);
-			item.setThCar(seachEndDate);
+			item.setThMan(seachEndDate);
+
 			if (status == null || !"".equals(status))
 				item.setStatus(Integer.parseInt(status));
 
@@ -108,12 +112,12 @@ public class ReceiveController {
 	 * @date 2016-4-21
 	 */
 	@RequestMapping("linkPage.do")
-	public void linkPage(HttpServletResponse res, int id) {
+	public void linkPage(HttpServletResponse res, int id, int status) {
 		try {
 			res.setCharacterEncoding("UTF-8");
 			PrintWriter out = res.getWriter();
 
-			Map<String, Object> map = receiveService.linkPage(id);
+			Map<String, Object> map = receiveService.linkPage(id, status);
 			JSONObject json = JSONObject.fromObject(map);
 			out.print(json.toString());
 			out.close();
@@ -141,6 +145,7 @@ public class ReceiveController {
 				item.setStatus(1);
 				receiveService.insertInfo(item);
 			} else {
+				item.setStatus(1);
 				receiveService.updateInfo(item);
 			}
 			return "redirect:list.do";
@@ -174,4 +179,68 @@ public class ReceiveController {
 		return "error";
 	}
 
+	/**
+	 * @Description: 提货时修改信息
+	 * @param @param req
+	 * @param @param item
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-25
+	 */
+	@RequestMapping("tihuo.do")
+	public String tihuoInfo(HttpServletRequest req, ReceiveBean item) {
+		try {
+			int id = Integer.parseInt(req.getParameter("recId"));
+			item.setId(id);
+			item.setStatus(2);
+
+			receiveService.updateInfo(item);
+			return "redirect:list.do";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return "error";
+	}
+
+	/**
+	 * @Description: 通过提货ID查询条形码信息
+	 * @param @param res
+	 * @param @param recId
+	 * @return void
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-25
+	 */
+	@RequestMapping("loadTxm.do")
+	public void loadTxmBy_ReceID(HttpServletResponse res, int recId) {
+		try {
+			res.setCharacterEncoding("UTF-8");
+			PrintWriter out = res.getWriter();
+
+			List<TxmBean> list = receiveService.loadTxmBy_ReceID(recId);
+			JSONArray json = JSONArray.fromObject(list);
+			out.print(json.toString());
+			out.close();
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+	}
+
+	/**
+	 * @Description: 添加条形码信息
+	 * @param @param item
+	 * @return void
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-25
+	 */
+	@RequestMapping("insertTxm")
+	public void insertTxm(String data, int recId) {
+		data = data.replaceAll("\"", "");
+		JSONArray jsonArr = JSONArray.fromObject(data);
+		List<TxmBean> list = jsonArr.toList(jsonArr, TxmBean.class);
+		receiveService.insertTxm(list, recId);
+	}
 }

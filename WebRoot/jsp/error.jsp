@@ -10,9 +10,16 @@
 				style="width: 50%">
 				<span class="glyphicon glyphicon-exclamation-sign"
 					aria-hidden="true"></span> <span class="sr-only">Error:</span> <strong>程序出错了，请联系管理员！</strong><br />
-				<br /> <br /> <br /> <a href="#">点此重新登录！</a>
+				<br /> <br /> <br /> <a onclick="logout()">点此重新登录！</a>
 			</div>
 		</div>
 	</div>
 </div>
+<form action="logout.do" method="post" id="logoutForm"></form>
+<script>
+	function logout() {
+		sessionStorage.setItem("key", null);
+		$("#logoutForm").submit();
+	}
+</script>
 <%@ include file="/include.foot.jsp"%>

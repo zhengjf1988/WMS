@@ -48,6 +48,7 @@
 <script type="text/javascript" src="<%=base%>bootstrap/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<%=base%>bootstrap/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<%=base%>bootstrap/js/popover.js"></script>
+<script type="text/javascript" src="<%=base%>js/json2.js"></script>
 <script type="text/javascript">
 	//打开添加或者修改框
 	function openModal() {
