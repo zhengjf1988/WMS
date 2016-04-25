@@ -43,4 +43,15 @@ public interface IConsumerInfoMapper {
 	 * @date 2016-4-16
 	 */
 	int insertInfo(ConsumerInfoBean item);
+
+	/**
+	 * @Description: 修改客户信息
+	 * @param @param item
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	int updateInfo(ConsumerInfoBean item);
 }

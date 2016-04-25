@@ -67,4 +67,14 @@ public class ConsumerInfoServiceImp implements IConsumerInfoService {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.make.service.IConsumerInfoService#updateInfo(com.make.bean.
+	 * ConsumerInfoBean)
+	 */
+	public int updateInfo(ConsumerInfoBean item) {
+		return consumerDao.updateInfo(item);
+	}
+
 }

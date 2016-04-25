@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.make.bean.LjdjglBean;
-import com.make.bean.LjdjglBean;
 import com.make.mapper.ILjdjglMapper;
-import com.make.mapper.ILjlxglMapper;
 import com.make.service.ILjdjglService;
 
 @Service

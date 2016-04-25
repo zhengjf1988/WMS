@@ -52,4 +52,15 @@ public interface IPackService {
 	 * @date 2016-4-17
 	 */
 	public PackBean linkPage(int id);
+
+	/**
+	 * @Description: 修改包装信息
+	 * @param @param item
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	int updateInfo(PackBean item);
 }

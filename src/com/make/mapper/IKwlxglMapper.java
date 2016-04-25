@@ -41,6 +41,6 @@ public interface IKwlxglMapper {
 	 int updateKwlxglBean(KwlxglBean kwlxglBean);
 	 
 	//逻辑删除库位类型管理
-	@Update("update t_kwlxgl set iddelete=1 where kwid=#{kwid}")
+	@Update("update t_kwlxgl set useTag=0 where kwid=#{kwid}")
 	int deleteonebylo(String kwid);
 }

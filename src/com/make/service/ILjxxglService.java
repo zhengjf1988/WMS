@@ -15,4 +15,6 @@ public interface ILjxxglService {
 			public LjxxglBean selectbyid(String id);
 			//修改邻居信息管理
 			public int updateLjxxglBean(LjxxglBean LjxxglBean);
+			
+			public List<LjxxglBean> selectLjxxglBeansall();
 }

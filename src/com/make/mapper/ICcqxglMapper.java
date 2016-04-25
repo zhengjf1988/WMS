@@ -11,7 +11,6 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.make.bean.CcqxglBean;
-import com.make.bean.LjlxglBean;
 
 public interface ICcqxglMapper {
 	

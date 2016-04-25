@@ -52,4 +52,15 @@ public interface IConsumerInfoService {
 	 * @date 2016-4-17
 	 */
 	public ConsumerInfoBean linkPage(int id);
+
+	/**
+	 * @Description: 修改客户信息
+	 * @param @param item
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-19
+	 */
+	int updateInfo(ConsumerInfoBean item);
 }

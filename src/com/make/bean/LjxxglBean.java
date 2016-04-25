@@ -6,6 +6,7 @@ public class LjxxglBean {
 	private String ljid;//零件信息id
 	private String ljbm;//零件编码
 	private String ljname;//零件名称
+	private String fk_khid;//客户id
 	private String cctype;//存储类型
 	private String sjlj;//上级零件
 	private String gjsl;//构件数量
@@ -65,6 +66,12 @@ public class LjxxglBean {
 	}
 	public void setLjbm(String ljbm) {
 		this.ljbm = ljbm;
+	}
+	public String getFk_khid() {
+		return fk_khid;
+	}
+	public void setFk_khid(String fk_khid) {
+		this.fk_khid = fk_khid;
 	}
 	
 }

@@ -50,5 +50,9 @@ private ILjxxglMapper iLjxxglMapper;
 		// TODO Auto-generated method stub
 		return iLjxxglMapper.updateLjxxglBean(LjxxglBean);
 	}
+	public List<LjxxglBean> selectLjxxglBeansall() {
+		// TODO Auto-generated method stub
+		return iLjxxglMapper.selectljxxglBeanall();
+	}
     
 }

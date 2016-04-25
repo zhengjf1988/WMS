@@ -9,7 +9,6 @@ package com.make.service.imp;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,6 +62,15 @@ public class PackServiceImp implements IPackService {
 			return item;
 		}
 
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.make.service.IPackService#updateInfo(com.make.bean.PackBean)
+	 */
+	public int updateInfo(PackBean item) {
+		return packDao.updateInfo(item);
 	}
 
 }
