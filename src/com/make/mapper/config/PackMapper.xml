@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.make.mapper.IPackMapper">
+	<!-- 查询包装信息 -->
+	<select id="loadPackInfo" parameterType="com.make.bean.PackBean" resultType="com.make.bean.PackBean">
+		SELECT * FROM
+		t_pack
+		where `status`=0
+		<if test="id>0">
+			and id =#{id}
+		</if>
+		<if test="packName!=null and packName!=''">
+			and packName like '%${packName}%'
+		</if>
+		<if test="count!=null and count!=''">
+			and count =#{count}
+		</if>
+		<if test="bulk!=null and bulk!=''">
+			and bulk =#{bulk}
+		</if>
+	</select>
+	<!-- 添加包装信息 -->
+	<insert id="insertPack" useGeneratedKeys="true" keyProperty="id" parameterType="com.make.bean.PackBean">
+		INSERT INTO `t_pack` ( `packName`, `count`, `bulk`, `comments`, `creatDate`, `owner`, `status`)
+		VALUES (#{packName},#{count},#{bulk},#{comments},#{creatDate},#{owner},#{status});
+	</insert>
+
+	<!-- 修改包装信息 -->
+	<update id="updateInfo" parameterType="com.make.bean.PackBean">
+		UPDATE `t_pack`
+		SET
+		<if test="packName!=null and packName!=''">
+			packName =#{packName},
+		</if>
+		<if test="count!=null and count!=''">
+			count =#{count},
+		</if>
+		<if test="bulk!=null and bulk!=''">
+			bulk =#{bulk},
+		</if>
+		<if test="comments!=null and comments!=''">
+			comments =#{comments},
+		</if>
+		`status`=#{status}
+		WHERE (`id`=#{id});
+	</update>
+</mapper>
