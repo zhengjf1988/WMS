@@ -62,7 +62,7 @@ public class NoticeController {
 			UserBean user = (UserBean) session.getAttribute("user");
 			item.setOwner(user.getRealName());
 			item.setStatus(0);
-			item.setCreatTime(DateUtils.date2String(new Date(), ""));
+			//item.setCreatTime(DateUtils.date2String(new Date(), ""));
 
 			noticeService.insertNoticeInfo(item);
 			return "redirect:list.do";
