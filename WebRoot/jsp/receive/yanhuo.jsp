@@ -5,13 +5,13 @@
 		<div class="col-lg-2"></div>
 		<div class="col-lg-4">
 			<div class="input-group">
-				<input type="text" maxlength="30" style="width: 400px;" class="form-control" placeholder="请输入关键字..." name="seachUserName" value="${item.username}">
+				<input type="text" maxlength="30" style="width: 380px;" class="form-control" placeholder="请输入关键字..." id="seachKeyWord2" value="${item.username}">
 			</div>
 			<!-- /input-group -->
 		</div>
 		<div class="col-lg-2">
 			<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-				<input class="form-control" size="16" type="text" value="${item.owner }" readonly id="dateTo" name="dateTo" placeholder="开始时间...">
+				<input class="form-control" size="16" type="text" readonly id="seachStartDate2" placeholder="开始时间...">
 				<span class="input-group-addon">
 					<span class="glyphicon glyphicon-remove"></span>
 				</span>
@@ -19,7 +19,7 @@
 		</div>
 		<div class="col-lg-2">
 			<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-				<input class="form-control" size="16" type="text" value="${item.owner }" readonly id="dateTo" name="dateTo" placeholder="结束时间...">
+				<input class="form-control" size="16" type="text" readonly id="seachEndDate2" placeholder="结束时间...">
 				<span class="input-group-addon">
 					<span class="glyphicon glyphicon-remove"></span>
 				</span>
@@ -27,7 +27,7 @@
 		</div>
 		<div class="col-lg-2">
 			<div class="input-group">
-				<input type="submit" value="查询" class="btn">
+				<input type="button" value="查询" class="btn" onclick="loadReceiveInfo(2)">
 			</div>
 		</div>
 	</div>
@@ -73,42 +73,40 @@
 	</li>
 </ul>
 
-<form action="receive/save.do" class="form-horizontal" role="form" method="post" id="saveForm">
-	<div class="modal fade" role="dialog" aria-labelledby="yanhuoModalLabel" id="yanhuoModal" tabindex="-1" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
+<div class="modal fade" role="dialog" aria-labelledby="yanhuoModalLabel" id="yanhuoModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="yanhuoModalLabel">验货信息</h4>
+			</div>
+			<div class="modal-body" style="padding-bottom: 0">
+				<input type="hidden" id="yh_recId">
+				<div class="form-group" id="txmDiv"></div>
+				<div class="form-group">
+					<button type="button" class="btn btn-default" onclick="addTxmDiv()">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true" />
 					</button>
-					<h4 class="modal-title" id="yanhuoModalLabel">验货信息</h4>
-				</div>
-				<div class="modal-body" style="padding-bottom: 0">
-					<input type="hidden" id="recId">
-					<div class="form-group" id="txmDiv"></div>
-					<div class="form-group">
-						<button type="button" class="btn btn-default" onclick="addTxmDiv()">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true" />
-						</button>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<div class="col-lg-6">
-						<button type="button" class="btn btn-info ">打印条形码</button>
-						<button type="button" class="btn btn-info" onclick="savexm()">保存条形码</button>
-					</div>
-					<div class="col-lg-6">
-						<button type="button" class="btn btn-default " data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary">验货</button>
-					</div>
 				</div>
 			</div>
-			<!-- /.modal-content -->
+			<div class="modal-footer">
+				<div class="col-lg-6">
+					<button type="button" class="btn btn-info ">打印条形码</button>
+					<button type="button" class="btn btn-info" onclick="savexm()">保存条形码</button>
+				</div>
+				<div class="col-lg-6">
+					<button type="button" class="btn btn-default " data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" onclick="yanhuo()">验货</button>
+				</div>
+			</div>
 		</div>
-		<!-- /.modal-dialog -->
+		<!-- /.modal-content -->
 	</div>
-	<!-- /.modal -->
-</form>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 <script type="text/javascript">
 	function openYHModal() {
 		$('#yanhuoModal').modal({

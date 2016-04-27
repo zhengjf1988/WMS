@@ -8,13 +8,13 @@
 		</div>
 		<div class="col-lg-4">
 			<div class="input-group">
-				<input type="text" maxlength="30" style="width: 400px;" class="form-control" placeholder="请输入关键字..." id="seachKeyWord" value="${item.username}">
+				<input type="text" maxlength="30" style="width: 380px;" class="form-control" placeholder="请输入关键字..." id="seachKeyWord1" value="${item.username}">
 			</div>
 			<!-- /input-group -->
 		</div>
 		<div class="col-lg-2">
 			<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-				<input class="form-control" size="16" type="text" readonly id="seachStartDate" placeholder="开始时间...">
+				<input class="form-control" size="16" type="text" readonly id="seachStartDate1" placeholder="开始时间...">
 				<span class="input-group-addon">
 					<span class="glyphicon glyphicon-remove"></span>
 				</span>
@@ -22,7 +22,7 @@
 		</div>
 		<div class="col-lg-2">
 			<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-				<input class="form-control" size="16" type="text" readonly id="seachEndDate" placeholder="结束时间...">
+				<input class="form-control" size="16" type="text" readonly id="seachEndDate1" placeholder="结束时间...">
 				<span class="input-group-addon">
 					<span class="glyphicon glyphicon-remove"></span>
 				</span>

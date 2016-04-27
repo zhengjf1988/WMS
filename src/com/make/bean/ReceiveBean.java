@@ -41,6 +41,14 @@ public class ReceiveBean {
 	private String ljname;
 	/** 客户名称 */
 	private String consumerName;
+	/** 补单时关联的提货Id */
+	private int link_id;
+	/** 补单时间 */
+	private String bd_date;
+	/** 查询出的提货信息是否已补单 */
+	private boolean bd_flag;
+	/** 是否已全部入库 */
+	private boolean over_flag;
 
 	public int getId() {
 		return id;
@@ -136,6 +144,38 @@ public class ReceiveBean {
 
 	public void setConsumerName(String consumerName) {
 		this.consumerName = consumerName;
+	}
+
+	public int getLink_id() {
+		return link_id;
+	}
+
+	public void setLink_id(int link_id) {
+		this.link_id = link_id;
+	}
+
+	public String getBd_date() {
+		return bd_date;
+	}
+
+	public void setBd_date(String bd_date) {
+		this.bd_date = bd_date;
+	}
+
+	public boolean isBd_flag() {
+		return bd_flag;
+	}
+
+	public void setBd_flag(boolean bd_flag) {
+		this.bd_flag = bd_flag;
+	}
+
+	public boolean isOver_flag() {
+		return over_flag;
+	}
+
+	public void setOver_flag(boolean over_flag) {
+		this.over_flag = over_flag;
 	}
 
 }

@@ -32,7 +32,6 @@
 		<property name="user" value="root" />
 		<property name="password" value="root" />
 
-
 		<!--连接池中保留的最小连接数。 -->
 		<property name="minPoolSize">
 			<value>5</value>

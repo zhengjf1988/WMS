@@ -6,13 +6,13 @@
 			<div class="col-lg-2"></div>
 			<div class="col-lg-4">
 				<div class="input-group">
-					<input type="text" maxlength="30" style="width: 400px;" class="form-control" placeholder="请输入关键字..." name="seachUserName" value="${item.username}">
+					<input type="text" maxlength="30" style="width: 380px;" class="form-control" placeholder="请输入关键字..." id="seachKeyWord4" value="${item.username}">
 				</div>
 				<!-- /input-group -->
 			</div>
 			<div class="col-lg-2">
 				<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="${item.owner }" readonly id="dateTo" name="dateTo" placeholder="开始时间...">
+					<input class="form-control" size="16" type="text" readonly id="seachStartDate4" placeholder="开始时间...">
 					<span class="input-group-addon">
 						<span class="glyphicon glyphicon-remove"></span>
 					</span>
@@ -20,7 +20,7 @@
 			</div>
 			<div class="col-lg-2">
 				<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="${item.owner }" readonly id="dateTo" name="dateTo" placeholder="结束时间...">
+					<input class="form-control" size="16" type="text" readonly id="seachEndDate4" placeholder="结束时间...">
 					<span class="input-group-addon">
 						<span class="glyphicon glyphicon-remove"></span>
 					</span>
@@ -28,7 +28,7 @@
 			</div>
 			<div class="col-lg-2">
 				<div class="input-group">
-					<input type="submit" value="查询" class="btn">
+					<input type="button" value="查询" class="btn" onclick="loadReceiveInfo(4)">
 				</div>
 			</div>
 		</div>
@@ -40,27 +40,15 @@
 					<td class="text-center">序号</td>
 					<td class="text-center">客户名称</td>
 					<td class="text-center">零件名称</td>
-					<td class="text-center">箱条码</td>
+					<td class="text-center">提货时间</td>
+					<td class="text-center">零件数量</td>
 					<td class="text-center">实际数量</td>
-					<td class="text-center">目标库位</td>
 					<td class="text-center">入库状态</td>
 					<td class="text-center">操作</td>
 				</tr>
 			</thead>
-			<%-- <tbody>
-				<c:forEach items="${list}" var="item" varStatus="staturs">
-					<tr>
-						<td>${staturs.index+1}</td>
-						<td><c:out value="${item.title}" /></td>
-						<td><c:out value="${item.content}" /></td>
-						<td><c:out value="${item.creatTime}" /></td>
-						<td><c:out value="${item.owner}" /></td>
-						<td><c:out value="${item.owner}" /></td>
-						<td><c:out value="${item.owner}" /></td>
-						<td><a onClick="linkPage('${item.id}')">编辑</a> || <a onclick="openMassageModal('${item.id}')">删除</a> || <a onclick="openMassageModal('${item.id}')">提货</a></td>
-					</tr>
-				</c:forEach>
-			</tbody> --%>
+			<tbody id="table4">
+			</tbody>
 		</table>
 	</div>
 	<ul class="pagination">

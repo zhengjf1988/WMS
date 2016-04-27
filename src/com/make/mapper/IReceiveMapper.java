@@ -14,6 +14,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import com.make.bean.KwlxglBean;
+import com.make.bean.KwxxglBean;
 import com.make.bean.ReceiveBean;
 import com.make.bean.TxmBean;
 
@@ -57,7 +59,7 @@ public interface IReceiveMapper {
 	 * @author zhengjf
 	 * @date 2016-4-21
 	 */
-	@Insert("INSERT INTO `t_receive` (`fk_ljID`, `count`, `fk_bzID`, `thDate`, `thMan`, `thCar`, `realCount`, `status`) VALUES (#{fk_ljID},#{count}, #{fk_bzID}, #{thDate}, #{thMan}, #{thCar}, #{realCount}, #{status})")
+	@Insert("INSERT INTO `t_receive` (`fk_ljID`, `count`, `fk_bzID`, `thDate`, `thMan`, `thCar`, `realCount`, `status`,link_id,bd_date) VALUES (#{fk_ljID},#{count}, #{fk_bzID}, #{thDate}, #{thMan}, #{thCar}, #{realCount}, #{status},#{link_id},#{bd_date})")
 	int insertInfo(ReceiveBean item);
 
 	/**
@@ -83,6 +85,17 @@ public interface IReceiveMapper {
 	List<TxmBean> loadTxmBy_ReceID(@Param("fk_receId") int recId);
 
 	/**
+	 * @Description: 根据提货ID查询条形码与库位信息
+	 * @param @param recId
+	 * @param @return
+	 * @return List<TxmBean>
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-25
+	 */
+	List<TxmBean> loadTxmKwBy_ReceID(@Param("fk_receId") int recId);
+
+	/**
 	 * @Description: 添加条形码信息
 	 * @param @param item
 	 * @param @return
@@ -103,4 +116,37 @@ public interface IReceiveMapper {
 	 * @date 2016-4-25
 	 */
 	int updateTxm(TxmBean item);
+
+	/**
+	 * @Description: 查询提货的实际数量
+	 * @param @param fk_recId
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-26
+	 */
+	String loadRealCount(@Param("fk_recId") int fk_recId);
+
+	/**
+	 * @Description: 查询库位类型信息
+	 * @param @param item
+	 * @param @return
+	 * @return List<KwlxglBean>
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-27
+	 */
+	List<KwlxglBean> loadKWType();
+
+	/**
+	 * @Description: 查询库位信息
+	 * @param @param item
+	 * @param @return
+	 * @return List<KwxxglBean>
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-27
+	 */
+	List<KwxxglBean> loadKWInfo();
 }

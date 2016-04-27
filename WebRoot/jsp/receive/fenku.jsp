@@ -5,30 +5,30 @@
 		<div class="row" style="padding-top: 10px">
 			<div class="col-lg-2"></div>
 			<div class="col-lg-4">
+			<div class="input-group">
+				<input type="text" maxlength="30" style="width: 380px;" class="form-control" placeholder="请输入关键字..." id="seachKeyWord3" value="${item.username}">
+			</div>
+			<!-- /input-group -->
+		</div>
+		<div class="col-lg-2">
+			<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+				<input class="form-control" size="16" type="text" readonly id="seachStartDate3" placeholder="开始时间...">
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-remove"></span>
+				</span>
+			</div>
+		</div>
+		<div class="col-lg-2">
+			<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+				<input class="form-control" size="16" type="text" readonly id="seachEndDate3" placeholder="结束时间...">
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-remove"></span>
+				</span>
+			</div>
+		</div>
+			<div class="col-lg-2">
 				<div class="input-group">
-					<input type="text" maxlength="30" style="width: 400px;" class="form-control" placeholder="请输入关键字..." name="seachUserName" value="${item.username}">
-				</div>
-				<!-- /input-group -->
-			</div>
-			<div class="col-lg-2">
-				<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="${item.owner }" readonly id="dateTo" name="dateTo" placeholder="开始时间...">
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-remove"></span>
-					</span>
-				</div>
-			</div>
-			<div class="col-lg-2">
-				<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-					<input class="form-control" size="16" type="text" value="${item.owner }" readonly id="dateTo" name="dateTo" placeholder="结束时间...">
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-remove"></span>
-					</span>
-				</div>
-			</div>
-			<div class="col-lg-2">
-				<div class="input-group">
-					<input type="submit" value="查询" class="btn">
+					<input type="button" value="查询" class="btn" onclick="loadReceiveInfo(3)">
 				</div>
 			</div>
 		</div>
@@ -46,35 +46,8 @@
 					<td class="text-center">操作</td>
 				</tr>
 			</thead>
-			<%-- <tbody>
-				<c:forEach items="${list}" var="item" varStatus="staturs">
-					<tr>
-						<td>${staturs.index+1}</td>
-						<td>
-							<c:out value="${item.title}" />
-						</td>
-						<td>
-							<c:out value="${item.content}" />
-						</td>
-						<td>
-							<c:out value="${item.creatTime}" />
-						</td>
-						<td>
-							<c:out value="${item.owner}" />
-						</td>
-						<td>
-							<c:out value="${item.owner}" />
-						</td>
-						<td>
-							<a onClick="linkPage('${item.id}')">编辑</a>
-							||
-							<a onclick="openMassageModal('${item.id}')">删除</a>
-							||
-							<a onclick="openMassageModal('${item.id}')">提货</a>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody> --%>
+			<tbody id="table3">
+			</tbody>
 		</table>
 	</div>
 	<ul class="pagination">
@@ -101,3 +74,30 @@
 		</li>
 	</ul>
 </div>
+<form method="post" class="form-horizontal" role="form">
+	<div class="modal fade" role="dialog" aria-labelledby="fenkuModalLabel" id="fenkuModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog" role="document" style="width: 700px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="fenkuModalLabel">分库信息</h4>
+				</div>
+				<div class="modal-body" style="padding-bottom: 0" id="fkDiv"></div>
+				<div class="modal-footer">
+					<input type="hidden" id='fenku_recId'>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary" onclick="fenkuSave()">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	function openFKModal() {
+		$('#fenkuModal').modal({
+			backdrop : 'static'
+		});
+	}
+</script>

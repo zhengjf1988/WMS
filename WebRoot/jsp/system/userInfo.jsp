@@ -71,28 +71,48 @@
 						<c:forEach items="${list}" var="item" varStatus="staturs">
 							<tr>
 								<td>${staturs.index+1}</td>
-								<td><c:out value="${item.username}" /></td>
-								<td><c:out value="${item.realName}" /></td>
-								<td><c:out value="${item.roleName}" /></td>
-								<td><c:out value="${item.departmentName}" /></td>
-								<td style="word-break:break-all;width: 400px;"><c:out value="${item.comments}" /></td>
-								<td><c:out value="${item.creatDate}" /></td>
-								<td><c:out value="${item.owner}" /></td>
-								<td><a onClick="linkPage('${item.id}')">编辑</a> || <a onClick="openMassageModal('${item.id}')">删除</a>
+								<td><c:out value="${item.username}" />
 								</td>
+								<td><c:out value="${item.realName}" />
+								</td>
+								<td><c:out value="${item.roleName}" />
+								</td>
+								<td><c:out value="${item.departmentName}" />
+								</td>
+								<td style="word-break:break-all;width: 400px;"><c:out value="${item.comments}" />
+								</td>
+								<td><c:out value="${item.creatDate}" />
+								</td>
+								<td><c:out value="${item.owner}" />
+								</td>
+								<td><a onClick="linkPage('${item.id}')">编辑</a> || <a onClick="openMassageModal('${item.id}')">删除</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 			<ul class="pagination">
-				<li><a href="#">上一页</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">下一页</a></li>
+				<li>
+					<a href="#">上一页</a>
+				</li>
+				<li>
+					<a href="#">1</a>
+				</li>
+				<li>
+					<a href="#">2</a>
+				</li>
+				<li>
+					<a href="#">3</a>
+				</li>
+				<li>
+					<a href="#">4</a>
+				</li>
+				<li>
+					<a href="#">5</a>
+				</li>
+				<li>
+					<a href="#">下一页</a>
+				</li>
 			</ul>
 		</div>
 	</div>

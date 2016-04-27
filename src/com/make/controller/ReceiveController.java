@@ -8,6 +8,7 @@
 package com.make.controller;
 
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,10 +24,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.alibaba.fastjson.JSON;
 import com.make.bean.ReceiveBean;
 import com.make.bean.TxmBean;
 import com.make.service.IReceiveService;
+import com.make.util.DateUtils;
 
 /**
  * ClassName: ReceiveController
@@ -139,10 +140,11 @@ public class ReceiveController {
 	@RequestMapping("save.do")
 	public String saveInfo(HttpServletRequest req, ReceiveBean item) {
 		try {
-			int id = Integer.parseInt(req.getParameter("recId"));
-			item.setId(id);
-			if (id == 0) {
+			if (item.getId() == 0) {
 				item.setStatus(1);
+				if (item.getLink_id() > 0) {
+					item.setBd_date(DateUtils.date2String(new Date()));
+				}
 				receiveService.insertInfo(item);
 			} else {
 				item.setStatus(1);
@@ -236,11 +238,78 @@ public class ReceiveController {
 	 * @author zhengjf
 	 * @date 2016-4-25
 	 */
-	@RequestMapping("insertTxm")
-	public void insertTxm(String data, int recId) {
-		data = data.replaceAll("\"", "");
-		JSONArray jsonArr = JSONArray.fromObject(data);
-		List<TxmBean> list = jsonArr.toList(jsonArr, TxmBean.class);
-		receiveService.insertTxm(list, recId);
+	@RequestMapping("saveTxm.do")
+	public void upsertTxm(String data) {
+		try {
+			data = data.replaceAll("\"", "");
+			JSONArray jsonArr = JSONArray.fromObject(data);
+			List<TxmBean> list = jsonArr.toList(jsonArr, TxmBean.class);
+			receiveService.upsertTxm(list);
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+	}
+
+	/**
+	 * @Description: 验货
+	 * @param @param recId
+	 * @return void
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-26
+	 */
+	@RequestMapping("yanhuo.do")
+	public void yanhuo(int recId) {
+		try {
+			ReceiveBean item = new ReceiveBean();
+			item.setId(recId);
+			item.setStatus(3);
+			receiveService.updateInfo(item);
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+	}
+
+	/**
+	 * @Description: 分库查询
+	 * @param
+	 * @return void
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-27
+	 */
+	@RequestMapping("fenkuList.do")
+	public void fenkuLoad(HttpServletResponse res, int recId) {
+		try {
+			res.setCharacterEncoding("UTF-8");
+			PrintWriter out = res.getWriter();
+
+			Map<String, Object> map = receiveService.fenkuLoad(recId);
+			JSONObject json = JSONObject.fromObject(map);
+			out.print(json.toString());
+			out.close();
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+	}
+
+	/**
+	 * @Description: 分库修改状态
+	 * @param @param recId
+	 * @return void
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-26
+	 */
+	@RequestMapping("fenku.do")
+	public void fenkuUpdate(int recId) {
+		try {
+			ReceiveBean item = new ReceiveBean();
+			item.setId(recId);
+			item.setStatus(4);
+			receiveService.updateInfo(item);
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
 	}
 }

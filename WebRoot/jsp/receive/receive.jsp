@@ -22,10 +22,10 @@
 						<a href="#yanhuo" onclick="loadReceiveInfo(2)" data-toggle="tab">验货</a>
 					</li>
 					<li>
-						<a href="#fenku" data-toggle="tab">分库</a>
+						<a href="#fenku" onclick="loadReceiveInfo(3)" data-toggle="tab">分库</a>
 					</li>
 					<li>
-						<a href="#rkqr" data-toggle="tab">入库确认</a>
+						<a href="#rkqr" onclick="loadReceiveInfo(4)" data-toggle="tab">入库确认</a>
 					</li>
 				</ul>
 				<div id="myTabContent" class="tab-content">
@@ -49,7 +49,7 @@
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
-										<h4 class="modal-title" id="gridSystemModalLabel">提货信息</h4>
+										<h4 class="modal-title" id="gridSystemModalLabel">收货信息</h4>
 									</div>
 									<div class="modal-body" style="padding-bottom: 0">
 										<div style="display: none;" id="thDiv1">
@@ -58,7 +58,8 @@
 												<div class="col-sm-10">
 													<select class="form-control" id="ljName" name="fk_ljID">
 													</select>
-													<input type="hidden" class="form-control" id="recId" name="recId">
+													<input type="hidden" class="form-control" id="recId" name="id">
+													<input type="hidden" class="form-control" id="link_id" name="link_id">
 												</div>
 											</div>
 											<div class="form-group">
@@ -101,14 +102,57 @@
 												</div>
 											</div>
 										</div>
+
+										<!-- 条形码与分库信息 -->
+										<div id="thDiv3" class="form-group" style="display: none;"></div>
+
+										<!-- 入库的详细信息 -->
+										<div id="thDiv5" class="form-group" style="display: none;">
+											<div class="table-responsive" style="overflow:scroll;">
+												<table class="table table-bordered table-hover">
+													<thead>
+														<tr class="success">
+															<td class="text-center">条形码</td>
+															<td class="text-center">实际数量</td>
+															<td class="text-center">库位类型</td>
+															<td class="text-center">库位名称</td>
+														</tr>
+													</thead>
+													<tbody id="table_txm">
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+										<!-- 补单信息 -->
+										<div id="thDiv4" class="form-group" style="display: none;">
+											<hr>
+											<label for="inputTitle" class="col-sm-2 control-label">零件名称</label>
+											<div class="col-sm-4">
+												<input type="text" maxlength="30" class="form-control" id="bd_name">
+											</div>
+											<label for="inputTitle" class="col-sm-2 control-label">零件数量</label>
+											<div class="col-sm-4">
+												<input type="text" maxlength="30" class="form-control" id="bd_count">
+											</div>
+											<label for="inputTitle" class="col-sm-2 control-label">包装类型</label>
+											<div class="col-sm-4">
+												<input type="text" maxlength="30" class="form-control" id="bd_bzType">
+											</div>
+											<label for="inputTitle" class="col-sm-2 control-label">补单时间</label>
+											<div class="col-sm-4">
+												<input type="text" maxlength="30" class="form-control" id="bd_date">
+											</div>
+										</div>
+
 										<div class="alert alert-danger sm" id="msgDiv" style="display: none;padding-bottom: 0;padding-top: 0;padding-left: 40px;">
 											<label id="msg"></label>
 										</div>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-										<button type="button" class="btn btn-primary" onclick="saveInfo(1)" id="sav1">保存</button>
-										<button type="button" class="btn btn-primary" onclick="tihuo()" id="sav2" style="display: none;">保存</button>
+										<button type="button" class="btn btn-primary" onclick="saveInfo()" id="sav1">保存</button>
+										<button type="button" class="btn btn-primary" onclick="tihuo()" id="sav2" style="display: none;">保存2</button>
 									</div>
 								</div>
 								<!-- /.modal-content -->

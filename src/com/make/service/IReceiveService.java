@@ -78,24 +78,34 @@ public interface IReceiveService {
 	List<TxmBean> loadTxmBy_ReceID(int recId);
 
 	/**
-	 * @Description: 添加条形码信息
-	 * @param @param item
-	 * @param @return
-	 * @return int
+	 * @Description: 添加或者修改条形码信息
+	 * @param @param list
+	 * @return void
 	 * @throws
 	 * @author zhengjf
-	 * @date 2016-4-25
+	 * @date 2016-4-26
 	 */
-	int insertTxm(List<TxmBean> list, int recId);
+	void upsertTxm(List<TxmBean> list);
 
 	/**
-	 * @Description: 修改条形码
-	 * @param @param item
+	 * @Description: 查询提货的实际数量
+	 * @param @param fk_recId
 	 * @param @return
 	 * @return int
 	 * @throws
 	 * @author zhengjf
-	 * @date 2016-4-25
+	 * @date 2016-4-26
 	 */
-	int updateTxm(TxmBean item);
+	String loadRealCount(int fk_recId);
+
+	/**
+	 * @Description: 分库信息查询
+	 * @param @param recId
+	 * @param @return
+	 * @return Map<String,Object>
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-4-27
+	 */
+	Map<String, Object> fenkuLoad(int recId);
 }
