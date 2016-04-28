@@ -116,6 +116,7 @@
 															<td class="text-center">实际数量</td>
 															<td class="text-center">库位类型</td>
 															<td class="text-center">库位名称</td>
+															<td class="text-center">入库状态</td>
 														</tr>
 													</thead>
 													<tbody id="table_txm">

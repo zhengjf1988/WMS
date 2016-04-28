@@ -182,9 +182,13 @@ function linkPage(id, status) {
 								+ "<input type='text' maxlength='30' class='form-control' name='txm_count' value='" + item.realCount + "'></div>";
 					}
 					if (status == 4) {// 入库确认的时候查看
-						str += "<tr><td>" + item.txm + "</td><td>" + item.realCount + "</td><td>" + item.kwType + "</td><td>" + item.kwName + "</td></tr>";
+						str += "<tr><td>" + item.txm + "</td><td>" + item.realCount + "</td><td>" + item.kwType + "</td><td>" + item.kwName + "</td>";
+						if (item.status == 0) {
+							str += "<td>未确认</td></tr>";
+						} else {
+							str += "<td>已完成</td></tr>";
+						}
 					}
-
 				});
 			}
 			if (status == 3) {// 分库的时候查看
