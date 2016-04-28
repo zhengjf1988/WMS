@@ -80,6 +80,7 @@ function linkPage(id, status) {
 		$("#thDiv2").hide();
 		$("#thDiv3").hide();
 		$("#thDiv4").hide();
+		$("#thDiv5").hide();
 	} else if (status == 2) {
 		$("#sav1").hide();
 		$("#thDiv1").show();
@@ -87,12 +88,14 @@ function linkPage(id, status) {
 		$("#thDiv2").show();
 		$("#thDiv3").hide();
 		$("#thDiv4").hide();
+		$("#thDiv5").hide();
 	} else if (status == 3) {
 		$("#sav1").hide();
 		$("#sav2").hide();
 		$("#thDiv1").show();
 		$("#thDiv2").show();
 		$("#thDiv3").show();
+		$("#thDiv5").hide();
 	} else if (status == 4) {
 		$("#sav1").hide();
 		$("#sav2").hide();
