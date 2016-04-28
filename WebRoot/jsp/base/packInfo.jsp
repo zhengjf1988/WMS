@@ -146,27 +146,27 @@
 				</div>
 				<div class="modal-body" style="padding-bottom: 0">
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">包装名称</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">包装名称</label>
+						<div class="col-md-10">
 							<input type="hidden" class="form-control" id="packId" name="packId">
 							<input type="text" class="form-control" id="packName" name="packName">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">数量(件)</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">数量(件)</label>
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="count" name="count">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">体积(m³)</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">体积(m³)</label>
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="bulk" name="bulk">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 备注信息 </label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label"> 备注信息 </label>
+						<div class="col-md-10">
 							<!-- 	<input type="texta" class="form-control" id="inputTitle"
 									name="username"> -->
 

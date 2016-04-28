@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.make.mapper.ISelfPlanMapper">
+	<!-- 查询内部生产计划信息 -->
+	<select id="loadInfo" resultType="com.make.bean.SelfPlanBean" parameterType="com.make.bean.SelfPlanBean">
+		SELECT
+		s.id,
+		s.fk_khId,
+		s.fk_ljId,
+		s.count,
+		s.xqDate,
+		s.`status`,
+		c.consumerName as khName,
+		l.ljname
+		FROM
+		t_selfplan AS s
+		INNER JOIN t_consumer AS c ON c.id = s.fk_khId
+		INNER JOIN t_ljxxgl AS l ON l.ljid = s.fk_ljId
+		where 1=1
+		and
+		s.status=0
+		<if test="id>0">
+			and s.id=#{id}
+		</if>
+	</select>
+
+
+</mapper>

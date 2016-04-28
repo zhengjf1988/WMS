@@ -162,35 +162,35 @@
 				</div>
 				<div class="modal-body" style="padding-bottom: 0">
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">客户名称</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">客户名称</label>
+						<div class="col-md-10">
 							<input type="hidden" id="conId" name="conId">
 							<input type="text" class="form-control" id="consumerName" name="consumerName">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">联系人</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">联系人</label>
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="linkman" name="linkman">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">联系电话</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">联系电话</label>
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="telephone" name="telephone">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">客户地址</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">客户地址</label>
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="address" name="address">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">备注信息</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">备注信息</label>
+						<div class="col-md-10">
 							<!-- 	<input type="texta" class="form-control" id="inputTitle"
 									name="username"> -->
 

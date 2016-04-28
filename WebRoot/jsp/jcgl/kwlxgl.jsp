@@ -130,17 +130,17 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 类型名称
+						<label for="inputTitle" class="col-md-2 control-label"> 类型名称
 						</label>
-						<div class="col-sm-10">
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="kwname"
 								name="kwname">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 类型说明
+						<label for="inputTitle" class="col-md-2 control-label"> 类型说明
 						</label>
-						<div class="col-sm-10">
+						<div class="col-md-10">
 							<!-- 	<input type="texta" class="form-control" id="inputTitle"
 									name="username"> -->
 

@@ -168,15 +168,15 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 标题 </label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label"> 标题 </label>
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="title" name="title">
 							<input type="hidden" class="form-control" id="noteId" name="noteId">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 内容 </label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label"> 内容 </label>
+						<div class="col-md-10">
 							<!-- 	<input type="texta" class="form-control" id="inputTitle"
 									name="username"> -->
 

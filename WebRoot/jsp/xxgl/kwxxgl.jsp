@@ -129,17 +129,17 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="inputKwname" class="col-sm-4 control-label"> 库位名称
+						<label for="inputKwname" class="col-md-4 control-label"> 库位名称
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 							<input type="text" class="form-control" id="kwname"
 								name="kwname">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputKwtype" class="col-sm-4 control-label"> 库位类型
+						<label for="inputKwtype" class="col-md-4 control-label"> 库位类型
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 						<select class="form-control" id="kwtype" name="kwtype">
 						 <option value=""></option>
 						<c:forEach items="${kwlxglBeanstotrue}" var="kwlx">
@@ -149,9 +149,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputCctype" class="col-sm-4 control-label"> 存储类型
+						<label for="inputCctype" class="col-md-4 control-label"> 存储类型
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 						<select class="form-control" id="cctype" name="cctype">
 						<option value=""></option>
 						<option value="1">hah</option>
@@ -161,17 +161,17 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputKwaddress" class="col-sm-4 control-label"> 库位地址
+						<label for="inputKwaddress" class="col-md-4 control-label"> 库位地址
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 							<input type="text" class="form-control" id="kwaddress"
 								name="kwaddress">
 						</div>
 					</div>
                     <div class="form-group">
-						<label for="inputKwrl" class="col-sm-4 control-label"> 库位容量
+						<label for="inputKwrl" class="col-md-4 control-label"> 库位容量
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 							<input type="text" class="form-control" id="kwrl"
 								name="kwrl">
 						</div>

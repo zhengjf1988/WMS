@@ -132,25 +132,25 @@
 				</div>
 				<div class="modal-body">
 				<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 零件编号
+						<label for="inputTitle" class="col-md-2 control-label"> 零件编号
 						</label>
-						<div class="col-sm-10">
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="ljbm"
 								name="ljbm">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 零件名称
+						<label for="inputTitle" class="col-md-2 control-label"> 零件名称
 						</label>
-						<div class="col-sm-10">
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="ljname"
 								name="ljname">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 存储类型
+						<label for="inputTitle" class="col-md-2 control-label"> 存储类型
 						</label>
-						<div class="col-sm-10">
+						<div class="col-md-10">
 								<input type="texta" class="form-control" id="cctype"
 									name="cctype"> 
 
@@ -158,9 +158,9 @@
 						</div>
 					</div>
                          <div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 上级零件
+						<label for="inputTitle" class="col-md-2 control-label"> 上级零件
 						</label>
-						<div class="col-sm-10">
+						<div class="col-md-10">
 							<!-- 	<input type="texta" class="form-control" id="inputTitle"
 									name="username"> -->
 
@@ -168,9 +168,9 @@
 						</div>
 					</div>
                       <div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 构件数量
+						<label for="inputTitle" class="col-md-2 control-label"> 构件数量
 						</label>
-						<div class="col-sm-10">
+						<div class="col-md-10">
 								<input type="texta" class="form-control" id="gjsl"
 									name="gjsl">
 

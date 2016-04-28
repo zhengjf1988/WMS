@@ -30,7 +30,7 @@
 				</div>
 				<div class="panel-body">
 					<li>
-						<a href="#">内部生产计划</a>
+						<a href="self/plan.do">内部生产计划</a>
 					</li>
 				</div>
 			</div>

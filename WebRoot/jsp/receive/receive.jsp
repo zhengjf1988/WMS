@@ -54,8 +54,8 @@
 									<div class="modal-body" style="padding-bottom: 0">
 										<div style="display: none;" id="thDiv1">
 											<div class="form-group">
-												<label for="inputTitle" class="col-sm-2 control-label">零件名称</label>
-												<div class="col-sm-10">
+												<label for="inputTitle" class="col-md-2 control-label">零件名称</label>
+												<div class="col-md-10">
 													<select class="form-control" id="ljName" name="fk_ljID">
 													</select>
 													<input type="hidden" class="form-control" id="recId" name="id">
@@ -63,21 +63,21 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="inputTitle" class="col-sm-2 control-label">零件数量</label>
-												<div class="col-sm-10">
+												<label for="inputTitle" class="col-md-2 control-label">零件数量</label>
+												<div class="col-md-10">
 													<input type="text" maxlength="30" class="form-control" id="count" name="count">
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="inputTitle" class="col-sm-2 control-label">包装类型</label>
-												<div class="col-sm-10">
+												<label for="inputTitle" class="col-md-2 control-label">包装类型</label>
+												<div class="col-md-10">
 													<select class="form-control" id="bzType" name="fk_bzID">
 													</select>
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="inputTitle" class="col-sm-2 control-label">提货时间</label>
-												<div class="col-sm-10">
+												<label for="inputTitle" class="col-md-2 control-label">提货时间</label>
+												<div class="col-md-10">
 													<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 														<input class="form-control" size="16" type="text" readonly id="thDate" name="thDate" placeholder="提货时间...">
 														<span class="input-group-addon">
@@ -90,14 +90,14 @@
 
 										<div style="display: none;" id="thDiv2">
 											<div class="form-group">
-												<label for="inputTitle" class="col-sm-2 control-label">提货人</label>
-												<div class="col-sm-10">
+												<label for="inputTitle" class="col-md-2 control-label">提货人</label>
+												<div class="col-md-10">
 													<input type="text" maxlength="30" class="form-control" id="thMan" placeholder="多个请用;隔开!">
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="inputTitle" class="col-sm-2 control-label">提货车辆</label>
-												<div class="col-sm-10">
+												<label for="inputTitle" class="col-md-2 control-label">提货车辆</label>
+												<div class="col-md-10">
 													<input type="text" maxlength="30" class="form-control" id="thCar" placeholder="多个请用;隔开!">
 												</div>
 											</div>
@@ -128,20 +128,20 @@
 										<!-- 补单信息 -->
 										<div id="thDiv4" class="form-group" style="display: none;">
 											<hr>
-											<label for="inputTitle" class="col-sm-2 control-label">零件名称</label>
-											<div class="col-sm-4">
+											<label for="inputTitle" class="col-md-2 control-label">零件名称</label>
+											<div class="col-md-4">
 												<input type="text" maxlength="30" class="form-control" id="bd_name">
 											</div>
-											<label for="inputTitle" class="col-sm-2 control-label">零件数量</label>
-											<div class="col-sm-4">
+											<label for="inputTitle" class="col-md-2 control-label">零件数量</label>
+											<div class="col-md-4">
 												<input type="text" maxlength="30" class="form-control" id="bd_count">
 											</div>
-											<label for="inputTitle" class="col-sm-2 control-label">包装类型</label>
-											<div class="col-sm-4">
+											<label for="inputTitle" class="col-md-2 control-label">包装类型</label>
+											<div class="col-md-4">
 												<input type="text" maxlength="30" class="form-control" id="bd_bzType">
 											</div>
-											<label for="inputTitle" class="col-sm-2 control-label">补单时间</label>
-											<div class="col-sm-4">
+											<label for="inputTitle" class="col-md-2 control-label">补单时间</label>
+											<div class="col-md-4">
 												<input type="text" maxlength="30" class="form-control" id="bd_date">
 											</div>
 										</div>

@@ -147,15 +147,15 @@
 				</div>
 				<div class="modal-body" style="padding-bottom: 0">
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">存储类型</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">存储类型</label>
+						<div class="col-md-10">
 							<input type="hidden" class="form-control" id="stId" name="stId">
 							<input type="text" class="form-control" id="saveType" name="saveType">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">备注信息</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">备注信息</label>
+						<div class="col-md-10">
 							<!-- 	<input type="texta" class="form-control" id="inputTitle"
 									name="username"> -->
 							<textarea rows="8" class="form-control" id="comments" name="comments"></textarea>

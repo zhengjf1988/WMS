@@ -137,25 +137,25 @@
 				  
 				  <div class="form-group">
 				
-						<label for="inputTitle" class="col-sm-4 control-label"> 员工卡号
+						<label for="inputTitle" class="col-md-4 control-label"> 员工卡号
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 							<input type="text" class="form-control" id="ygbh"
 								name="ygbh">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-4 control-label"> 员工姓名
+						<label for="inputTitle" class="col-md-4 control-label"> 员工姓名
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 							<input type="text" class="form-control" id="ygxm"
 								name="ygxm">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-4 control-label"> 职位名称
+						<label for="inputTitle" class="col-md-4 control-label"> 职位名称
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 								<input type="texta" class="form-control" id="zwmc"
 									name="zwmc"> 
 
@@ -163,9 +163,9 @@
 						</div>
 					</div>
                          <div class="form-group">
-						<label for="inputTitle" class="col-sm-4 control-label"> 部门名称
+						<label for="inputTitle" class="col-md-4 control-label"> 部门名称
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 							 	<input type="texta" class="form-control" id="bmmc"
 									name="bmmc">
 
@@ -173,9 +173,9 @@
 						</div>
 					</div>
                       <div class="form-group">
-						<label for="inputTitle" class="col-sm-4 control-label"> 联系方式
+						<label for="inputTitle" class="col-md-4 control-label"> 联系方式
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 								<input type="texta" class="form-control" id="lxfs"
 									name="lxfs">
 
@@ -183,9 +183,9 @@
 						</div>
 					</div>
 					 <div class="form-group">
-						<label for="inputTitle" class="col-sm-4 control-label"> 筛选能力
+						<label for="inputTitle" class="col-md-4 control-label"> 筛选能力
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 								<input type="text" class="form-control" id="sxnl"
 									name="sxnl">
 
@@ -199,15 +199,15 @@
 				
 		<!-- 上传图片 -->
 				 <div >
-				   <div class="col-sm-12 " id="preview" ></div>
-				     <div class="col-sm-12 ">&nbsp;</div>
-				      <div class="col-sm-12 ">&nbsp;</div>
-				     <div class=" col-sm-12 ">
-				      <div class="col-sm-4 col-md-4">&nbsp;</div>
+				   <div class="col-md-12 " id="preview" ></div>
+				     <div class="col-md-12 ">&nbsp;</div>
+				      <div class="col-md-12 ">&nbsp;</div>
+				     <div class=" col-md-12 ">
+				      <div class="col-md-4 col-md-4">&nbsp;</div>
 				     <button type="button"  id="" name=""  onclick="uploadimg()" >上传图片</button>
 				     </div>
 				     
-				       <div class="col-sm-12 " style="position:relative; display:none;" id="upimagediv">
+				       <div class="col-md-12 " style="position:relative; display:none;" id="upimagediv">
 							
 								<span id="span1">  
 									<input  name="file" type="file" style="margin-bottom:10px;" id="file" onchange="preview(this)" />
@@ -220,10 +220,10 @@
 				  </div>
 				 
 				
-				<div class="modal-footer col-sm-12 ">
-				 <div class="col-sm-12 ">&nbsp;</div>
-				  <div class="col-sm-12 ">&nbsp;</div>
-				   <div class="col-sm-12 ">&nbsp;</div>
+				<div class="modal-footer col-md-12 ">
+				 <div class="col-md-12 ">&nbsp;</div>
+				  <div class="col-md-12 ">&nbsp;</div>
+				   <div class="col-md-12 ">&nbsp;</div>
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="submit" class="btn btn-primary" id="opensave">保存</button>
 				</div>
@@ -285,7 +285,7 @@
 				
 				//显示图片
 				var prevDiv = document.getElementById('preview');  
-				prevDiv.innerHTML = "<img class='col-sm-12' src='file/user/" + $(this).find("td:eq(9)").text() + "' />";
+				prevDiv.innerHTML = "<img class='col-md-12' src='file/user/" + $(this).find("td:eq(9)").text() + "' />";
 				
 		  });
 		$("#opensave").show();
@@ -310,7 +310,7 @@
 				$("#sxnl").val($(this).find("td:eq(6)").text());
 				$("#ygid").val($(this).find("td:eq(8)").text());
 				var prevDiv = document.getElementById('preview');  
-				prevDiv.innerHTML = "<img class='col-sm-12' src='file/user/" + $(this).find("td:eq(9)").text() + "' />";
+				prevDiv.innerHTML = "<img class='col-md-12' src='file/user/" + $(this).find("td:eq(9)").text() + "' />";
 
 		  });
 		$("#opensave").hide();
@@ -340,7 +340,7 @@ function upimagedivhidden() {
  {  
  var reader = new FileReader();  
  reader.onload = function(evt){  
- prevDiv.innerHTML = "<img class='col-sm-12' src='" + evt.target.result + "' />";  
+ prevDiv.innerHTML = "<img class='col-md-12' src='" + evt.target.result + "' />";  
 }    
  reader.readAsDataURL(file.files[0]);  
 }  

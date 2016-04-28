@@ -197,16 +197,16 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="inputTitle" class="col-sm-1 control-label"> 名称 </label>
-								<div class="col-sm-10">
+								<label for="inputTitle" class="col-md-1 control-label"> 名称 </label>
+								<div class="col-md-10">
 									<input type="text" class="form-control" id="roleName" name="roleName">
 									<input type="hidden" class="form-control" id="pk_id" name="id">
 									<input type="hidden" class="form-control" id="permission" name="permission">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputTitle" class="col-sm-1 control-label"> 备注信息 </label>
-								<div class="col-sm-10">
+								<label for="inputTitle" class="col-md-1 control-label"> 备注信息 </label>
+								<div class="col-md-10">
 									<!-- 	<input type="texta" class="form-control" id="inputTitle"
 									name="username"> -->
 

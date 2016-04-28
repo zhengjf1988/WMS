@@ -130,9 +130,9 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="inputCcname" class="col-sm-4 control-label"> 零件存储类型
+						<label for="inputCcname" class="col-md-4 control-label"> 零件存储类型
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 								<select class="form-control" id="inputCcname" name="ccname">
 						           <option value=""></option>
 						           <option value="1">hah</option>
@@ -142,9 +142,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputKwmeno" class="col-sm-4 control-label"> 库位存储类型
+						<label for="inputKwmeno" class="col-md-4 control-label"> 库位存储类型
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 								<select class="form-control" id="inputKwmeno" name="kwmeno">
 						           <option value=""></option>
 						           <option value="1">hah</option>
@@ -154,20 +154,20 @@
 						</div>
 					</div>
                     <div class="form-group">
-						<label for="inputTitle" class="col-sm-4 control-label"> 是否存储受限
+						<label for="inputTitle" class="col-md-4 control-label"> 是否存储受限
 						</label>
-						<div class="col-sm-2">
+						<div class="col-md-2">
 							<input id="isyes" type="radio" value="1" name="issx" onclick="shower()">是
 							
 						</div>
-						<div class="col-sm-2">
+						<div class="col-md-2">
 							<input id="isno" type="radio" value="0" name="issx" onclick="hiddens()">否
 						</div>
 					</div>
                    <div class="form-group" id="ljccqx" style="display:none">
-						<label for="inputTitle" class="col-sm-4 control-label"> 零件存储期限
+						<label for="inputTitle" class="col-md-4 control-label"> 零件存储期限
 						</label>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 							<input type="text" class="form-control" id="inputSxqx"
 								name="sxqx">
 						</div>

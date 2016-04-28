@@ -29,29 +29,29 @@
 				method="post">
 				<div class="form-group">
 
-					<label for="inputEmail3" class="col-sm-2 control-label">
+					<label for="inputEmail3" class="col-md-2 control-label">
 						用户名 </label>
-					<div class="col-sm-10">
+					<div class="col-md-10">
 						<input type="text" class="form-control" id="inputEmail3"
 							name="username" value="admin">
 					</div>
 				</div>
 				<div class="form-group">
 
-					<label for="inputPassword3" class="col-sm-2 control-label">
+					<label for="inputPassword3" class="col-md-2 control-label">
 						密码 </label>
-					<div class="col-sm-10">
+					<div class="col-md-10">
 						<input type="password" class="form-control" id="inputPassword3"
 							name="psw" value="111111">
 					</div>
 				</div>
-				<div class="col-sm-offset-2 col-sm-10">
+				<div class="col-md-offset-2 col-md-10">
 					<c:if test="${user==''}">
 						<div class="alert alert-danger" role="alert">用户名或密码错误！</div>
 					</c:if>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
+					<div class="col-md-offset-2 col-md-10">
 						<button type="submit" class="btn btn-primary btn-block">登录</button>
 					</div>
 				</div>

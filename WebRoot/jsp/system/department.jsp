@@ -109,15 +109,15 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 部门名称 </label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label"> 部门名称 </label>
+						<div class="col-md-10">
 							<input type="text" class="form-control" id="departmentName" name="departmentName">
 							<input type="hidden" id="departId" name="departId">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 所属上级 </label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label"> 所属上级 </label>
+						<div class="col-md-10">
 							<!-- 	<input type="text" class="form-control" id="parentName"
 									name="parentName"> -->
 							<select class="form-control" id="parentId" name="parentId">
@@ -125,8 +125,8 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 备注信息 </label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label"> 备注信息 </label>
+						<div class="col-md-10">
 							<!-- 	<input type="texta" class="form-control" id="inputTitle"
 									name="username"> -->
 

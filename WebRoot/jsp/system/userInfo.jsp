@@ -129,48 +129,48 @@
 				</div>
 				<div class="modal-body" style="padding-bottom: 0">
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">登录名称</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">登录名称</label>
+						<div class="col-md-10">
 							<input type="text" maxlength="30" class="form-control" id="username" name="username" onblur="checkUserName()">
 							<input type="hidden" class="form-control" id="userId" name="userId">
 
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">真实姓名</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">真实姓名</label>
+						<div class="col-md-10">
 							<input type="text" maxlength="30" class="form-control" id="realName" name="realName">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">登录密码</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">登录密码</label>
+						<div class="col-md-10">
 							<input maxlength="30" type="password" class="form-control" id="psw" name="psw">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">确认密码</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">确认密码</label>
+						<div class="col-md-10">
 							<input maxlength="30" type="password" class="form-control" id="surePsw">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">角色</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">角色</label>
+						<div class="col-md-10">
 							<select class="form-control" id="fk_roleId" name="fk_roleId">
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label">部门</label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label">部门</label>
+						<div class="col-md-10">
 							<select class="form-control" id="fk_departmentId" name="fk_departmentId">
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputTitle" class="col-sm-2 control-label"> 备注信息 </label>
-						<div class="col-sm-10">
+						<label for="inputTitle" class="col-md-2 control-label"> 备注信息 </label>
+						<div class="col-md-10">
 							<!-- 	<input type="texta" class="form-control" id="inputTitle"
 									name="username"> -->
 
