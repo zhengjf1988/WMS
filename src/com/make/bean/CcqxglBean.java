@@ -2,7 +2,7 @@ package com.make.bean;
 
 import java.util.Date;
 
-public class CcqxglBean {//存储期限管理
+public class CcqxglBean {//存储期限管理--------------
 	private int ccid;//存储期限id
 	private String ccname;//零件存储类型
 	private String kwmeno;//库位存储类型
