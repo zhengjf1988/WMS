@@ -44,4 +44,15 @@ public interface ISelfPlanMapper {
 	 * @date 2016-4-28
 	 */
 	List<SelfPlanBean> loadInfo(SelfPlanBean item);
+
+	/**
+	 * @Description: 修改内部计划
+	 * @param @param item
+	 * @param @return
+	 * @return int
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-5-2
+	 */
+	int updateInfo(SelfPlanBean item);
 }

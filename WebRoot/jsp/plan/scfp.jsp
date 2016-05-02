@@ -81,7 +81,7 @@
 </form>
 
 <!-- message -->
-<form action="receive/delete.do" method="post">
+<form action="self/delete.do" method="post">
 	<div class="modal fade" role="dialog" aria-labelledby="messageModalLabel" id="messageModal" tabindex="-1" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">

@@ -153,7 +153,7 @@
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 										<button type="button" class="btn btn-primary" onclick="saveInfo()" id="sav1">保存</button>
-										<button type="button" class="btn btn-primary" onclick="tihuo()" id="sav2" style="display: none;">保存2</button>
+										<button type="button" class="btn btn-primary" onclick="tihuo()" id="sav2" style="display: none;">保存</button>
 									</div>
 								</div>
 								<!-- /.modal-content -->

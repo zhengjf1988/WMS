@@ -18,10 +18,14 @@ function loadSelfPlan() {
 			var jsonObj = JSON.parse(data);
 			var str = "";
 			$.each(jsonObj, function(i, item) {
-				str += "<tr><td>" + (i + 1) + "</td><td>" + item.khName + "</td><td>" + item.ljname + "</td><td>" + item.count + "</td><td>" + item.xqDate + "</td><td><a onclick='linkPage(" + item.id
-						+ ")'>编辑</a> || <a href='#'>删除</a></td></tr>";
+				str += "<tr><td>" + (i + 1) + "</td><td>" + item.khName
+						+ "</td><td>" + item.ljname + "</td><td>" + item.count
+						+ "</td><td>" + item.xqDate
+						+ "</td><td><a onclick='linkPage(" + item.id
+						+ ")'>编辑</a> || <a onClick='openMassageModal("
+						+ item.id + ")'>删除</a> || <a onclick='fenpei("
+						+ item.id + ")'>分配</a></td></tr>";
 			});
-
 			$("#table1").html(str);
 		}
 
@@ -80,7 +84,8 @@ function linkPage(id) {
 					if (selfItem.fk_khId == item.fk_khId) {
 						ljOptions += "<option value='" + value + "'";
 						if (selfItem.fk_ljId == item.ljid) {
-							ljOptions += " selected='selected'>" + text + "</option>";
+							ljOptions += " selected='selected'>" + text
+									+ "</option>";
 						} else {
 							ljOptions += ">" + text + "</option>";
 						}
@@ -110,8 +115,7 @@ function setLjXX() {// 这里是新增的时候走的
 		var text = item.ljname;
 		if (khId == item.fk_khId) {
 			ljOptions += "<option value='" + value + "'>" + text + "</option>";
-		}
-		;
+		};
 	});
 	$("#fk_ljId").html(ljOptions);
 }
@@ -120,3 +124,21 @@ function setLjXX() {// 这里是新增的时候走的
 function saveInfo() {
 	$("#selfSaveForm").submit();
 };
+
+// 分配内部计划
+function fenpei(id) {
+	$("#tbDiv1").show();
+	linkPage(id);
+	var randomNum = Math.random() * 5;
+	randomNum += "";
+	randomNum = randomNum.replace(".", "").substring(0, 6);
+	randomNum = "GDBH" + randomNum;
+	$("#gd_Id").text("工单编号：" + randomNum);
+}
+
+// 点击加号动态添加工单分配信息
+function addGDDiv() {
+
+	var str = "<tr><td><select name='sel' class='form-control'><option>1111111111111111</option><option>2</option><option>3</option></select></td><td><input type='text' class='form-control' name='name' value='1'></td><td><div class='input-group date form_date' data-date='' data-date-format='dd MM yyyy' data-link-field='dtp_input2' data-link-format='yyyy-mm-dd'><input class='form-control' size='16' type='text' readonly placeholder='需求时间...' name='xqDate' id='xqDate'><span class='input-group-addon'><span class='glyphicon glyphicon-remove'></span></span></div></td></tr>";
+	$("#table_gd").append(str);
+}

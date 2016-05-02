@@ -25,7 +25,7 @@ public class SelfPlanBean {
 	private int count;
 	/** 需求时间 */
 	private String xqDate;
-	/** 状态 */
+	/** 状态 (0 正常，1 删除) */
 	private int status;
 	/** 客户名称 */
 	private String khName;

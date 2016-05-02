@@ -23,6 +23,25 @@
 			and s.id=#{id}
 		</if>
 	</select>
-
+	<!-- 修改内部计划 -->
+	<update id="updateInfo" parameterType="com.make.bean.SelfPlanBean">
+		UPDATE `t_selfplan` SET
+		<if test="fk_khId>0">
+			`fk_khId`=#{fk_khId},
+		</if>
+		<if test="fk_ljId>0">
+			`fk_ljId`=#{fk_ljId},
+		</if>
+		<if test="count>0">
+			`count`=#{count},
+		</if>
+		<if test="xqDate!=null and xqDate!=''">
+			`xqDate`=#{xqDate},
+		</if>
+		<if test="status>=0">
+			`status`=#{status}
+		</if>
+		WHERE (`id`=#{id});
+	</update>
 
 </mapper>

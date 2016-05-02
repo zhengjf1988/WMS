@@ -74,41 +74,26 @@
 						</div>
 					</div>
 
-					<div class="form-group" id="tbDiv1" style="display: none;">
+					<div class="form-group" id="tbDiv1" style="display: none">
 						<div class="table-responsive" style="overflow:scroll;">
+							<div class="form-group">
+								<label class="col-md-6" id="gd_Id"></label>
+								<div class=" class="col-md-6"">
+									<button type="button" class="btn btn-default" onclick="addGDDiv()">
+										<span class="glyphicon glyphicon-plus" aria-hidden="true" />
+									</button>
+								</div>
+							</div>
 							<table class="table table-bordered table-hover">
 								<thead>
 									<tr class="success">
-										<td class="text-center">条形码</td>
-										<td class="text-center">实际数量</td>
+										<td class="text-center col-md-4">生产班组</td>
+										<td class="text-center col-md-4">生产数量</td>
+										<td class="text-center col-md-4">生产日期</td>
 									</tr>
 								</thead>
-								<tbody id="table_txm">
-									<tr>
-										<td>
-											<select name="sel">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-											</select>
-										</td>
-										<td>
-											<input type="text" name="name" value="1">
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<select name="sel">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-											</select>
-										</td>
-										<td>
-											<input type="text" name="name" value="2">
-											<input type="text" name="name">
-										</td>
-									</tr>
+								<tbody id="table_gd">
+									
 								</tbody>
 							</table>
 						</div>

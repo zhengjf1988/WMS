@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.make.bean.ReceiveBean;
 import com.make.bean.SelfPlanBean;
 import com.make.service.ISelfPlanService;
 
@@ -102,11 +103,40 @@ public class SelfPlanController {
 	 * @date 2016-4-28
 	 */
 	@RequestMapping("save.do")
-	public void upsertInfo(SelfPlanBean item) {
-		if (item.getId() > 0) {// 修改
-
-		} else {// 添加
-			selfPlanService.insertSelfInfo(item);
+	public String upsertInfo(SelfPlanBean item) {
+		try {
+			if (item.getId() > 0) {// 修改
+				selfPlanService.updateInfo(item);
+			} else {// 添加
+				selfPlanService.insertSelfInfo(item);
+			}
+			return "redirect:plan.do";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
 		}
+		return "error";
+	}
+
+	/**
+	 * @Description: 删除内部计划信息
+	 * @param @return
+	 * @return String
+	 * @throws
+	 * @author zhengjf
+	 * @date 2016-5-2
+	 */
+	@RequestMapping("delete.do")
+	public String deleteInfo(HttpServletRequest req) {
+		try {
+			SelfPlanBean item = new SelfPlanBean();
+			int id = Integer.parseInt(req.getParameter("deleteId"));
+			item.setId(id);
+			item.setStatus(1);
+			selfPlanService.updateInfo(item);
+			return "redirect:plan.do";
+		} catch (Exception e) {
+			log.error("程序出错：" + e);
+		}
+		return "error";
 	}
 }

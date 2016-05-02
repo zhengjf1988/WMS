@@ -83,4 +83,14 @@ public class SelfPlanServiceImp implements ISelfPlanService {
 	public List<SelfPlanBean> loadInfo(SelfPlanBean item) {
 		return selfDao.loadInfo(item);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.make.service.ISelfPlanService#updateInfo(com.make.bean.SelfPlanBean)
+	 */
+	public int updateInfo(SelfPlanBean item) {
+		return selfDao.updateInfo(item);
+	}
 }
