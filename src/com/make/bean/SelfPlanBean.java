@@ -10,7 +10,7 @@ package com.make.bean;
 /**
  * ClassName: SelfPlanBean
  * 
- * @Description: 内部生产计划实体类-----------
+ * @Description: 内部生产计划实体类--
  * @author zhengjf
  * @date 2016-4-28
  */
